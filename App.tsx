@@ -1,5 +1,5 @@
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import Home from './android/src/screens/Home';
+import Home from './android/src/screens/Home/Home';
 
 function App() {
   return (
