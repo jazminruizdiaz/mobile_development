@@ -44,8 +44,4 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 12,
   },
-  sectionsList: {
-    marginTop: 24,
-    paddingHorizontal: 24,
-  },
 });

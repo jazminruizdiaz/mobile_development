@@ -8,7 +8,11 @@ type Props = {
   onActionPress: () => void;
 };
 
-export const SectionHeader = ({ title, actionLabel, onActionPress }: Props) => {
+export const MovieSectionHeader = ({
+  title,
+  actionLabel,
+  onActionPress,
+}: Props) => {
   return (
     <View style={styles.row}>
       <TextCustom style={styles.title} variant="subtitle">

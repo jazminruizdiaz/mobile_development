@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import { SectionHeader } from './SectionHeader';
+import { MovieSectionHeader } from './MovieSectionHeader';
 
 type Props = {
   title: string;
@@ -10,7 +10,7 @@ type Props = {
 export const MovieSection = ({ title, actionLabel, onActionPress }: Props) => {
   return (
     <View>
-      <SectionHeader
+      <MovieSectionHeader
         title={title}
         actionLabel={actionLabel}
         onActionPress={onActionPress}

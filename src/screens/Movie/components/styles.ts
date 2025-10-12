@@ -19,4 +19,8 @@ export const styles = StyleSheet.create({
   actionLabel: {
     color: colors.primary,
   },
+  sectionsList: {
+    marginTop: 24,
+    paddingHorizontal: 24,
+  },
 });

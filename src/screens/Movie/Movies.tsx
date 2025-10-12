@@ -11,7 +11,7 @@ import { MovieCard } from './components/MovieCard.tsx';
 import { TextCustom } from '../../components/atoms/Text/TextCustom.tsx';
 import { Button } from '../../components/atoms/Button/Button.tsx';
 import LinearGradient from 'react-native-linear-gradient';
-import { MovieSection } from './components/MovieSection.tsx';
+import { SectionsList } from './components/SectionsList.tsx';
 
 const { width, height } = Dimensions.get('window');
 
@@ -83,7 +83,6 @@ const Movies = () => {
           </View>
         </View>
       </View>
-
       <Pagination.Basic
         progress={progress}
         data={movies}
@@ -100,14 +99,15 @@ const Movies = () => {
         containerStyle={{ gap: 5, marginTop: 10 }}
         onPress={onPressPagination}
       />
-
-      <View style={styles.sectionsList}>
-        <MovieSection
-          title="Marvel Studios"
-          actionLabel="See more"
-          onActionPress={() => console.log('See more pressed')}
-        />
-      </View>
+      <SectionsList
+        sections={[
+          {
+            title: 'Marvel Studios',
+            actionLabel: 'See more',
+            onActionPress: () => console.log('See more pressed'),
+          },
+        ]}
+      />
     </View>
   );
 };
