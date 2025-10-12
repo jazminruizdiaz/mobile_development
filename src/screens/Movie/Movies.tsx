@@ -89,12 +89,12 @@ const Movies = () => {
         size={15}
         dotStyle={{
           borderRadius: 100,
-          backgroundColor: '#262626',
+          backgroundColor: '#FFFFFF',
         }}
         activeDotStyle={{
           borderRadius: 100,
           overflow: 'hidden',
-          backgroundColor: '#f1f1f1',
+          backgroundColor: '#FFC107',
         }}
         containerStyle={{ gap: 5, marginTop: 10 }}
         onPress={onPressPagination}
