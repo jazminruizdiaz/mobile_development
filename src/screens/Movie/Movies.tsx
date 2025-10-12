@@ -10,6 +10,7 @@ import { useSharedValue } from 'react-native-reanimated';
 import { MovieCard } from './components/MovieCard.tsx';
 import { TextCustom } from '../../components/atoms/Text/TextCustom.tsx';
 import { Button } from '../../components/atoms/Button/Button.tsx';
+import LinearGradient from 'react-native-linear-gradient';
 
 const { width, height } = Dimensions.get('window');
 
@@ -43,32 +44,42 @@ const Movies = () => {
 
   return (
     <View style={styles.container}>
-      <Carousel
-        ref={ref}
-        width={width}
-        height={height * 0.65}
-        data={movies}
-        onProgressChange={progress}
-        renderItem={({ item }) => <MovieCard posterPath={item.poster_path} />}
-      />
+      <View style={styles.carouselContainer}>
+        <Carousel
+          ref={ref}
+          width={width}
+          height={height * 0.65}
+          data={movies}
+          onProgressChange={progress}
+          renderItem={({ item }) => <MovieCard posterPath={item.poster_path} />}
+        />
 
-      <View style={styles.overlay}>
-        <View style={styles.textRow}>
-          <TextCustom variant="subtitle">My list</TextCustom>
-          <TextCustom variant="subtitle">Discover</TextCustom>
-        </View>
+        <LinearGradient
+          colors={[
+            'rgba(0, 0, 0, 0)',
+            'rgba(0, 0, 0, 0.8)',
+            'rgba(0, 0, 0, 1)',
+          ]}
+          style={styles.gradient}
+        />
+        <View style={styles.overlay}>
+          <View style={styles.textRow}>
+            <TextCustom variant="subtitle">My list</TextCustom>
+            <TextCustom variant="subtitle">Discover</TextCustom>
+          </View>
 
-        <View style={styles.buttonRow}>
-          <Button
-            title="+ Wishlist"
-            variant="secondary"
-            onPress={() => console.log('Wishlist pressed')}
-          />
-          <Button
-            title="Details"
-            variant="primary"
-            onPress={() => console.log('Details pressed')}
-          />
+          <View style={styles.buttonRow}>
+            <Button
+              title="+ Wishlist"
+              variant="secondary"
+              onPress={() => console.log('Wishlist pressed')}
+            />
+            <Button
+              title="Details"
+              variant="primary"
+              onPress={() => console.log('Details pressed')}
+            />
+          </View>
         </View>
       </View>
 
