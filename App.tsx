@@ -1,11 +1,14 @@
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Home } from './src/screens/Home';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import Movies from './src/screens/Movie/Movies.tsx';
 
 function App() {
   return (
-    <SafeAreaProvider>
-      <Home />
-    </SafeAreaProvider>
+    <GestureHandlerRootView>
+      <SafeAreaProvider>
+        <Movies />
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }
 
