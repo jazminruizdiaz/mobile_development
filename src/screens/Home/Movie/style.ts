@@ -14,14 +14,18 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.background,
   },
+  carouselWrapper: {
+    height: height * 0.65,
+    position: 'relative',
+  },
   gradient: {
     position: 'absolute',
-    bottom: height * 6.3,
+    bottom: 0,
     left: 0,
     right: 0,
-    height: 150,
-    justifyContent: 'flex-end',
+    paddingHorizontal: 24,
     paddingBottom: 20,
+    justifyContent: 'flex-end',
   },
   overlay: {
     paddingHorizontal: 24,
@@ -29,11 +33,11 @@ export const styles = StyleSheet.create({
   textRow: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginBottom: 16,
+    marginBottom: 20,
   },
   buttonRow: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginBottom: 12,
+    gap: 12,
   },
 });
