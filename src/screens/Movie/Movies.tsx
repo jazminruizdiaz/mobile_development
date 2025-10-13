@@ -11,8 +11,11 @@ import { MovieCard } from './components/MovieCard.tsx';
 import { TextCustom } from '../../components/atoms/Text/TextCustom.tsx';
 import { Button } from '../../components/atoms/Button/Button.tsx';
 import LinearGradient from 'react-native-linear-gradient';
-
+import { GenresBar } from './components/GenresBar.tsx';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 const { width, height } = Dimensions.get('window');
+
+const GENRES = ['All', 'Romance', 'Sport', 'Kids', 'Horror'];
 
 interface Movie {
   id: number;
@@ -26,6 +29,10 @@ const Movies = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const ref = useRef<ICarouselInstance>(null);
   const progress = useSharedValue<number>(0);
+  const [genre, setGenre] = useState('All');
+  const insets = useSafeAreaInsets();
+
+  const top = insets.top;
 
   const onPressPagination = (index: number) => {
     ref.current?.scrollTo({
@@ -45,6 +52,13 @@ const Movies = () => {
   return (
     <View style={styles.container}>
       <View style={styles.carouselContainer}>
+        <GenresBar
+          genres={GENRES}
+          active={genre}
+          onChange={setGenre}
+          top={top}
+        />
+
         <Carousel
           ref={ref}
           width={width}
