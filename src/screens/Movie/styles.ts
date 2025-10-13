@@ -14,25 +14,17 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.background,
   },
-  carouselContainer: {
-    position: 'relative',
-  },
   gradient: {
     position: 'absolute',
-    bottom: 0,
+    bottom: height * 0.3,
     left: 0,
     right: 0,
-    height: 220,
-    zIndex: 1,
+    height: 180,
+    justifyContent: 'flex-end',
+    paddingBottom: 20,
   },
   overlay: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
     paddingHorizontal: 24,
-    paddingBottom: 20,
-    zIndex: 2,
   },
   textRow: {
     flexDirection: 'row',
@@ -43,5 +35,23 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     gap: 12,
+    marginBottom: 24,
+  },
+  paginationContainer: {
+    gap: 10,
+    flexDirection: 'row',
+    paddingTop: 24,
+  },
+  paginationDot: {
+    backgroundColor: colors.white,
+    borderRadius: 50,
+    width: 10,
+    height: 10,
+  },
+  paginationActiveDot: {
+    backgroundColor: colors.primary,
+    borderRadius: 50,
+    width: 10,
+    height: 10,
   },
 });

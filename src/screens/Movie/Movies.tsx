@@ -45,24 +45,20 @@ const Movies = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.carouselContainer}>
-        <Carousel
-          ref={ref}
-          width={width}
-          height={height * 0.65}
-          data={movies}
-          onProgressChange={progress}
-          renderItem={({ item }) => <MovieCard posterPath={item.poster_path} />}
-        />
-
-        <LinearGradient
-          colors={[
-            'rgba(0, 0, 0, 0)',
-            'rgba(0, 0, 0, 0.8)',
-            'rgba(0, 0, 0, 1)',
-          ]}
-          style={styles.gradient}
-        />
+      <Carousel
+        ref={ref}
+        width={width}
+        height={height * 0.65}
+        data={movies}
+        autoPlay={true}
+        autoPlayInterval={3000}
+        onProgressChange={progress}
+        renderItem={({ item }) => <MovieCard posterPath={item.poster_path} />}
+      />
+      <LinearGradient
+        colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.8)', 'rgba(0,0,0,1)']}
+        style={styles.gradient}
+      >
         <View style={styles.overlay}>
           <View style={styles.textRow}>
             <TextCustom variant="subtitle">My list</TextCustom>
@@ -82,21 +78,13 @@ const Movies = () => {
             />
           </View>
         </View>
-      </View>
+      </LinearGradient>
       <Pagination.Basic
         progress={progress}
         data={movies}
-        size={15}
-        dotStyle={{
-          borderRadius: 100,
-          backgroundColor: '#FFFFFF',
-        }}
-        activeDotStyle={{
-          borderRadius: 100,
-          overflow: 'hidden',
-          backgroundColor: '#FFC107',
-        }}
-        containerStyle={{ gap: 5, marginTop: 10 }}
+        containerStyle={styles.paginationContainer}
+        dotStyle={styles.paginationDot}
+        activeDotStyle={styles.paginationActiveDot}
         onPress={onPressPagination}
       />
       <SectionsList
@@ -108,6 +96,7 @@ const Movies = () => {
           },
         ]}
       />
+      ;
     </View>
   );
 };

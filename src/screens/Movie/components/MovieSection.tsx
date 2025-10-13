@@ -9,12 +9,12 @@ type Props = {
 
 export const MovieSection = ({ title, actionLabel, onActionPress }: Props) => {
   return (
-    <View>
+    <>
       <MovieSectionHeader
         title={title}
         actionLabel={actionLabel}
         onActionPress={onActionPress}
       />
-    </View>
+    </>
   );
 };
