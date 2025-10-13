@@ -8,6 +8,9 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.background,
   },
+  carouselContainer: {
+    position: 'relative',
+  },
   loadingContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -16,7 +19,7 @@ export const styles = StyleSheet.create({
   },
   gradient: {
     position: 'absolute',
-    bottom: height * 0.3,
+    bottom: 0,
     left: 0,
     right: 0,
     height: 180,

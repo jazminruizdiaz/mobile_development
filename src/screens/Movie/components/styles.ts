@@ -8,6 +8,23 @@ export const styles = StyleSheet.create({
     width: width,
     height: height * 0.65,
   },
+  movieCard: {
+    width: 150,
+    height: 200,
+    borderRadius: 8,
+    marginTop: 8,
+  },
+  movieItemContainer: {
+    marginRight: 16,
+    alignItems: 'center',
+  },
+  movieTitle: {
+    marginTop: 8,
+    textAlign: 'center',
+    fontSize: 12,
+    color: colors.textPrimary,
+    maxWidth: 150,
+  },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
