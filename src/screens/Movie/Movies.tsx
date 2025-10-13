@@ -14,6 +14,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { SectionsList } from './components/SectionsList.tsx';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Movie } from '../../types/Movie';
+import { colors } from '../../constants/colors';
 
 const { width, height } = Dimensions.get('window');
 
@@ -55,7 +56,7 @@ const Movies = () => {
             )}
           />
           <LinearGradient
-            colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.8)', 'rgba(0,0,0,1)']}
+            colors={colors.gradientOverlay}
             style={styles.gradient}
           >
             <View style={styles.overlay}>
