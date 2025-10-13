@@ -26,4 +26,22 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     color: '#666',
   },
+  titleSection: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignContent: 'center',
+    gap: 20,
+  },
+  buttonSection: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 20,
+  },
+  button: {
+    backgroundColor: '#4CAF50',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
 });
