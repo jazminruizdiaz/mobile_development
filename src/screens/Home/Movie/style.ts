@@ -40,4 +40,21 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 12,
   },
+
+  paginationContainer: {
+    gap: 10,
+    flexDirection: 'row',
+  },
+  paginationDot: {
+    backgroundColor: colors.white,
+    borderRadius: 50,
+    width: 10,
+    height: 10,
+  },
+  paginationActiveDot: {
+    backgroundColor: colors.primary,
+    borderRadius: 50,
+    width: 10,
+    height: 10,
+  },
 });

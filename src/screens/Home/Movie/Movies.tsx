@@ -7,10 +7,11 @@ import Carousel, {
   Pagination,
 } from 'react-native-reanimated-carousel';
 import { useSharedValue } from 'react-native-reanimated';
-import { MovieCard } from './components/MovieCard.tsx';
+import { MovieCard } from './components/MovieCard/MovieCard.tsx';
 import { DAText } from '../../../components/atoms/DAText/DAText.tsx';
 import { DAButton } from '../../../components/atoms/DAButton/DAButton.tsx';
 import LinearGradient from 'react-native-linear-gradient';
+import { MovieList } from './components/MovieList/MovieList.tsx';
 
 const { width, height } = Dimensions.get('window');
 
@@ -43,7 +44,7 @@ export const Movies = () => {
           ref={ref}
           width={width}
           height={height * 0.65}
-          data={movies}
+          data={movies.slice(0, 7)}
           onProgressChange={progress}
           autoPlay={true}
           autoPlayInterval={5000}
@@ -75,17 +76,14 @@ export const Movies = () => {
       </View>
       <Pagination.Basic
         progress={progress}
-        data={movies}
-        dotStyle={{
-          backgroundColor: 'rgba(255,255,255,0.3)',
-          borderRadius: 50,
-        }}
-        activeDotStyle={{
-          backgroundColor: 'rgba(255,255,255,0.9)',
-        }}
-        containerStyle={{ gap: 5, marginTop: 20 }}
+        containerStyle={styles.paginationContainer}
+        data={movies.slice(0, 7)}
+        dotStyle={styles.paginationDot}
+        activeDotStyle={styles.paginationActiveDot}
         onPress={onPressPagination}
       />
+
+      <MovieList title="Marvel Studios" />
     </View>
   );
 };
