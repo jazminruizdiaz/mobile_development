@@ -1,5 +1,5 @@
 export interface SectionContent {
-  type: 'Company' | 'Genre';
+  type: 'Company' | 'Genre' | 'Best movies';
   title: string;
   actionLabel: string;
   onActionPress: () => void;

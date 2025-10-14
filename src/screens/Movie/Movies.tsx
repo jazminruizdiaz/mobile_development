@@ -51,6 +51,12 @@ const Movies = () => {
               onActionPress: () => console.log('See more action pressed'),
               genreId: 28,
             },
+            {
+              type: 'Best movies',
+              title: 'Best movies',
+              actionLabel: 'See more',
+              onActionPress: () => console.log('See more action pressed'),
+            },
           ]}
         />
       </View>

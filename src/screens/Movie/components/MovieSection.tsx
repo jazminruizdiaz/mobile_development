@@ -7,7 +7,9 @@ import { useEffect, useState } from 'react';
 import {
   getMoviesByCompanyId,
   getMoviesByGenreId,
+  getBestMovies,
 } from '../../../services/MDBService';
+import { BestMovieItem } from './BestMovieItem';
 
 export const MovieSection = ({
   title,
@@ -27,6 +29,10 @@ export const MovieSection = ({
       getMoviesByGenreId(genreId).then(response => {
         setMovies(response);
       });
+    } else if (type === 'Best movies') {
+      getBestMovies().then(response => {
+        setMovies(response);
+      });
     }
   }, []);
   return (
@@ -38,7 +44,12 @@ export const MovieSection = ({
       />
       <FlatList
         data={movies}
-        renderItem={({ item }) => <MovieItem {...item} />}
+        renderItem={({ item }) => {
+          if (type === 'Best movies') {
+            return <BestMovieItem {...item} />;
+          }
+          return <MovieItem {...item} />;
+        }}
         keyExtractor={item => item.id.toString()}
         horizontal
         showsHorizontalScrollIndicator={false}
