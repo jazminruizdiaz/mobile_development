@@ -57,4 +57,7 @@ export const styles = StyleSheet.create({
     width: 10,
     height: 10,
   },
+  listsContainer: {
+    paddingBottom: 20,
+  },
 });

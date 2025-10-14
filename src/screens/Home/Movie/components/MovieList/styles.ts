@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
     marginVertical: 16,
   },
   header: {
@@ -11,5 +10,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 16,
     marginBottom: 12,
+  },
+
+  listContent: {
+    paddingHorizontal: 16,
   },
 });

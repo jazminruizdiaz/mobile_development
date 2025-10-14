@@ -1,7 +1,11 @@
 import { Dimensions, View } from 'react-native';
 import { styles } from './style.ts';
-import React, { useEffect, useRef, useState } from 'react';
-import { getPopularMovies } from '../../../services/TMDBService.ts';
+import React, { act, useEffect, useRef, useState } from 'react';
+import {
+  getMoviesByGenre,
+  getPopularMovies,
+  getTopRatedMovies,
+} from '../../../services/TMDBService.ts';
 import Carousel, {
   ICarouselInstance,
   Pagination,
@@ -12,25 +16,34 @@ import { DAText } from '../../../components/atoms/DAText/DAText.tsx';
 import { DAButton } from '../../../components/atoms/DAButton/DAButton.tsx';
 import LinearGradient from 'react-native-linear-gradient';
 import { MovieList } from './components/MovieList/MovieList.tsx';
+import { Movie } from '../../../types/Movie.ts';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const { width, height } = Dimensions.get('window');
 
-interface Movie {
-  id: number;
-  title: string;
-  poster_path: string;
-  vote_average: number;
-  release_date: string;
-}
-
 export const Movies = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [actionMovies, setActionMovies] = useState<Movie[]>([]);
+  const [topRatedMovies, setTopRatedMovies] = useState<Movie[]>([]);
+
   const ref = useRef<ICarouselInstance>(null);
   const progress = useSharedValue<number>(0);
+
+  const getSlicedList = (list: Movie[], start: number = 0, end: number = 7) => {
+    return list.slice(start, end);
+  };
 
   useEffect(() => {
     getPopularMovies().then(response => {
       setMovies(response);
+    });
+
+    getMoviesByGenre(28).then(response => {
+      setActionMovies(response);
+    });
+
+    getTopRatedMovies().then(response => {
+      setTopRatedMovies(response);
     });
   }, []);
 
@@ -38,17 +51,19 @@ export const Movies = () => {
     ref.current?.scrollTo({ index });
   };
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.carouselWrapper}>
         <Carousel
           ref={ref}
           width={width}
           height={height * 0.65}
-          data={movies.slice(0, 7)}
+          data={getSlicedList(movies)}
           onProgressChange={progress}
           autoPlay={true}
           autoPlayInterval={5000}
-          renderItem={({ item }) => <MovieCard posterPath={item.poster_path} />}
+          renderItem={({ item }) => (
+            <MovieCard posterPath={item.poster_path} variant="carousel" />
+          )}
         />
 
         <LinearGradient
@@ -77,13 +92,16 @@ export const Movies = () => {
       <Pagination.Basic
         progress={progress}
         containerStyle={styles.paginationContainer}
-        data={movies.slice(0, 7)}
+        data={getSlicedList(movies)}
         dotStyle={styles.paginationDot}
         activeDotStyle={styles.paginationActiveDot}
         onPress={onPressPagination}
       />
 
-      <MovieList title="Marvel Studios" />
-    </View>
+      <View style={styles.listsContainer}>
+        <MovieList title="Action Movies" movies={getSlicedList(actionMovies)} />
+        <MovieList title="Top Rated" movies={getSlicedList(topRatedMovies)} />
+      </View>
+    </ScrollView>
   );
 };
