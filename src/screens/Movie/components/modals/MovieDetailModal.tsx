@@ -1,11 +1,11 @@
 import { Modal, View, ScrollView, ActivityIndicator } from 'react-native';
-import { TextCustom } from '../../../components/atoms/Text/TextCustom';
-import { Button } from '../../../components/atoms/Button/Button';
+import { TextCustom } from '../../../../components/atoms/Text/TextCustom';
+import { Button } from '../../../../components/atoms/Button/Button';
 import { styles } from './styles';
-import { DetailMovie } from '../../../types/DetailMovie';
+import { DetailMovie } from '../../../../types/DetailMovie';
 import { useEffect, useState } from 'react';
-import { getMovieDetails } from '../../../services/MDBService';
-import { colors } from '../../../constants/colors';
+import { getMovieDetails } from '../../../../services/MDBService';
+import { colors } from '../../../../constants/colors';
 
 type Props = {
   movie_id: number;

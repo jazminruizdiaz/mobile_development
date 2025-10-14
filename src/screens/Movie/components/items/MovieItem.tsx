@@ -1,8 +1,8 @@
 import { View } from 'react-native';
-import { Movie } from '../../../types/Movie';
+import { Movie } from '../../../../types/Movie';
 import { styles } from './styles';
-import { TextCustom } from '../../../components/atoms/Text/TextCustom';
-import { MovieCard } from './MovieCard';
+import { TextCustom } from '../../../../components/atoms/Text/TextCustom';
+import { MovieCard } from '../items/MovieCard';
 
 export const MovieItem = ({ poster_path, title }: Movie) => {
   return (

@@ -6,11 +6,11 @@ import Carousel, {
 } from 'react-native-reanimated-carousel';
 import { useSharedValue } from 'react-native-reanimated';
 import LinearGradient from 'react-native-linear-gradient';
-import { Movie } from '../../../types/Movie';
-import { colors } from '../../../constants/colors';
-import { MovieCard } from './MovieCard';
+import { Movie } from '../../../../types/Movie';
+import { colors } from '../../../../constants/colors';
 import { MovieOverlay } from './MovieOverlay';
 import { styles } from './styles';
+import { MovieCard } from '../items/MovieCard';
 
 const { width, height } = Dimensions.get('window');
 

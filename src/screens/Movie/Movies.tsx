@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, View, ActivityIndicator, Text } from 'react-native';
 import { styles } from './styles.ts';
 import { getPopularMovies } from '../../services/MDBService.ts';
-import { SectionsList } from './components/SectionsList.tsx';
-import { MovieCarousel } from './components/MovieCarousel';
+import { SectionsList } from './components/sections/SectionsList.tsx';
+import { MovieCarousel } from './components/carousel/MovieCarousel';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { GenresBar } from './components/GenresBar.tsx';
+import { GenresBar } from './components/genre/GenresBar.tsx';
 import { Movie } from '../../types/Movie';
 import { colors } from '../../constants/colors.ts';
 import { GENRES } from '../../constants/genres';
 import LinearGradient from 'react-native-linear-gradient';
-import { MovieDetailModal } from './components/MovieDetailModal';
+import { MovieDetailModal } from './components/modals/MovieDetailModal';
 
 const Movies = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
