@@ -16,6 +16,9 @@ export const colors = {
   buttonPrimary: '#FFC107',
   buttonSecondary: 'rgba(255, 255, 255, 0.2)',
 
+  // Gradient colors
+  gradientOverlay: ['rgba(0,0,0,0)', 'rgba(0,0,0,0.8)', 'rgba(0,0,0,1)'],
+
   // Other colors
   white: '#FFFFFF',
   black: '#000000',
