@@ -43,7 +43,7 @@ export const styles = StyleSheet.create({
   carouselContainer: {
     position: 'relative',
   },
-  gradient: {
+  gradientBottom: {
     position: 'absolute',
     bottom: 0,
     left: 0,
@@ -122,7 +122,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     right: 0,
-    zIndex: 10,
+    zIndex: 1,
     paddingHorizontal: 24,
   },
   genresBar: {

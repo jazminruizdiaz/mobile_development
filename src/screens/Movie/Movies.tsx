@@ -7,14 +7,16 @@ import { MovieCarousel } from './components/MovieCarousel';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { GenresBar } from './components/GenresBar.tsx';
 import { Movie } from '../../types/Movie';
-
-const GENRES = ['All', 'Romance', 'Sport', 'Kids', 'Horror'];
+import { colors } from '../../constants/colors.ts';
+import { GENRES } from '../../constants/genres';
+import LinearGradient from 'react-native-linear-gradient';
 
 const Movies = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const insets = useSafeAreaInsets();
   const [genre, setGenre] = useState('All');
   const top = insets.top;
+  const bottom = insets.bottom;
 
   useEffect(() => {
     getPopularMovies().then(response => {
@@ -34,14 +36,18 @@ const Movies = () => {
 
   return (
     <ScrollView>
-      <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-        <GenresBar
-          genres={GENRES}
-          active={genre}
-          onChange={setGenre}
-          top={top}
-        />
-
+      <View style={[styles.container, { paddingBottom: bottom }]}>
+        <LinearGradient
+          colors={colors.gradientOverlayTop}
+          style={styles.gradientTop}
+        >
+          <GenresBar
+            genres={GENRES}
+            active={genre}
+            onChange={setGenre}
+            top={top}
+          />
+        </LinearGradient>
         <MovieCarousel
           movies={movies}
           onWishlistPress={handleWishlistPress}

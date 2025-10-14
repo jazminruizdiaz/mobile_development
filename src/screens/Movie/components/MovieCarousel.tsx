@@ -47,7 +47,10 @@ export const MovieCarousel = ({
         onProgressChange={progress}
         renderItem={({ item }) => <MovieCard posterPath={item.poster_path} />}
       />
-      <LinearGradient colors={colors.gradientOverlay} style={styles.gradient}>
+      <LinearGradient
+        colors={colors.gradientOverlayBottom}
+        style={styles.gradientBottom}
+      >
         <MovieOverlay
           onWishlistPress={onWishlistPress}
           onDetailsPress={onDetailsPress}
