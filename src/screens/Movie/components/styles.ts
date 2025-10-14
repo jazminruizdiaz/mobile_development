@@ -43,7 +43,7 @@ export const styles = StyleSheet.create({
   carouselContainer: {
     position: 'relative',
   },
-  gradient: {
+  gradientBottom: {
     position: 'absolute',
     bottom: 0,
     left: 0,
@@ -117,5 +117,37 @@ export const styles = StyleSheet.create({
     color: colors.primary,
     fontSize: 12,
     fontWeight: '600',
+  },
+  genresBarContainer: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    zIndex: 1,
+    paddingHorizontal: 24,
+  },
+  genresBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 6,
+    borderRadius: 28,
+    backgroundColor: 'rgba(30,30,30,0.6)',
+  },
+  genre: {
+    paddingHorizontal: 14,
+    height: 36,
+    borderRadius: 18,
+    justifyContent: 'center',
+    marginHorizontal: 4,
+  },
+  genreActive: {
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+  },
+  genreLabel: {
+    color: '#EEE',
+    fontWeight: '600',
+  },
+  genreLabelActive: {
+    color: '#111',
   },
 });

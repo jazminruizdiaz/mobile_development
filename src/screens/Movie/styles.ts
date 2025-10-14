@@ -12,4 +12,12 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.background,
   },
+  gradientTop: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 120,
+    zIndex: 2,
+  },
 });
