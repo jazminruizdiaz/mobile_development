@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import { colors } from '../../../constants/colors';
+import { colors } from '../../../../constants/colors';
 
 const { width, height } = Dimensions.get('window');
 
@@ -7,39 +7,6 @@ export const styles = StyleSheet.create({
   poster: {
     width: width,
     height: height * 0.65,
-  },
-  movieCard: {
-    width: 150,
-    height: 200,
-    borderRadius: 8,
-    marginTop: 8,
-  },
-  movieItemContainer: {
-    marginRight: 16,
-    alignItems: 'center',
-  },
-  movieTitle: {
-    marginTop: 8,
-    textAlign: 'center',
-    fontSize: 12,
-    color: colors.textPrimary,
-    maxWidth: 150,
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 10,
-  },
-  title: {
-    color: colors.textPrimary,
-  },
-  actionLabel: {
-    color: colors.primary,
-  },
-  sectionsList: {
-    marginTop: 24,
-    paddingHorizontal: 24,
   },
   carouselContainer: {
     position: 'relative',
@@ -118,37 +85,5 @@ export const styles = StyleSheet.create({
     color: colors.primary,
     fontSize: 12,
     fontWeight: '600',
-  },
-  genresBarContainer: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    zIndex: 1,
-    paddingHorizontal: 24,
-  },
-  genresBar: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 6,
-    borderRadius: 28,
-    backgroundColor: 'rgba(30,30,30,0.6)',
-  },
-  genre: {
-    paddingHorizontal: 14,
-    height: 36,
-    borderRadius: 18,
-    justifyContent: 'center',
-    marginHorizontal: 4,
-  },
-  genreActive: {
-    backgroundColor: '#fff',
-    shadowColor: '#000',
-  },
-  genreLabel: {
-    color: '#EEE',
-    fontWeight: '600',
-  },
-  genreLabelActive: {
-    color: '#111',
   },
 });

@@ -1,15 +1,15 @@
 import { FlatList } from 'react-native';
 import { MovieSectionHeader } from './MovieSectionHeader';
-import { MovieItem } from './MovieItem';
-import { Movie } from '../../../types/Movie';
-import { SectionContent } from '../../../types/Section';
+import { MovieItem } from '../items/MovieItem';
+import { Movie } from '../../../../types/Movie';
+import { SectionContent } from '../../../../types/Section';
 import { useEffect, useState } from 'react';
 import {
   getMoviesByCompanyId,
   getMoviesByGenreId,
   getBestMovies,
-} from '../../../services/MDBService';
-import { BestMovieItem } from './BestMovieItem';
+} from '../../../../services/MDBService';
+import { BestMovieItem } from '../items/BestMovieItem';
 
 export const MovieSection = ({
   title,

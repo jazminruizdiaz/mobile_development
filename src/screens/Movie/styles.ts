@@ -12,6 +12,11 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.background,
   },
+  loadingText: {
+    color: colors.textPrimary,
+    marginTop: 16,
+    fontSize: 16,
+  },
   gradientTop: {
     position: 'absolute',
     top: 0,

@@ -1,0 +1,63 @@
+import { StyleSheet, Dimensions } from 'react-native';
+import { colors } from '../../../../constants/colors';
+
+const { width, height } = Dimensions.get('window');
+
+export const styles = StyleSheet.create({
+  poster: {
+    width: width,
+    height: height * 0.65,
+  },
+  movieCard: {
+    width: 150,
+    height: 200,
+    borderRadius: 8,
+    marginTop: 8,
+  },
+  movieItemContainer: {
+    marginRight: 16,
+    alignItems: 'center',
+  },
+  movieTitle: {
+    marginTop: 8,
+    textAlign: 'center',
+    fontSize: 12,
+    color: colors.textPrimary,
+    maxWidth: 150,
+  },
+  bestMovieCardContainer: {
+    position: 'relative',
+    marginRight: 16,
+    alignItems: 'center',
+  },
+  movieInfoOverlay: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderBottomLeftRadius: 12,
+    borderBottomRightRadius: 12,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  bestMovieTitle: {
+    fontSize: 12,
+    color: colors.textPrimary,
+    fontWeight: '600',
+    flex: 1,
+    maxWidth: 150,
+  },
+  ratingContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  ratingText: {
+    color: colors.primary,
+    fontSize: 12,
+    fontWeight: '600',
+  },
+});
