@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import { Dimensions, View } from 'react-native';
 import Carousel, {
   ICarouselInstance,
@@ -17,7 +17,7 @@ const { width, height } = Dimensions.get('window');
 type Props = {
   movies: Movie[];
   onWishlistPress: () => void;
-  onDetailsPress: () => void;
+  onDetailsPress: (movie_id: number) => void;
 };
 
 export const MovieCarousel = ({
@@ -27,6 +27,12 @@ export const MovieCarousel = ({
 }: Props) => {
   const ref = useRef<ICarouselInstance>(null);
   const progress = useSharedValue<number>(0);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const currentMovie = useMemo(
+    () => movies[activeIndex],
+    [movies, activeIndex],
+  );
 
   const onPressPagination = (index: number) => {
     ref.current?.scrollTo({
@@ -45,6 +51,7 @@ export const MovieCarousel = ({
         autoPlay={true}
         autoPlayInterval={3000}
         onProgressChange={progress}
+        onSnapToItem={index => setActiveIndex(index)}
         renderItem={({ item }) => <MovieCard posterPath={item.poster_path} />}
       />
       <LinearGradient
@@ -52,6 +59,7 @@ export const MovieCarousel = ({
         style={styles.gradientBottom}
       >
         <MovieOverlay
+          movie_id={currentMovie.id}
           onWishlistPress={onWishlistPress}
           onDetailsPress={onDetailsPress}
         />

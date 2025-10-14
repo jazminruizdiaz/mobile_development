@@ -4,11 +4,16 @@ import { Button } from '../../../components/atoms/Button/Button';
 import { styles } from './styles';
 
 type Props = {
+  movie_id: number;
   onWishlistPress: () => void;
-  onDetailsPress: () => void;
+  onDetailsPress: (movie_id: number) => void;
 };
 
-export const MovieOverlay = ({ onWishlistPress, onDetailsPress }: Props) => {
+export const MovieOverlay = ({
+  movie_id,
+  onWishlistPress,
+  onDetailsPress,
+}: Props) => {
   return (
     <View style={styles.overlay}>
       <View style={styles.textRow}>
@@ -22,7 +27,11 @@ export const MovieOverlay = ({ onWishlistPress, onDetailsPress }: Props) => {
           variant="secondary"
           onPress={onWishlistPress}
         />
-        <Button title="Details" variant="primary" onPress={onDetailsPress} />
+        <Button
+          title="Details"
+          variant="primary"
+          onPress={() => onDetailsPress(movie_id)}
+        />
       </View>
     </View>
   );
