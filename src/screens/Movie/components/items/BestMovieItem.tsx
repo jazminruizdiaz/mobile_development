@@ -1,8 +1,8 @@
 import { View } from 'react-native';
-import { Movie } from '../../../types/Movie';
+import { Movie } from '../../../../types/Movie';
 import { styles } from './styles';
-import { MovieCard } from './MovieCard';
-import { TextCustom } from '../../../components/atoms/Text/TextCustom';
+import { TextCustom } from '../../../../components/atoms/Text/TextCustom';
+import { MovieCard } from '../items/MovieCard';
 
 export const BestMovieItem = ({ poster_path, title, vote_average }: Movie) => {
   return (

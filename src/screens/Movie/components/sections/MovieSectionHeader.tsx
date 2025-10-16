@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import { TextCustom } from '../../../components/atoms/Text/TextCustom';
+import { TextCustom } from '../../../../components/atoms/Text/TextCustom';
 import { styles } from './styles';
 
 type Props = {

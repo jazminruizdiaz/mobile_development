@@ -1,0 +1,21 @@
+import { StyleSheet } from 'react-native';
+import { colors } from '../../../../constants/colors';
+
+export const styles = StyleSheet.create({
+  sectionsList: {
+    marginTop: 24,
+    paddingHorizontal: 24,
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  title: {
+    color: colors.textPrimary,
+  },
+  actionLabel: {
+    color: colors.primary,
+  },
+});
