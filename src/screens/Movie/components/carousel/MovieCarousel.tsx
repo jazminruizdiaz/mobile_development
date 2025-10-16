@@ -16,14 +16,16 @@ const { width, height } = Dimensions.get('window');
 
 type Props = {
   movies: Movie[];
-  onWishlistPress: () => void;
+  onWishlistPress: (movie_id: number) => void;
   onDetailsPress: (movie_id: number) => void;
+  wishlist: number[];
 };
 
 export const MovieCarousel = ({
   movies,
   onWishlistPress,
   onDetailsPress,
+  wishlist,
 }: Props) => {
   const ref = useRef<ICarouselInstance>(null);
   const progress = useSharedValue<number>(0);
@@ -62,6 +64,7 @@ export const MovieCarousel = ({
           movie_id={currentMovie.id}
           onWishlistPress={onWishlistPress}
           onDetailsPress={onDetailsPress}
+          isInWishlist={wishlist.includes(currentMovie.id)}
         />
       </LinearGradient>
       <Pagination.Basic
