@@ -1,6 +1,7 @@
 import { View } from 'react-native';
 import { TextCustom } from '../../../../components/atoms/Text/TextCustom';
 import { styles } from './styles';
+import { Button } from '../../../../components/atoms/Button/Button';
 
 type Props = {
   title: string;
@@ -18,9 +19,13 @@ export const MovieSectionHeader = ({
       <TextCustom style={styles.title} variant="subtitle">
         {title}
       </TextCustom>
-      <TextCustom style={styles.actionLabel} variant="body">
-        {actionLabel}
-      </TextCustom>
+      <Button
+        title={actionLabel}
+        onPress={onSeeMore}
+        variant="custom"
+        style={styles.customButton}
+        textStyle={styles.customButtonText}
+      />
     </View>
   );
 };

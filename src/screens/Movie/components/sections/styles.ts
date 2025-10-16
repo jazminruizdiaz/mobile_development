@@ -18,4 +18,14 @@ export const styles = StyleSheet.create({
   actionLabel: {
     color: colors.primary,
   },
+  customButton: {
+    backgroundColor: 'transparent',
+    padding: 0,
+    paddingHorizontal: 0,
+    paddingVertical: 0,
+  },
+  customButtonText: {
+    color: colors.primary,
+    fontSize: 13,
+  },
 });
