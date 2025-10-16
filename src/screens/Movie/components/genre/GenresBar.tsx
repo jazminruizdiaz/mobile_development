@@ -1,7 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Pressable, Text } from 'react-native';
 import { styles } from './styles';
-import { Button } from '../../../components/atoms/Button/Button';
 
 type Props = {
   genres: string[];
@@ -17,17 +16,17 @@ export const GenresBar = ({ genres, active, onChange, top }: Props) => {
         {genres.map(genre => {
           const isActive = genre === active;
           return (
-            <Button
+            <Pressable
               key={genre}
-              title={genre}
               onPress={() => onChange(genre)}
-              variant="secondary"
               style={[styles.genre, isActive && styles.genreActive]}
-              textStyle={[
-                styles.genreLabel,
-                isActive && styles.genreLabelActive,
-              ]}
-            />
+            >
+              <Text
+                style={[styles.genreLabel, isActive && styles.genreLabelActive]}
+              >
+                {genre}
+              </Text>
+            </Pressable>
           );
         })}
       </View>
