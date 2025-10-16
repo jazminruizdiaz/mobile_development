@@ -2,20 +2,16 @@ import { View } from 'react-native';
 import { TextCustom } from '../../../../components/atoms/Text/TextCustom';
 import { Button } from '../../../../components/atoms/Button/Button';
 import { styles } from './styles';
+import { Movie } from '../../../../types/Movie';
+import { useWishlist } from '../../../../contexts/Wishlist/WishlistContext';
 
 type Props = {
-  movie_id: number;
-  onWishlistPress: (movie_id: number) => void;
+  movie: Movie;
   onDetailsPress: (movie_id: number) => void;
-  isInWishlist: boolean;
 };
 
-export const MovieOverlay = ({
-  movie_id,
-  onWishlistPress,
-  onDetailsPress,
-  isInWishlist,
-}: Props) => {
+export const MovieOverlay = ({ movie, onDetailsPress }: Props) => {
+  const { isInWishlist, toggleWishlist } = useWishlist();
   return (
     <View style={styles.overlay}>
       <View style={styles.textRow}>
@@ -25,14 +21,14 @@ export const MovieOverlay = ({
 
       <View style={styles.buttonRow}>
         <Button
-          title={isInWishlist ? '✓ In Wishlist' : '+ Wishlist'}
+          title={isInWishlist(movie.id) ? '✓ In Wishlist' : '+ Wishlist'}
           variant="secondary"
-          onPress={() => onWishlistPress(movie_id)}
+          onPress={() => toggleWishlist(movie)}
         />
         <Button
           title="Details"
           variant="primary"
-          onPress={() => onDetailsPress(movie_id)}
+          onPress={() => onDetailsPress(movie.id)}
         />
       </View>
     </View>

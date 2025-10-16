@@ -2,14 +2,17 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import MyStackNavigator from './src/navigation/MyStackNavigator.tsx';
+import { WishlistProvider } from './src/contexts/Wishlist/WishlistProvider';
 
 function App() {
   return (
     <GestureHandlerRootView>
       <SafeAreaProvider>
-        <NavigationContainer>
-          <MyStackNavigator />
-        </NavigationContainer>
+        <WishlistProvider>
+          <NavigationContainer>
+            <MyStackNavigator />
+          </NavigationContainer>
+        </WishlistProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );

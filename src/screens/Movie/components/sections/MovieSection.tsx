@@ -19,8 +19,6 @@ export const MovieSection = ({
   companyId,
   genreId,
   onMoviePress,
-  onWishlistToggle,
-  wishlist,
 }: SectionContent) => {
   const [movies, setMovies] = useState<Movie[]>([]);
   useEffect(() => {
@@ -48,24 +46,16 @@ export const MovieSection = ({
       <FlatList
         data={movies}
         renderItem={({ item }) => {
-          const isInWishlist = wishlist.includes(item.id);
           if (type === 'Best movies') {
             return (
               <BestMovieItem
-                {...item}
+                movie={item}
                 onPress={() => onMoviePress(item.id)}
-                onWishlistToggle={() => onWishlistToggle(item.id)}
-                isInWishlist={isInWishlist}
               />
             );
           }
           return (
-            <MovieItem
-              {...item}
-              onPress={() => onMoviePress(item.id)}
-              onWishlistToggle={() => onWishlistToggle(item.id)}
-              isInWishlist={isInWishlist}
-            />
+            <MovieItem movie={item} onPress={() => onMoviePress(item.id)} />
           );
         }}
         keyExtractor={item => item.id.toString()}

@@ -3,21 +3,16 @@ import { Movie } from '../../../../types/Movie';
 import { styles } from './styles';
 import { TextCustom } from '../../../../components/atoms/Text/TextCustom';
 import { MovieCard } from '../items/MovieCard';
+import { useWishlist } from '../../../../contexts/Wishlist/WishlistContext';
 
-type Props = Movie & {
+type Props = {
+  movie: Movie;
   onPress: () => void;
-  onWishlistToggle: () => void;
-  isInWishlist: boolean;
 };
 
-export const BestMovieItem = ({
-  poster_path,
-  title,
-  vote_average,
-  onPress,
-  onWishlistToggle,
-  isInWishlist,
-}: Props) => {
+export const BestMovieItem = ({ movie, onPress }: Props) => {
+  const { isInWishlist, toggleWishlist } = useWishlist();
+  const { title, vote_average, poster_path, id } = movie;
   return (
     <TouchableOpacity style={styles.bestMovieCardContainer} onPress={onPress}>
       <MovieCard posterPath={poster_path} style={styles.movieCard} />
@@ -25,11 +20,11 @@ export const BestMovieItem = ({
         style={styles.wishlistIcon}
         onPress={e => {
           e.stopPropagation();
-          onWishlistToggle();
+          toggleWishlist(movie);
         }}
       >
         <TextCustom style={styles.wishlistIconText}>
-          {isInWishlist ? '✓' : '+'}
+          {isInWishlist(id) ? '✓' : '+'}
         </TextCustom>
       </Pressable>
       <View style={styles.movieInfoOverlay}>

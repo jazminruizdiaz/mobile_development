@@ -21,7 +21,6 @@ const Movies = () => {
   const bottom = insets.bottom;
   const [showDetailModal, setShowDetailModal] = useState<boolean>(false);
   const [selectedMovie, setSelectedMovie] = useState<number>(0);
-  const [wishlist, setWishlist] = useState<number[]>([]);
 
   useEffect(() => {
     setLoading(true);
@@ -43,16 +42,6 @@ const Movies = () => {
   const handleDetailsPress = (movie_id: number) => {
     setSelectedMovie(movie_id);
     setShowDetailModal(true);
-  };
-
-  const handleWishlistToggle = (movie_id: number) => {
-    setWishlist(prev => {
-      if (prev.includes(movie_id)) {
-        return prev.filter(id => id !== movie_id);
-      } else {
-        return [...prev, movie_id];
-      }
-    });
   };
 
   if (loading) {
@@ -78,12 +67,7 @@ const Movies = () => {
             top={top}
           />
         </LinearGradient>
-        <MovieCarousel
-          movies={movies}
-          onWishlistPress={handleWishlistToggle}
-          onDetailsPress={handleDetailsPress}
-          wishlist={wishlist}
-        />
+        <MovieCarousel movies={movies} onDetailsPress={handleDetailsPress} />
         <SectionsList
           sections={[
             {
@@ -106,8 +90,6 @@ const Movies = () => {
           ]}
           onSeeMore={() => console.log('See more action pressed')}
           onMoviePress={handleDetailsPress}
-          onWishlistToggle={handleWishlistToggle}
-          wishlist={wishlist}
         />
         <MovieDetailModal
           movie_id={selectedMovie}

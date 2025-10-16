@@ -16,17 +16,10 @@ const { width, height } = Dimensions.get('window');
 
 type Props = {
   movies: Movie[];
-  onWishlistPress: (movie_id: number) => void;
   onDetailsPress: (movie_id: number) => void;
-  wishlist: number[];
 };
 
-export const MovieCarousel = ({
-  movies,
-  onWishlistPress,
-  onDetailsPress,
-  wishlist,
-}: Props) => {
+export const MovieCarousel = ({ movies, onDetailsPress }: Props) => {
   const ref = useRef<ICarouselInstance>(null);
   const progress = useSharedValue<number>(0);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -60,12 +53,7 @@ export const MovieCarousel = ({
         colors={colors.gradientOverlayBottom}
         style={styles.gradientBottom}
       >
-        <MovieOverlay
-          movie_id={currentMovie.id}
-          onWishlistPress={onWishlistPress}
-          onDetailsPress={onDetailsPress}
-          isInWishlist={wishlist.includes(currentMovie.id)}
-        />
+        <MovieOverlay movie={currentMovie} onDetailsPress={onDetailsPress} />
       </LinearGradient>
       <Pagination.Basic
         progress={progress}
