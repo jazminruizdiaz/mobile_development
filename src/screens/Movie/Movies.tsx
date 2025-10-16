@@ -10,7 +10,6 @@ import { Movie } from '../../types/Movie';
 import { colors } from '../../constants/colors.ts';
 import { GENRES } from '../../constants/genres';
 import LinearGradient from 'react-native-linear-gradient';
-import { MovieDetailModal } from './components/modals/MovieDetailModal';
 
 const Movies = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -19,8 +18,6 @@ const Movies = () => {
   const [genre, setGenre] = useState('All');
   const top = insets.top;
   const bottom = insets.bottom;
-  const [showDetailModal, setShowDetailModal] = useState<boolean>(false);
-  const [selectedMovie, setSelectedMovie] = useState<number>(0);
 
   useEffect(() => {
     setLoading(true);
@@ -34,15 +31,6 @@ const Movies = () => {
         setLoading(false);
       });
   }, []);
-
-  const closeDetailModal = () => {
-    setShowDetailModal(false);
-  };
-
-  const handleDetailsPress = (movie_id: number) => {
-    setSelectedMovie(movie_id);
-    setShowDetailModal(true);
-  };
 
   if (loading) {
     return (
@@ -67,7 +55,7 @@ const Movies = () => {
             top={top}
           />
         </LinearGradient>
-        <MovieCarousel movies={movies} onDetailsPress={handleDetailsPress} />
+        <MovieCarousel movies={movies} />
         <SectionsList
           sections={[
             {
@@ -89,12 +77,6 @@ const Movies = () => {
             },
           ]}
           onSeeMore={() => console.log('See more action pressed')}
-          onMoviePress={handleDetailsPress}
-        />
-        <MovieDetailModal
-          movie_id={selectedMovie}
-          showDetailModal={showDetailModal}
-          closeDetailModal={closeDetailModal}
         />
       </View>
     </ScrollView>

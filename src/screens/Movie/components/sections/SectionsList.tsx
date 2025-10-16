@@ -7,7 +7,7 @@ type Props = {
   sections: SectionData[];
 } & SectionCallbacks;
 
-export const SectionsList = ({ sections, onSeeMore, onMoviePress }: Props) => {
+export const SectionsList = ({ sections, onSeeMore }: Props) => {
   return (
     <View style={styles.sectionsList}>
       {sections.map(item => (
@@ -19,7 +19,6 @@ export const SectionsList = ({ sections, onSeeMore, onMoviePress }: Props) => {
           type={item.type}
           companyId={item.companyId}
           genreId={item.genreId}
-          onMoviePress={onMoviePress}
         />
       ))}
     </View>

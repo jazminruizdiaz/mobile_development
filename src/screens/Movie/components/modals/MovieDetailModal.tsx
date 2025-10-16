@@ -6,26 +6,19 @@ import { DetailMovie } from '../../../../types/DetailMovie';
 import { useEffect, useState } from 'react';
 import { getMovieDetails } from '../../../../services/MDBService';
 import { colors } from '../../../../constants/colors';
+import { useMovieModal } from '../../../../contexts/MovieModal/MovieModalContext';
 
-type Props = {
-  movie_id: number;
-  showDetailModal: boolean;
-  closeDetailModal: () => void;
-};
-
-export const MovieDetailModal = ({
-  movie_id,
-  showDetailModal,
-  closeDetailModal,
-}: Props) => {
+export const MovieDetailModal = () => {
+  const { selectedMovieId, isModalVisible, closeMovieDetails } =
+    useMovieModal();
   const [movie, setMovie] = useState<DetailMovie | null>(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (movie_id && showDetailModal) {
+    if (selectedMovieId && isModalVisible) {
       setLoading(true);
       setMovie(null);
-      getMovieDetails(movie_id)
+      getMovieDetails(selectedMovieId)
         .then(response => {
           setMovie(response);
         })
@@ -33,7 +26,7 @@ export const MovieDetailModal = ({
           setLoading(false);
         });
     }
-  }, [movie_id, showDetailModal]);
+  }, [selectedMovieId, isModalVisible]);
 
   const formatTime = (minutes: number) => {
     const hours = Math.floor(minutes / 60);
@@ -43,11 +36,11 @@ export const MovieDetailModal = ({
 
   return (
     <Modal
-      visible={showDetailModal}
+      visible={isModalVisible}
       transparent={true}
       statusBarTranslucent={true}
       animationType="slide"
-      onRequestClose={closeDetailModal}
+      onRequestClose={closeMovieDetails}
     >
       <View style={styles.modalOverlay}>
         <View style={styles.modalContent}>
@@ -120,7 +113,7 @@ export const MovieDetailModal = ({
 
                 <Button
                   title="Close"
-                  onPress={closeDetailModal}
+                  onPress={closeMovieDetails}
                   variant="primary"
                 />
               </View>
@@ -132,7 +125,7 @@ export const MovieDetailModal = ({
               </TextCustom>
               <Button
                 title="Close"
-                onPress={closeDetailModal}
+                onPress={closeMovieDetails}
                 variant="primary"
               />
             </View>

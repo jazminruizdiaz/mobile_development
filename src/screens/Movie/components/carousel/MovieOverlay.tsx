@@ -4,14 +4,15 @@ import { Button } from '../../../../components/atoms/Button/Button';
 import { styles } from './styles';
 import { Movie } from '../../../../types/Movie';
 import { useWishlist } from '../../../../contexts/Wishlist/WishlistContext';
+import { useMovieModal } from '../../../../contexts/MovieModal/MovieModalContext';
 
 type Props = {
   movie: Movie;
-  onDetailsPress: (movie_id: number) => void;
 };
 
-export const MovieOverlay = ({ movie, onDetailsPress }: Props) => {
+export const MovieOverlay = ({ movie }: Props) => {
   const { isInWishlist, toggleWishlist } = useWishlist();
+  const { openMovieDetails } = useMovieModal();
   return (
     <View style={styles.overlay}>
       <View style={styles.textRow}>
@@ -28,7 +29,7 @@ export const MovieOverlay = ({ movie, onDetailsPress }: Props) => {
         <Button
           title="Details"
           variant="primary"
-          onPress={() => onDetailsPress(movie.id)}
+          onPress={() => openMovieDetails(movie.id)}
         />
       </View>
     </View>
