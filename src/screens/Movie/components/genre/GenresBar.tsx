@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { styles } from './styles';
-import { Button } from '../../../components/atoms/Button/Button';
+import { Button } from '../../../../components/atoms/Button/Button';
 
 type Props = {
   genres: string[];
@@ -21,7 +21,7 @@ export const GenresBar = ({ genres, active, onChange, top }: Props) => {
               key={genre}
               title={genre}
               onPress={() => onChange(genre)}
-              variant="secondary"
+              variant="custom"
               style={[styles.genre, isActive && styles.genreActive]}
               textStyle={[
                 styles.genreLabel,
