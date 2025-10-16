@@ -35,7 +35,7 @@ export const MovieDetailModal = ({
     }
   }, [movie_id, showDetailModal]);
 
-  const formatRuntime = (minutes: number) => {
+  const formatTime = (minutes: number) => {
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
     return hours > 0 ? `${hours}h ${mins}m` : `${mins}m`;
@@ -81,7 +81,7 @@ export const MovieDetailModal = ({
                     Runtime:
                   </TextCustom>
                   <TextCustom variant="body" style={styles.infoValue}>
-                    {formatRuntime(movie.runtime)}
+                    {formatTime(movie.runtime)}
                   </TextCustom>
                 </View>
 
