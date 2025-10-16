@@ -1,10 +1,10 @@
-import { Text, TextStyle } from 'react-native';
+import { Text, TextStyle, StyleProp } from 'react-native';
 import { styles } from './styles';
 
 interface TextProps {
   children: string | React.ReactNode;
   variant?: 'title' | 'subtitle' | 'body';
-  style?: TextStyle;
+  style?: StyleProp<TextStyle>;
   numberOfLines?: number;
 }
 
