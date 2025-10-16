@@ -5,16 +5,14 @@ import { styles } from './styles';
 
 type Props = {
   movie_id: number;
-  onWishlistPress: (movie_id: number) => void;
+  onWishlistPress: () => void;
   onDetailsPress: (movie_id: number) => void;
-  isInWishlist: boolean;
 };
 
 export const MovieOverlay = ({
   movie_id,
   onWishlistPress,
   onDetailsPress,
-  isInWishlist,
 }: Props) => {
   return (
     <View style={styles.overlay}>
@@ -25,9 +23,9 @@ export const MovieOverlay = ({
 
       <View style={styles.buttonRow}>
         <Button
-          title={isInWishlist ? '✓ In Wishlist' : '+ Wishlist'}
+          title="+ Wishlist"
           variant="secondary"
-          onPress={() => onWishlistPress(movie_id)}
+          onPress={onWishlistPress}
         />
         <Button
           title="Details"

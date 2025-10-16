@@ -27,7 +27,7 @@ export const MovieDetailModal = ({
       setMovie(null);
       getMovieDetails(movie_id)
         .then(response => {
-          setMovie(response);
+          setMovie(response as DetailMovie);
         })
         .finally(() => {
           setLoading(false);

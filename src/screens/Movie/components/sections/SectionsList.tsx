@@ -1,19 +1,13 @@
 import { View } from 'react-native';
 import { MovieSection } from './MovieSection';
 import { styles } from './styles';
-import { SectionData, SectionCallbacks } from '../../../../types/Section';
+import { SectionContent } from '../../../../types/Section';
 
 type Props = {
-  sections: SectionData[];
-} & SectionCallbacks;
+  sections: SectionContent[];
+};
 
-export const SectionsList = ({
-  sections,
-  onSeeMore,
-  onMoviePress,
-  onWishlistToggle,
-  wishlist,
-}: Props) => {
+export const SectionsList = ({ sections }: Props) => {
   return (
     <View style={styles.sectionsList}>
       {sections.map(item => (
@@ -21,13 +15,10 @@ export const SectionsList = ({
           key={item.title}
           title={item.title}
           actionLabel={item.actionLabel}
-          onSeeMore={onSeeMore}
+          onActionPress={item.onActionPress}
           type={item.type}
           companyId={item.companyId}
           genreId={item.genreId}
-          onMoviePress={onMoviePress}
-          onWishlistToggle={onWishlistToggle}
-          wishlist={wishlist}
         />
       ))}
     </View>

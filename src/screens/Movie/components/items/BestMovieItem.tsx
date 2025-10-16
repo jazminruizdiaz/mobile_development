@@ -1,37 +1,13 @@
-import { View, TouchableOpacity, Pressable } from 'react-native';
+import { View } from 'react-native';
 import { Movie } from '../../../../types/Movie';
 import { styles } from './styles';
 import { TextCustom } from '../../../../components/atoms/Text/TextCustom';
 import { MovieCard } from '../items/MovieCard';
 
-type Props = Movie & {
-  onPress: () => void;
-  onWishlistToggle: () => void;
-  isInWishlist: boolean;
-};
-
-export const BestMovieItem = ({
-  poster_path,
-  title,
-  vote_average,
-  onPress,
-  onWishlistToggle,
-  isInWishlist,
-}: Props) => {
+export const BestMovieItem = ({ poster_path, title, vote_average }: Movie) => {
   return (
-    <TouchableOpacity style={styles.bestMovieCardContainer} onPress={onPress}>
+    <View style={styles.bestMovieCardContainer}>
       <MovieCard posterPath={poster_path} style={styles.movieCard} />
-      <Pressable
-        style={styles.wishlistIcon}
-        onPress={e => {
-          e.stopPropagation();
-          onWishlistToggle();
-        }}
-      >
-        <TextCustom style={styles.wishlistIconText}>
-          {isInWishlist ? '✓' : '+'}
-        </TextCustom>
-      </Pressable>
       <View style={styles.movieInfoOverlay}>
         <TextCustom style={styles.bestMovieTitle} numberOfLines={1}>
           {title}
@@ -42,6 +18,6 @@ export const BestMovieItem = ({
           </TextCustom>
         </View>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };

@@ -5,13 +5,13 @@ import { styles } from './styles';
 type Props = {
   title: string;
   actionLabel: string;
-  onSeeMore: () => void;
+  onActionPress: () => void;
 };
 
 export const MovieSectionHeader = ({
   title,
   actionLabel,
-  onSeeMore,
+  onActionPress,
 }: Props) => {
   return (
     <View style={styles.row}>
