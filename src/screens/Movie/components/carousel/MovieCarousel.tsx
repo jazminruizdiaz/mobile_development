@@ -16,10 +16,9 @@ const { width, height } = Dimensions.get('window');
 
 type Props = {
   movies: Movie[];
-  onDetailsPress: (movie_id: number) => void;
 };
 
-export const MovieCarousel = ({ movies, onDetailsPress }: Props) => {
+export const MovieCarousel = ({ movies }: Props) => {
   const ref = useRef<ICarouselInstance>(null);
   const progress = useSharedValue<number>(0);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -53,7 +52,7 @@ export const MovieCarousel = ({ movies, onDetailsPress }: Props) => {
         colors={colors.gradientOverlayBottom}
         style={styles.gradientBottom}
       >
-        <MovieOverlay movie={currentMovie} onDetailsPress={onDetailsPress} />
+        <MovieOverlay movie={currentMovie} />
       </LinearGradient>
       <Pagination.Basic
         progress={progress}

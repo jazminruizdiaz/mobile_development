@@ -7,7 +7,6 @@ export interface SectionData {
 }
 export interface SectionCallbacks {
   onSeeMore: () => void;
-  onMoviePress: (movie_id: number) => void;
 }
 
 export interface SectionContent extends SectionData, SectionCallbacks {}

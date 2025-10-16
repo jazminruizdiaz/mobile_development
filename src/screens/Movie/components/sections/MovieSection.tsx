@@ -18,7 +18,6 @@ export const MovieSection = ({
   type,
   companyId,
   genreId,
-  onMoviePress,
 }: SectionContent) => {
   const [movies, setMovies] = useState<Movie[]>([]);
   useEffect(() => {
@@ -47,16 +46,9 @@ export const MovieSection = ({
         data={movies}
         renderItem={({ item }) => {
           if (type === 'Best movies') {
-            return (
-              <BestMovieItem
-                movie={item}
-                onPress={() => onMoviePress(item.id)}
-              />
-            );
+            return <BestMovieItem movie={item} />;
           }
-          return (
-            <MovieItem movie={item} onPress={() => onMoviePress(item.id)} />
-          );
+          return <MovieItem movie={item} />;
         }}
         keyExtractor={item => item.id.toString()}
         horizontal
