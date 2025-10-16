@@ -1,9 +1,4 @@
-import {
-  TouchableOpacity,
-  StyleProp,
-  ViewStyle,
-  TextStyle,
-} from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 import { TextCustom } from '../Text/TextCustom';
 
@@ -12,8 +7,6 @@ interface ButtonProps {
   onPress: () => void;
   variant?: 'primary' | 'secondary' | 'custom';
   disabled?: boolean;
-  style?: StyleProp<ViewStyle>;
-  textStyle?: StyleProp<TextStyle>;
 }
 
 export const Button = ({
@@ -21,8 +14,6 @@ export const Button = ({
   onPress,
   variant = 'primary',
   disabled = false,
-  style,
-  textStyle,
 }: ButtonProps) => {
   const getButtonStyle = () => {
     if (variant === 'custom') {

@@ -74,13 +74,13 @@ export const styles = StyleSheet.create({
     borderBottomColor: 'rgba(255,255,255,0.1)',
   },
   infoLabel: {
-    color: colors.textSecondary,
+    color: colors.textPrimary,
     fontSize: 14,
     fontWeight: '600',
     flex: 1,
   },
   infoValue: {
-    color: colors.textPrimary,
+    color: colors.textSecondary,
     fontSize: 14,
     fontWeight: '600',
   },

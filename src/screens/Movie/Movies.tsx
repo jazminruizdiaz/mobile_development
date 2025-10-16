@@ -21,6 +21,7 @@ const Movies = () => {
   const bottom = insets.bottom;
   const [showDetailModal, setShowDetailModal] = useState<boolean>(false);
   const [selectedMovie, setSelectedMovie] = useState<number>(0);
+  const [wishlist, setWishlist] = useState<number[]>([]);
 
   useEffect(() => {
     setLoading(true);
@@ -35,10 +36,6 @@ const Movies = () => {
       });
   }, []);
 
-  const handleWishlistPress = () => {
-    console.log('Wishlist pressed');
-  };
-
   const closeDetailModal = () => {
     setShowDetailModal(false);
   };
@@ -46,6 +43,16 @@ const Movies = () => {
   const handleDetailsPress = (movie_id: number) => {
     setSelectedMovie(movie_id);
     setShowDetailModal(true);
+  };
+
+  const handleWishlistToggle = (movie_id: number) => {
+    setWishlist(prev => {
+      if (prev.includes(movie_id)) {
+        return prev.filter(id => id !== movie_id);
+      } else {
+        return [...prev, movie_id];
+      }
+    });
   };
 
   if (loading) {
@@ -73,8 +80,9 @@ const Movies = () => {
         </LinearGradient>
         <MovieCarousel
           movies={movies}
-          onWishlistPress={handleWishlistPress}
+          onWishlistPress={handleWishlistToggle}
           onDetailsPress={handleDetailsPress}
+          wishlist={wishlist}
         />
         <SectionsList
           sections={[
@@ -82,23 +90,24 @@ const Movies = () => {
               type: 'Company',
               title: 'Marvel Studios',
               actionLabel: 'See more',
-              onActionPress: () => console.log('See more pressed'),
               companyId: 420,
             },
             {
               type: 'Genre',
               title: 'Action',
               actionLabel: 'See more',
-              onActionPress: () => console.log('See more action pressed'),
               genreId: 28,
             },
             {
               type: 'Best movies',
               title: 'Best movies',
               actionLabel: 'See more',
-              onActionPress: () => console.log('See more action pressed'),
             },
           ]}
+          onSeeMore={() => console.log('See more action pressed')}
+          onMoviePress={handleDetailsPress}
+          onWishlistToggle={handleWishlistToggle}
+          wishlist={wishlist}
         />
         <MovieDetailModal
           movie_id={selectedMovie}

@@ -60,4 +60,21 @@ export const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '600',
   },
+  wishlistIcon: {
+    position: 'absolute',
+    top: 10,
+    right: 4,
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 3,
+  },
+  wishlistIconText: {
+    color: colors.textPrimary,
+    fontSize: 20,
+    fontWeight: '800',
+  },
 });
