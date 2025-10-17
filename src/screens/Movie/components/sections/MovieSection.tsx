@@ -43,7 +43,9 @@ export const MovieSection = ({
       <MovieSectionHeader
         title={title}
         actionLabel={actionLabel}
-        onSeeMore={onSeeMore}
+        onSeeMore={() =>
+          onSeeMore({ type, title, companyId, genreId, actionLabel })
+        }
       />
       <FlatList
         data={movies}

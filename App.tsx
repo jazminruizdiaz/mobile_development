@@ -1,12 +1,16 @@
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import Movies from './src/screens/Movie/Movies.tsx';
+import { StackNavigator } from './src/navigation/StackNavigator.tsx';
+import { NavigationContainer } from '@react-navigation/native';
+import React from 'react';
 
 function App() {
   return (
     <GestureHandlerRootView>
       <SafeAreaProvider>
-        <Movies />
+        <NavigationContainer>
+          <StackNavigator />
+        </NavigationContainer>
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );

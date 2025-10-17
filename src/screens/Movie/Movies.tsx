@@ -11,6 +11,8 @@ import { colors } from '../../constants/colors.ts';
 import { GENRES } from '../../constants/genres';
 import LinearGradient from 'react-native-linear-gradient';
 import { MovieDetailModal } from './components/modals/MovieDetailModal';
+import { SectionData } from '../../types/Section.ts';
+import { useNavigation } from '@react-navigation/native';
 
 const Movies = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -22,6 +24,8 @@ const Movies = () => {
   const [showDetailModal, setShowDetailModal] = useState<boolean>(false);
   const [selectedMovie, setSelectedMovie] = useState<number>(0);
   const [wishlist, setWishlist] = useState<number[]>([]);
+
+  const navigation = useNavigation<any>();
 
   useEffect(() => {
     setLoading(true);
@@ -52,6 +56,15 @@ const Movies = () => {
       } else {
         return [...prev, movie_id];
       }
+    });
+  };
+
+  const handleSeeMore = (section: SectionData) => {
+    navigation.navigate('SectionDetails', {
+      type: section.type,
+      title: section.title,
+      companyId: section.companyId,
+      genreId: section.genreId,
     });
   };
 
@@ -104,7 +117,7 @@ const Movies = () => {
               actionLabel: 'See more',
             },
           ]}
-          onSeeMore={() => console.log('See more action pressed')}
+          onSeeMore={handleSeeMore}
           onMoviePress={handleDetailsPress}
           onWishlistToggle={handleWishlistToggle}
           wishlist={wishlist}
