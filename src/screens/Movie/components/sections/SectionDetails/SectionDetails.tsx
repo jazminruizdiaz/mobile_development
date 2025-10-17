@@ -9,7 +9,8 @@ import { Movie } from '../../../../../types/Movie';
 import { TextCustom } from '../../../../../components/atoms/Text/TextCustom';
 import { ActivityIndicator, View } from 'react-native';
 import { colors } from '../../../../../constants/colors';
-import { MovieGrid } from './SectionMovieGrid';
+import { MovieGrid } from '../MovieGrid';
+import { styles } from './styles';
 
 export interface fetchMoviesProps {
   type: SectionType;
@@ -43,7 +44,7 @@ export const fetchMovies = async ({
 };
 
 export const SectionDetails = ({ route }: any) => {
-  const { type, title, companyId, genreId } = route.params;
+  const { type, companyId, genreId } = route.params;
 
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -60,9 +61,7 @@ export const SectionDetails = ({ route }: any) => {
 
   if (loading) {
     return (
-      <View
-        style={{ flex: 1, justifyContent: 'center', alignContent: 'center' }}
-      >
+      <View style={styles.activityIndicator}>
         <ActivityIndicator size="large" color={colors.primary} />
         <TextCustom variant="body">Loading movies...</TextCustom>
       </View>
@@ -70,12 +69,13 @@ export const SectionDetails = ({ route }: any) => {
   }
 
   return (
-    <View style={{ flex: 1, padding: 16 }}>
-      <TextCustom variant="title" children={title} />
+    <View style={styles.gridContainer}>
       {movies.length > 0 ? (
         <MovieGrid movies={movies} />
       ) : (
-        <TextCustom variant="body" children="No movies found" />
+        <View style={styles.emptyState}>
+          <TextCustom variant="body">No movies found</TextCustom>
+        </View>
       )}
     </View>
   );

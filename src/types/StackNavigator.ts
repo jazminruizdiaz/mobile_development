@@ -9,4 +9,5 @@ export type StackParams = {
     companyId?: number;
     genreId?: number;
   };
+  TabNav: undefined;
 };
