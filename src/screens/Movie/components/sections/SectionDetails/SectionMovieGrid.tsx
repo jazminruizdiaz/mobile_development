@@ -12,11 +12,7 @@ export const MovieGrid = ({ movies }: SectionMovieGridProps) => {
       keyExtractor={movie => movie.id.toString()}
       numColumns={2}
       renderItem={({ item }) => (
-        <MovieItem
-          {...item}
-          onPress={() => console.log('pressed')}
-          onWishlistToggle={() => console.log('toggle')}
-          isInWishlist={false}
+        <MovieItem movie={item}
         />
       )}
       contentContainerStyle={{ padding: 0 }}
