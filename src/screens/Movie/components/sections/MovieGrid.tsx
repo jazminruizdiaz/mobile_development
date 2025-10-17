@@ -3,10 +3,10 @@ import { Movie } from '../../../../types/Movie';
 import { MovieItem } from '../items/MovieItem';
 import { styles } from './SectionDetails/styles';
 
-export interface SectionMovieGridProps {
+export interface MovieGridProps {
   movies: Movie[];
 }
-export const MovieGrid = ({ movies }: SectionMovieGridProps) => {
+export const MovieGrid = ({ movies }: MovieGridProps) => {
   return (
     <FlatList
       data={movies}
