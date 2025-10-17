@@ -2,6 +2,7 @@ import { View, ImageBackground, Text, ImageSourcePropType, Image } from "react-n
 
 import { Button } from "../../../../components/atoms/Button/Button";
 import { styles } from "./PromoBanner";
+import { TextCustom } from "../../../../components/atoms/Text/TextCustom";
 
 interface PromoProps {
     image: ImageSourcePropType;
@@ -20,11 +21,11 @@ export const PromoBanner: React.FC<PromoProps> = ({
                 source={typeof image === "string" ? { uri: image } : image} style={styles.image} resizeMode="cover">
             </Image>
             <View style={styles.textContainer}>
-                <Text style={styles.title}>{title}</Text>
-                <Text style={styles.description}>{description}</Text>
+                <TextCustom variant="subtitle">{title}</TextCustom>
+                <TextCustom variant="body">{description}</TextCustom>
             </View>
 
-            <Button title={buttonText} variant="primary" onPress={onPress ?? (() => console.log("pressed"))} />
+            <Button textStyle={styles.buttonText} title={buttonText} variant="primary" onPress={onPress ?? (() => console.log("pressed"))} />
 
         </View>
     )
