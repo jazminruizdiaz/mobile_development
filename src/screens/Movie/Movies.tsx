@@ -10,7 +10,6 @@ import { Movie } from '../../types/Movie';
 import { colors } from '../../constants/colors.ts';
 import { GENRES } from '../../constants/genres';
 import LinearGradient from 'react-native-linear-gradient';
-import { MovieDetailModal } from './components/modals/MovieDetailModal';
 import { SectionData } from '../../types/Section.ts';
 import { useNavigation } from '@react-navigation/native';
 
@@ -21,9 +20,6 @@ const Movies = () => {
   const [genre, setGenre] = useState('All');
   const top = insets.top;
   const bottom = insets.bottom;
-  const [showDetailModal, setShowDetailModal] = useState<boolean>(false);
-  const [selectedMovie, setSelectedMovie] = useState<number>(0);
-  const [wishlist, setWishlist] = useState<number[]>([]);
 
   const navigation = useNavigation<any>();
 
@@ -39,25 +35,6 @@ const Movies = () => {
         setLoading(false);
       });
   }, []);
-
-  const closeDetailModal = () => {
-    setShowDetailModal(false);
-  };
-
-  const handleDetailsPress = (movie_id: number) => {
-    setSelectedMovie(movie_id);
-    setShowDetailModal(true);
-  };
-
-  const handleWishlistToggle = (movie_id: number) => {
-    setWishlist(prev => {
-      if (prev.includes(movie_id)) {
-        return prev.filter(id => id !== movie_id);
-      } else {
-        return [...prev, movie_id];
-      }
-    });
-  };
 
   const handleSeeMore = (section: SectionData) => {
     navigation.navigate('SectionDetails', {
@@ -91,12 +68,7 @@ const Movies = () => {
             top={top}
           />
         </LinearGradient>
-        <MovieCarousel
-          movies={movies}
-          onWishlistPress={handleWishlistToggle}
-          onDetailsPress={handleDetailsPress}
-          wishlist={wishlist}
-        />
+        <MovieCarousel movies={movies} />
         <SectionsList
           sections={[
             {
@@ -118,14 +90,6 @@ const Movies = () => {
             },
           ]}
           onSeeMore={handleSeeMore}
-          onMoviePress={handleDetailsPress}
-          onWishlistToggle={handleWishlistToggle}
-          wishlist={wishlist}
-        />
-        <MovieDetailModal
-          movie_id={selectedMovie}
-          showDetailModal={showDetailModal}
-          closeDetailModal={closeDetailModal}
         />
       </View>
     </ScrollView>

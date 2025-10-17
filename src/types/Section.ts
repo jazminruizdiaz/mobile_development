@@ -9,9 +9,6 @@ export interface SectionData {
 }
 export interface SectionCallbacks {
   onSeeMore: (section: SectionData) => void;
-  onMoviePress: (movie_id: number) => void;
-  onWishlistToggle: (movie_id: number) => void;
-  wishlist: number[];
 }
 
 export interface SectionContent extends SectionData, SectionCallbacks {}
