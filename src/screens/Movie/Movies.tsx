@@ -10,7 +10,7 @@ import { Movie } from '../../types/Movie';
 import { colors } from '../../constants/colors.ts';
 import { GENRES } from '../../constants/genres';
 import LinearGradient from 'react-native-linear-gradient';
-
+import { PromoBanner } from '../Movie/components/promo/PromoBanner.tsx'
 const Movies = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(true);
@@ -78,6 +78,8 @@ const Movies = () => {
           ]}
           onSeeMore={() => console.log('See more action pressed')}
         />
+        <PromoBanner image={require("../../assets/saveupto.jpg")} title='Black Friday is here!' description='Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus quam ex quas autem quae nisi nihil totam culpa earum ipsam illum debitis corporis vero'
+          buttonText='Check details' onPress={() => console.log("Black Friday")} />
       </View>
     </ScrollView>
   );
