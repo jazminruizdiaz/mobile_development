@@ -1,1 +1,12 @@
-export const GENRES = ['All', 'Romance', 'Sport', 'Kids', 'Horror'];
+export type Genre = {
+  id: number;
+  name: string;
+};
+
+export const GENRES: Genre[] = [
+  { id: 0, name: 'All' },
+  { id: 28, name: 'Action' },
+  { id: 10749, name: 'Romance' },
+  { id: 10751, name: 'Family' },
+  { id: 27, name: 'Horror' },
+];

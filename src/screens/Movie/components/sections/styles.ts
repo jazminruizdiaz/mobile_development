@@ -6,6 +6,11 @@ export const styles = StyleSheet.create({
     marginTop: 24,
     paddingHorizontal: 24,
   },
+  sectionLoading: {
+    height: 250,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',

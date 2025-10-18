@@ -8,15 +8,14 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { GenresBar } from './components/genre/GenresBar.tsx';
 import { Movie } from '../../types/Movie';
 import { colors } from '../../constants/colors.ts';
-import { GENRES } from '../../constants/genres';
+import { Genre, GENRES } from '../../constants/genres';
 import LinearGradient from 'react-native-linear-gradient';
-
+import { PromoBanner } from '../Movie/components/promo/PromoBanner.tsx';
 const Movies = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(true);
   const insets = useSafeAreaInsets();
-  const [genre, setGenre] = useState('All');
-  const top = insets.top;
+  const [genre, setGenre] = useState<Genre>(GENRES[0]);
   const bottom = insets.bottom;
 
   useEffect(() => {
@@ -31,6 +30,10 @@ const Movies = () => {
         setLoading(false);
       });
   }, []);
+
+  const handleGenreChange = (genre: Genre) => {
+    setGenre(genre);
+  };
 
   if (loading) {
     return (
@@ -51,32 +54,52 @@ const Movies = () => {
           <GenresBar
             genres={GENRES}
             active={genre}
-            onChange={setGenre}
-            top={top}
+            onChange={handleGenreChange}
           />
         </LinearGradient>
         <MovieCarousel movies={movies} />
-        <SectionsList
-          sections={[
-            {
-              type: 'Company',
-              title: 'Marvel Studios',
-              actionLabel: 'See more',
-              companyId: 420,
-            },
-            {
-              type: 'Genre',
-              title: 'Action',
-              actionLabel: 'See more',
-              genreId: 28,
-            },
-            {
-              type: 'Best movies',
-              title: 'Best movies',
-              actionLabel: 'See more',
-            },
-          ]}
-          onSeeMore={() => console.log('See more action pressed')}
+        {genre.name === 'All' ? (
+          <SectionsList
+            sections={[
+              {
+                type: 'Company',
+                title: 'Marvel Studios',
+                actionLabel: 'See more',
+                companyId: 420,
+              },
+              {
+                type: 'Genre',
+                title: 'Action',
+                actionLabel: 'See more',
+                genreId: 28,
+              },
+              {
+                type: 'Best movies',
+                title: 'Best movies',
+                actionLabel: 'See more',
+              },
+            ]}
+            onSeeMore={() => console.log('See more action pressed')}
+          />
+        ) : (
+          <SectionsList
+            sections={[
+              {
+                type: 'Genre',
+                title: genre.name,
+                actionLabel: 'See more',
+                genreId: genre.id,
+              },
+            ]}
+            onSeeMore={() => console.log('See more action pressed')}
+          />
+        )}
+        <PromoBanner
+          image={require('../../assets/saveupto.jpg')}
+          title="Black Friday is here!"
+          description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus quam ex quas autem quae nisi nihil totam culpa earum ipsam illum debitis corporis vero"
+          buttonText="Check details"
+          onPress={() => console.log('Black Friday')}
         />
       </View>
     </ScrollView>
