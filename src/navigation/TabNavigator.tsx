@@ -4,7 +4,6 @@ import Movies from '../screens/Movie/Movies';
 import Search from '../screens/Search/Search';
 import Wishlist from '../screens/Wishlist/Wishlist';
 import { FontAwesome6 } from '@react-native-vector-icons/fontawesome6';
-import { colors } from '../constants/colors';
 import { TAB_ICONS, tabOptions } from './tabOptions';
 
 const Tab = createBottomTabNavigator();

@@ -63,7 +63,7 @@ export const MovieSection = ({
         </View>
       ) : (
         <FlatList
-          data={movies}
+          data={movies.slice(0, 5)}
           renderItem={({ item }) => {
             if (type === 'Best movies') {
               return <BestMovieItem movie={item} />;

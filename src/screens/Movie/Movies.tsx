@@ -28,7 +28,7 @@ const Movies = () => {
   };
 
   const handleSeeMore = (section: SectionData) => {
-    navigation.navigate('SectionDetails', {
+    navigation.navigate('SeeMore', {
       type: section.type,
       title: section.title,
       companyId: section.companyId,

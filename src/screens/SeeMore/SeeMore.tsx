@@ -1,14 +1,14 @@
-import { TextCustom } from '../../../../../components/atoms/Text/TextCustom';
+import { TextCustom } from '../../components/atoms/Text/TextCustom';
 import { ActivityIndicator, View } from 'react-native';
-import { colors } from '../../../../../constants/colors';
-import { MovieGrid } from '../../grid/MovieGrid';
+import { colors } from '../../constants/colors';
+import { MovieGrid } from '../Movie/components/grid/MovieGrid';
 import { styles } from './styles';
-import { useMoviesByCompany } from '../../../../../hooks/useMoviesByCompany';
-import { useMoviesByGenre } from '../../../../../hooks/useMoviesByGenre';
-import { useTopRatedMovies } from '../../../../../hooks/useTopRatedMovies';
-import { SectionType } from '../../../../../types/Section';
+import { useMoviesByCompany } from '../../hooks/useMoviesByCompany';
+import { useMoviesByGenre } from '../../hooks/useMoviesByGenre';
+import { useTopRatedMovies } from '../../hooks/useTopRatedMovies';
+import { SectionType } from '../../types/Section';
 
-export const SectionDetails = ({ route }: any) => {
+export const SeeMore = ({ route }: any) => {
   const { type, companyId, genreId } = route.params;
 
   const isCompanyEnabled = type === 'Company' && !!companyId;
@@ -56,7 +56,7 @@ export const SectionDetails = ({ route }: any) => {
     }
   };
 
-  const { movies, loading, error } = getSectionData(type);
+  const { movies, loading } = getSectionData(type);
 
   if (loading) {
     return (
@@ -72,7 +72,7 @@ export const SectionDetails = ({ route }: any) => {
   return (
     <View>
       {movies.length > 0 ? (
-        <MovieGrid movies={movies} />
+        <MovieGrid movies={movies} type={type} />
       ) : (
         <View style={styles.emptyState}>
           <TextCustom variant="body">No movies found</TextCustom>

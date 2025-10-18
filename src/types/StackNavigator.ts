@@ -3,7 +3,7 @@ import { SectionType } from './Section';
 export type StackParams = {
   Home: undefined;
   Movies: undefined;
-  SectionDetails: {
+  SeeMore: {
     type: SectionType;
     title: string;
     companyId?: number;

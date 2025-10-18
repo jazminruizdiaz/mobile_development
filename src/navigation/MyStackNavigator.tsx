@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { TabNavigator } from './TabNavigator';
 import { StackParams } from '../types/StackNavigator';
-import { SectionDetails } from '../screens/Movie/components/sections/SectionDetails/SectionDetails';
+import { SeeMore } from '../screens/SeeMore/SeeMore';
 import { stackOptions } from './stackOptions';
 
 const Stack = createNativeStackNavigator<StackParams>();
@@ -15,8 +15,8 @@ const MyStackNavigator = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="SectionDetails"
-        component={SectionDetails}
+        name="SeeMore"
+        component={SeeMore}
         options={({ route }) => ({
           title: route.params?.title || 'Movies',
           headerShown: true,
