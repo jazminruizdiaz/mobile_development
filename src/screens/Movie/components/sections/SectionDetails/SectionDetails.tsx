@@ -1,31 +1,62 @@
-import { useEffect, useState } from 'react';
-import { Movie } from '../../../../../types/Movie';
 import { TextCustom } from '../../../../../components/atoms/Text/TextCustom';
 import { ActivityIndicator, View } from 'react-native';
 import { colors } from '../../../../../constants/colors';
 import { MovieGrid } from '../../grid/MovieGrid';
 import { styles } from './styles';
-import { fetchMovies, fetchMoviesProps } from './fetchMovies';
-
-export interface SectionDetailsProps extends fetchMoviesProps {
-  title: string;
-}
+import { useMoviesByCompany } from '../../../../../hooks/useMoviesByCompany';
+import { useMoviesByGenre } from '../../../../../hooks/useMoviesByGenre';
+import { useTopRatedMovies } from '../../../../../hooks/useTopRatedMovies';
+import { SectionType } from '../../../../../types/Section';
 
 export const SectionDetails = ({ route }: any) => {
   const { type, companyId, genreId } = route.params;
 
-  const [movies, setMovies] = useState<Movie[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const isCompanyEnabled = type === 'Company' && !!companyId;
+  const isGenreEnabled = type === 'Genre' && !!genreId;
+  const isBestEnabled = type === 'Best movies';
 
-  useEffect(() => {
-    const loadMovies = async () => {
-      const response = await fetchMovies({ type, companyId, genreId });
-      setMovies(response);
-      setLoading(false);
-    };
+  const {
+    data: companyData,
+    loading: companyLoading,
+    error: companyError,
+  } = useMoviesByCompany(companyId ?? 0, isCompanyEnabled);
+  const {
+    data: genreData,
+    loading: genreLoading,
+    error: genreError,
+  } = useMoviesByGenre(genreId ?? 0, isGenreEnabled);
+  const {
+    data: bestData,
+    loading: bestLoading,
+    error: bestError,
+  } = useTopRatedMovies(isBestEnabled);
 
-    loadMovies();
-  }, [type, companyId, genreId]);
+  const getSectionData = (type: SectionType) => {
+    switch (type) {
+      case 'Company':
+        return {
+          movies: companyData?.results ?? [],
+          loading: companyLoading,
+          error: companyError,
+        };
+      case 'Genre':
+        return {
+          movies: genreData?.results ?? [],
+          loading: genreLoading,
+          error: genreError,
+        };
+      case 'Best movies':
+        return {
+          movies: bestData?.results ?? [],
+          loading: bestLoading,
+          error: bestError,
+        };
+      default:
+        return { movies: [], loading: false, error: null };
+    }
+  };
+
+  const { movies, loading, error } = getSectionData(type);
 
   if (loading) {
     return (
