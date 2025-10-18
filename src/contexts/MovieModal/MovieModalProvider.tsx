@@ -19,6 +19,7 @@ export const MovieModalProvider: React.FC<MovieModalProviderProps> = ({
 
   const closeMovieDetails = () => {
     setIsModalVisible(false);
+    setSelectedMovieId(null);
   };
 
   const value = {
