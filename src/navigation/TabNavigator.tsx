@@ -5,20 +5,15 @@ import Search from '../screens/Search/Search';
 import Wishlist from '../screens/Wishlist/Wishlist';
 import { FontAwesome6 } from '@react-native-vector-icons/fontawesome6';
 import { colors } from '../constants/colors';
+import { TAB_ICONS, tabOptions } from './tabOptions';
 
 const Tab = createBottomTabNavigator();
-
-const TAB_ICONS: Record<string, string> = {
-  Movies: 'video',
-  Home: 'house',
-  Search: 'magnifying-glass',
-  Wishlist: 'heart',
-};
 
 export const TabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
+        ...tabOptions,
         tabBarIcon: ({ color, size }) => {
           const iconName = TAB_ICONS[route.name] as any;
 
@@ -30,20 +25,6 @@ export const TabNavigator = () => {
               iconStyle="solid"
             />
           );
-        },
-        headerShown: false,
-        tabBarActiveTintColor: colors.primary,
-        tabBarInactiveTintColor: colors.white,
-        tabBarStyle: {
-          backgroundColor: colors.black,
-          borderTopWidth: 0,
-          height: 90,
-          paddingBottom: 30,
-          paddingTop: 10,
-        },
-        tabBarLabelStyle: {
-          fontSize: 12,
-          fontWeight: '500',
         },
       })}
     >

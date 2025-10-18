@@ -1,7 +1,7 @@
 import { FlatList, View } from 'react-native';
 import { Movie } from '../../../../types/Movie';
 import { MovieItem } from '../items/MovieItem';
-import { styles } from './SectionDetails/styles';
+import { styles } from './styles';
 
 export interface MovieGridProps {
   movies: Movie[];

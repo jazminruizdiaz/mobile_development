@@ -2,25 +2,15 @@ import { StyleSheet } from 'react-native';
 import { colors } from '../../../../../constants/colors';
 
 export const styles = StyleSheet.create({
-  activityIndicator: {
+  loadingContainer: {
     flex: 1,
     justifyContent: 'center',
-    alignContent: 'center',
+    alignItems: 'center',
     backgroundColor: colors.background,
   },
-
-  gridContainer: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
-
-  gridContent: {
-    padding: 16,
-    paddingBottom: 100,
-  },
-  gridWrapper: {
-    justifyContent: 'space-between',
-    paddingHorizontal: 8,
+  loadingText: {
+    color: colors.textPrimary,
+    fontSize: 16,
   },
 
   emptyState: {

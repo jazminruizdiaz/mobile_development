@@ -1,47 +1,15 @@
 import { useEffect, useState } from 'react';
-import {
-  getMoviesByCompanyId,
-  getMoviesByGenreId,
-  getPopularMovies,
-} from '../../../../../services/MDBService';
-import { SectionType } from '../../../../../types/Section';
 import { Movie } from '../../../../../types/Movie';
 import { TextCustom } from '../../../../../components/atoms/Text/TextCustom';
 import { ActivityIndicator, View } from 'react-native';
 import { colors } from '../../../../../constants/colors';
-import { MovieGrid } from '../MovieGrid';
+import { MovieGrid } from '../../grid/MovieGrid';
 import { styles } from './styles';
-
-export interface fetchMoviesProps {
-  type: SectionType;
-  companyId?: number;
-  genreId?: number;
-}
+import { fetchMovies, fetchMoviesProps } from './fetchMovies';
 
 export interface SectionDetailsProps extends fetchMoviesProps {
   title: string;
-  page?: number;
 }
-
-export const fetchMovies = async ({
-  type,
-  companyId,
-  genreId,
-}: fetchMoviesProps) => {
-  try {
-    if (type === 'Company' && companyId) {
-      return await getMoviesByCompanyId(companyId);
-    }
-    if (type === 'Genre' && genreId) {
-      return await getMoviesByGenreId(genreId);
-    }
-    if (type === 'Best movies') {
-      return await getPopularMovies();
-    }
-  } catch (error) {
-    console.error('Error fetching movies:', error);
-  }
-};
 
 export const SectionDetails = ({ route }: any) => {
   const { type, companyId, genreId } = route.params;
@@ -61,15 +29,17 @@ export const SectionDetails = ({ route }: any) => {
 
   if (loading) {
     return (
-      <View style={styles.activityIndicator}>
+      <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color={colors.primary} />
-        <TextCustom variant="body">Loading movies...</TextCustom>
+        <TextCustom variant="body" style={styles.loadingText}>
+          Loading movies...
+        </TextCustom>
       </View>
     );
   }
 
   return (
-    <View style={styles.gridContainer}>
+    <View>
       {movies.length > 0 ? (
         <MovieGrid movies={movies} />
       ) : (

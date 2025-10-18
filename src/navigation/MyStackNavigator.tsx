@@ -2,25 +2,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { TabNavigator } from './TabNavigator';
 import { StackParams } from '../types/StackNavigator';
 import { SectionDetails } from '../screens/Movie/components/sections/SectionDetails/SectionDetails';
-import { colors } from '../constants/colors';
+import { stackOptions } from './stackOptions';
 
 const Stack = createNativeStackNavigator<StackParams>();
 
 const MyStackNavigator = () => {
   return (
-    <Stack.Navigator
-      initialRouteName="TabNav"
-      screenOptions={{
-        headerStyle: { backgroundColor: colors.black },
-        headerTintColor: colors.primary,
-        headerTitleStyle: { fontWeight: '600', fontSize: 18 },
-        headerBackTitle: 'Back',
-        headerShadowVisible: false,
-        contentStyle: {
-          backgroundColor: colors.background,
-        },
-      }}
-    >
+    <Stack.Navigator initialRouteName="TabNav" screenOptions={stackOptions}>
       <Stack.Screen
         name="TabNav"
         component={TabNavigator}
