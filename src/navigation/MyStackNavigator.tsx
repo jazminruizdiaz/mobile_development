@@ -1,17 +1,26 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home from '../screens/Home/Home';
-import Movies from '../screens/Movie/Movies';
+import { TabNavigator } from './TabNavigator';
+import { StackParams } from '../types/StackNavigator';
+import { SeeMore } from '../screens/SeeMore/SeeMore';
+import { stackOptions } from './stackOptions';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<StackParams>();
 
 const MyStackNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="Movies">
-      <Stack.Screen name="Home" component={Home} />
+    <Stack.Navigator initialRouteName="TabNav" screenOptions={stackOptions}>
       <Stack.Screen
-        name="Movies"
-        component={Movies}
+        name="TabNav"
+        component={TabNavigator}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="SeeMore"
+        component={SeeMore}
+        options={({ route }) => ({
+          title: route.params?.title || 'Movies',
+          headerShown: true,
+        })}
       />
     </Stack.Navigator>
   );

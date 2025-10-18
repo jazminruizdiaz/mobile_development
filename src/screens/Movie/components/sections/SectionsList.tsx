@@ -13,12 +13,8 @@ export const SectionsList = ({ sections, onSeeMore }: Props) => {
       {sections.map(item => (
         <MovieSection
           key={item.title}
-          title={item.title}
-          actionLabel={item.actionLabel}
-          onSeeMore={onSeeMore}
-          type={item.type}
-          companyId={item.companyId}
-          genreId={item.genreId}
+          {...item}
+          onSeeMore={() => onSeeMore(item)}
         />
       ))}
     </View>
