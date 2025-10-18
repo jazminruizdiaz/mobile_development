@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   presets: ['module:@react-native/babel-preset'],
   plugins: [
@@ -5,8 +7,9 @@ module.exports = {
       'module:react-native-dotenv',
       {
         moduleName: '@env',
-        path: '.env',
+        path: path.resolve(__dirname, '.env'),
       },
     ],
+    'react-native-worklets/plugin',
   ],
 };
