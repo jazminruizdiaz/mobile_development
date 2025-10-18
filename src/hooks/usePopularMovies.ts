@@ -1,7 +1,9 @@
-import { useTMDB } from "./useTMDB";
+import { useTMDB } from './useTMDB';
+import { Movie } from '../types/Movie';
 
 export const usePopularMovies = () => {
-    const endpoint = "/movie/popular";
-    const params = {language: 'en-US',
-        page: 1,}
+  return useTMDB<{ results: Movie[] }>('/movie/popular', {
+    language: 'en-US',
+    page: 1,
+  });
 };

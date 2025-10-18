@@ -1,8 +1,10 @@
-import { useTMDB } from "./useTMDB";
+import { useTMDB } from './useTMDB';
+import { Movie } from '../types/Movie';
 
-export const useMoviesByGenre = (genreId: number) => {
-    const endpoint = "/discover/movie";
-    const params = {with_genres: genreId,
-        language: 'en-US',
-        page: 1,}
+export const useMoviesByGenre = (genreId: number, enabled = true) => {
+  return useTMDB<{ results: Movie[] }>('/discover/movie', {
+    with_genres: genreId,
+    language: 'en-US',
+    page: 1,
+  }, enabled);
 };

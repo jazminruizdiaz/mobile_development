@@ -1,35 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ScrollView, View, ActivityIndicator, Text } from 'react-native';
 import { styles } from './styles.ts';
-import { getPopularMovies } from '../../services/MDBService.ts';
 import { SectionsList } from './components/sections/SectionsList.tsx';
 import { MovieCarousel } from './components/carousel/MovieCarousel';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { GenresBar } from './components/genre/GenresBar.tsx';
-import { Movie } from '../../types/Movie';
 import { colors } from '../../constants/colors.ts';
 import { Genre, GENRES } from '../../constants/genres';
 import LinearGradient from 'react-native-linear-gradient';
 import { PromoBanner } from '../Movie/components/promo/PromoBanner.tsx';
+import { usePopularMovies } from '../../hooks/usePopularMovies.ts';
 const Movies = () => {
-  const [movies, setMovies] = useState<Movie[]>([]);
-  const [loading, setLoading] = useState(true);
+  const {  data, loading } = usePopularMovies();
   const insets = useSafeAreaInsets();
   const [genre, setGenre] = useState<Genre>(GENRES[0]);
   const bottom = insets.bottom;
 
-  useEffect(() => {
-    setLoading(true);
-    getPopularMovies()
-      .then(response => {
-        if (response && response.length > 0) {
-          setMovies(response.slice(0, 5));
-        }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
+  const movies = data?.results?.slice(0, 5) || [];
 
   const handleGenreChange = (genre: Genre) => {
     setGenre(genre);

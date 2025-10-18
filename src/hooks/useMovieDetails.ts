@@ -1,6 +1,10 @@
-import { useTMDB } from "./useTMDB";
+import { DetailMovie } from '../types/DetailMovie';
+import { useTMDB } from './useTMDB';
 
-export const useMovieDetails = (movie_id: number) => {
-    const endpoint = `/movie/${movie_id}`;
-    const params = {language: 'en-US',}
+export const useMovieDetails = (movieId: number, enabled = true) => {
+  return useTMDB<DetailMovie>(
+    `/movie/${movieId}`,
+    { language: 'en-US' },
+    enabled
+  );
 };
