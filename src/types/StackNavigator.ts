@@ -1,7 +1,7 @@
 import { SectionType } from './Section';
 
 export type StackParams = {
-  Home: undefined;
+  Profile: undefined;
   Movies: undefined;
   SeeMore: {
     type: SectionType;
