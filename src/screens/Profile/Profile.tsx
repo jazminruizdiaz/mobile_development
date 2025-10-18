@@ -1,12 +1,13 @@
 import React, { useMemo, useState } from 'react';
 import { View, Image, Switch } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { Button } from '../../components/atoms/Button/Button';
 import { TextCustom } from '../../components/atoms/Text/TextCustom';
 import { styles } from './styles';
 import { useWishlist } from '../../contexts/Wishlist/WishlistContext';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors } from '../../constants/colors';
+import { StackParams } from '../../types/StackNavigator';
 
 const user = {
   name: 'John Doe',
@@ -16,7 +17,7 @@ const user = {
 
 export const Profile = () => {
   const { wishlist } = useWishlist();
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation<NavigationProp<StackParams>>();
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   const handleGoToWishlist = () => {
