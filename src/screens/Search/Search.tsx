@@ -1,29 +1,17 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import { TextCustom } from '../../components/atoms/Text/TextCustom';
-import { colors } from '../../constants/colors';
+import { SearchMovies } from './SearchMovies';
+import { styles } from './styles';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const Search = () => {
+export const Search = () => {
+  const insets = useSafeAreaInsets();
   return (
-    <View style={styles.container}>
-      <TextCustom variant="title">Search</TextCustom>
-      <TextCustom variant="body" style={styles.subtitle}>
-        Search screen coming soon...
+    <View style={[styles.container, { paddingTop: insets.top }]}>
+      <TextCustom variant="title" style={styles.title}>
+        Search
       </TextCustom>
+      <SearchMovies />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: colors.background,
-  },
-  subtitle: {
-    marginTop: 8,
-  },
-});
-
-export default Search;
