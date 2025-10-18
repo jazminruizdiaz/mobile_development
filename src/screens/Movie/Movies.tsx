@@ -105,7 +105,7 @@ const Movies = () => {
                 genreId: genre.id,
               },
             ]}
-            onSeeMore={() => console.log('See more action pressed')}
+            onSeeMore={handleSeeMore}
           />
         )}
         <PromoBanner
