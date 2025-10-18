@@ -5,6 +5,11 @@ export const styles = StyleSheet.create({
   sectionsList: {
     marginTop: 24,
     paddingHorizontal: 24,
+    gap: 15,
+    marginBottom: 15,
+  },
+  sectionContainer: {
+    gap: 6,
   },
   sectionLoading: {
     height: 250,
@@ -31,6 +36,6 @@ export const styles = StyleSheet.create({
   },
   customButtonText: {
     color: colors.primary,
-    fontSize: 13,
+    fontSize: 15,
   },
 });
