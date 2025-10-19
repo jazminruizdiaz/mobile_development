@@ -31,7 +31,9 @@ export const MovieItem = ({ movie }: Props) => {
           {isInWishlist(id) ? '✓' : '+'}
         </TextCustom>
       </Pressable>
-      <TextCustom style={styles.movieTitle}>{title}</TextCustom>
+      <TextCustom style={styles.movieTitle} numberOfLines={1}>
+        {title}
+      </TextCustom>
     </TouchableOpacity>
   );
 };

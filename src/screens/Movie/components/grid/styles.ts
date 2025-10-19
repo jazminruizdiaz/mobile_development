@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     paddingBottom: 100,
   },
   gridWrapper: {
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     paddingHorizontal: 8,
   },
 });

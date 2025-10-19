@@ -49,7 +49,7 @@ export const MovieSection = ({
     loading = bestLoading;
   }
   return (
-    <>
+    <View style={styles.sectionContainer}>
       <MovieSectionHeader
         title={title}
         actionLabel={actionLabel}
@@ -75,6 +75,6 @@ export const MovieSection = ({
           showsHorizontalScrollIndicator={false}
         />
       )}
-    </>
+    </View>
   );
 };
