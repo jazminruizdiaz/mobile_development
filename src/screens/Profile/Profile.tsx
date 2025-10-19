@@ -8,6 +8,7 @@ import { useWishlist } from '../../contexts/Wishlist/WishlistContext';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors } from '../../constants/colors';
 import { StackParams } from '../../types/StackNavigator';
+import { ScreenHeader } from '../../components/molecules/ScreenHeader/ScreenHeader';
 
 const user = {
   name: 'John Doe',
@@ -28,10 +29,8 @@ export const Profile = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <TextCustom variant="title" style={styles.headerTitle}>
-          Profile
-        </TextCustom>
+      <ScreenHeader title="Profile" />
+      <View style={styles.profileSection}>
         <View style={styles.avatarContainer}>
           <Image
             source={{ uri: user.profilePicture }}

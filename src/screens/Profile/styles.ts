@@ -7,11 +7,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.background,
     paddingHorizontal: 20,
   },
-  headerTitle: {
-    marginBottom: 20,
-    color: colors.primary,
-  },
-  header: {
+  profileSection: {
     alignItems: 'center',
   },
   avatarContainer: {
