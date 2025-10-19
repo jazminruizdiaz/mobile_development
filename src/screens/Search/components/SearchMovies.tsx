@@ -36,7 +36,7 @@ export const SearchMovies = () => {
 
   if (isLoading) {
     return (
-      <View style={styles.searchContainer}>
+      <>
         <SearchBar
           value={searchText}
           onChange={handleChangeText}
@@ -48,12 +48,12 @@ export const SearchMovies = () => {
             Loading movies...
           </TextCustom>
         </View>
-      </View>
+      </>
     );
   }
 
   return (
-    <View style={styles.searchContainer}>
+    <>
       <SearchBar
         value={searchText}
         onChange={handleChangeText}
@@ -69,6 +69,6 @@ export const SearchMovies = () => {
           </TextCustom>
         </View>
       )}
-    </View>
+    </>
   );
 };
