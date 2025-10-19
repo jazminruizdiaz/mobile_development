@@ -73,6 +73,7 @@ export const MovieSection = ({
           keyExtractor={item => item.id.toString()}
           horizontal
           showsHorizontalScrollIndicator={false}
+          ItemSeparatorComponent={() => <View style={styles.separator} />}
         />
       )}
     </View>

@@ -2,6 +2,9 @@ import { StyleSheet } from 'react-native';
 import { colors } from '../../../../constants/colors';
 
 export const styles = StyleSheet.create({
+  separator: {
+    width: 16,
+  },
   sectionsList: {
     marginTop: 10,
     paddingHorizontal: 24,

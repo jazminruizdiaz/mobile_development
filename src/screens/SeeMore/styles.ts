@@ -2,6 +2,10 @@ import { StyleSheet } from 'react-native';
 import { colors } from '../../constants/colors';
 
 export const styles = StyleSheet.create({
+  container: {
+    backgroundColor: colors.background,
+    paddingHorizontal: 40,
+  },
   loadingContainer: {
     flex: 1,
     justifyContent: 'center',
