@@ -10,4 +10,5 @@ export type StackParams = {
     genreId?: number;
   };
   TabNav: undefined;
+  Wishlist: undefined
 };
