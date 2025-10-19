@@ -3,8 +3,13 @@ import { colors } from '../../../../constants/colors';
 
 export const styles = StyleSheet.create({
   sectionsList: {
-    marginTop: 24,
+    marginTop: 10,
     paddingHorizontal: 24,
+    gap: 15,
+    marginBottom: 15,
+  },
+  sectionContainer: {
+    gap: 6,
   },
   sectionLoading: {
     height: 250,
@@ -22,5 +27,15 @@ export const styles = StyleSheet.create({
   },
   actionLabel: {
     color: colors.primary,
+  },
+  customButton: {
+    backgroundColor: 'transparent',
+    padding: 0,
+    paddingHorizontal: 0,
+    paddingVertical: 0,
+  },
+  customButtonText: {
+    color: colors.primary,
+    fontSize: 15,
   },
 });

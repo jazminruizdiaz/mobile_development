@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
   genresBar: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     padding: 6,
     borderRadius: 28,
     backgroundColor: 'rgba(30,30,30,0.6)',
@@ -29,7 +30,7 @@ export const styles = StyleSheet.create({
   },
   genreLabel: {
     color: '#EEE',
-    fontWeight: '600',
+    fontWeight: '800',
   },
   genreLabelActive: {
     color: '#111',

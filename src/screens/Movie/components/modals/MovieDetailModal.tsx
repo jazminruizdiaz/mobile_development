@@ -2,37 +2,25 @@ import { Modal, View, ScrollView, ActivityIndicator } from 'react-native';
 import { TextCustom } from '../../../../components/atoms/Text/TextCustom';
 import { Button } from '../../../../components/atoms/Button/Button';
 import { styles } from './styles';
-import { DetailMovie } from '../../../../types/DetailMovie';
-import { useEffect, useState } from 'react';
-import { getMovieDetails } from '../../../../services/MDBService';
 import { colors } from '../../../../constants/colors';
 import { useMovieModal } from '../../../../contexts/MovieModal/MovieModalContext';
+import { useMovieDetails } from '../../../../hooks/useMovieDetails';
 
 export const MovieDetailModal = () => {
   const { selectedMovieId, isModalVisible, closeMovieDetails } =
     useMovieModal();
-  const [movie, setMovie] = useState<DetailMovie | null>(null);
-  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (selectedMovieId && isModalVisible) {
-      setLoading(true);
-      setMovie(null);
-      getMovieDetails(selectedMovieId)
-        .then(response => {
-          setMovie(response);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    }
-  }, [selectedMovieId, isModalVisible]);
+
+  const {  data, loading, error } = useMovieDetails(
+  selectedMovieId ?? 0,
+  !!selectedMovieId && isModalVisible
+);
 
   const formatTime = (minutes: number) => {
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
     return hours > 0 ? `${hours}h ${mins}m` : `${mins}m`;
-  };
+  };  
 
   return (
     <Modal
@@ -51,11 +39,11 @@ export const MovieDetailModal = () => {
                 Loading details...
               </TextCustom>
             </View>
-          ) : movie ? (
+          ) : data ? (
             <ScrollView showsVerticalScrollIndicator={false}>
               <View style={styles.titleContainer}>
                 <TextCustom variant="title" style={styles.movieTitleModal}>
-                  {movie.title}
+                  {data.title}
                 </TextCustom>
               </View>
 
@@ -65,7 +53,7 @@ export const MovieDetailModal = () => {
                     Release Date:
                   </TextCustom>
                   <TextCustom variant="body" style={styles.infoValue}>
-                    {movie.release_date}
+                    {data.release_date}
                   </TextCustom>
                 </View>
 
@@ -74,7 +62,7 @@ export const MovieDetailModal = () => {
                     Runtime:
                   </TextCustom>
                   <TextCustom variant="body" style={styles.infoValue}>
-                    {formatTime(movie.runtime)}
+                    {formatTime(data.runtime)}
                   </TextCustom>
                 </View>
 
@@ -83,7 +71,7 @@ export const MovieDetailModal = () => {
                     Original Language:
                   </TextCustom>
                   <TextCustom variant="body" style={styles.infoValue}>
-                    {movie.original_language.toUpperCase()}
+                    {data.original_language.toUpperCase()}
                   </TextCustom>
                 </View>
 
@@ -92,7 +80,7 @@ export const MovieDetailModal = () => {
                     Genres:
                   </TextCustom>
                   <View style={styles.genresList}>
-                    {movie.genres.map(genre => (
+                    {data.genres.map(genre => (
                       <View key={genre.id} style={styles.genreChip}>
                         <TextCustom variant="body" style={styles.genreText}>
                           {genre.name}
@@ -107,7 +95,7 @@ export const MovieDetailModal = () => {
                     Overview:
                   </TextCustom>
                   <TextCustom variant="body" style={styles.overviewText}>
-                    {movie.overview}
+                    {data.overview}
                   </TextCustom>
                 </View>
 
@@ -121,7 +109,7 @@ export const MovieDetailModal = () => {
           ) : (
             <View style={styles.errorContainer}>
               <TextCustom variant="body" style={styles.errorText}>
-                Error loading movie details
+                {`Error loading movie details: ${error}`}
               </TextCustom>
               <Button
                 title="Close"
