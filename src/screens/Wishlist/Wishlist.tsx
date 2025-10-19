@@ -20,9 +20,11 @@ const Wishlist = () => {
           <MovieGrid movies={wishlist} />
 
         ) : (
-          <TextCustom variant="body" style={styles.subtitle}>
-            No movies in your Wishlist yet
-          </TextCustom>
+          <View style={styles.emptyContent}>
+            <TextCustom variant="body" >
+              No movies in your Wishlist yet
+            </TextCustom>
+          </View>
         )}
 
       </View>
