@@ -1,6 +1,7 @@
 import { SectionType } from './Section';
 
 export type StackParams = {
+  TabNav: undefined;
   Wishlist: undefined;
   Search: undefined;
   Profile: undefined;
@@ -11,5 +12,4 @@ export type StackParams = {
     companyId?: number;
     genreId?: number;
   };
-  TabNav: undefined;
 };

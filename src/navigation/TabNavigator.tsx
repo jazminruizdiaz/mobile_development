@@ -1,9 +1,9 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Movies from '../screens/Movie/Movies';
-import Search from '../screens/Search/Search';
 import Wishlist from '../screens/Wishlist/Wishlist';
 import { FontAwesome6 } from '@react-native-vector-icons/fontawesome6';
 import { TAB_ICONS, tabOptions } from './tabOptions';
+import { Search } from '../screens/Search/Search';
 import { Profile } from '../screens/Profile/Profile';
 
 const Tab = createBottomTabNavigator();
