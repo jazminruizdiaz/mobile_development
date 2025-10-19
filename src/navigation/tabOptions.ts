@@ -15,9 +15,9 @@ export const tabOptions: BottomTabNavigationOptions = {
   tabBarStyle: {
     backgroundColor: colors.black,
     borderTopWidth: 0,
-    height: 90,
+    height: 80,
     paddingBottom: 30,
-    paddingTop: 10,
+    paddingTop: 5,
   },
   tabBarLabelStyle: {
     fontSize: 12,

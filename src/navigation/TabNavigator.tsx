@@ -19,7 +19,7 @@ export const TabNavigator = () => {
           return (
             <FontAwesome6
               name={iconName || 'circle-question'}
-              size={size}
+              size={size * 0.75}
               color={color}
               iconStyle="solid"
             />
