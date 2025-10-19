@@ -15,7 +15,6 @@ export const styles = StyleSheet.create({
     marginTop: 8,
   },
   movieItemContainer: {
-    marginRight: 16,
     alignItems: 'center',
   },
   movieTitle: {

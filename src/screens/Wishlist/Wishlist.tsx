@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { TextCustom } from '../../components/atoms/Text/TextCustom';
 import { colors } from '../../constants/colors';
 import { useWishlist } from '../../contexts/Wishlist/WishlistContext';
