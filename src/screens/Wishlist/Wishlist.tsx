@@ -4,13 +4,14 @@ import { TextCustom } from '../../components/atoms/Text/TextCustom';
 import { colors } from '../../constants/colors';
 import { useWishlist } from '../../contexts/Wishlist/WishlistContext';
 import { MovieGrid } from '../Movie/components/grid/MovieGrid';
+import { ScreenHeader } from '../../components/molecules/ScreenHeader/ScreenHeader';
 
 const Wishlist = () => {
   const { wishlist } = useWishlist();
 
   return (
     <View style={styles.container}>
-      <TextCustom variant="title">Wishlist</TextCustom>
+      <ScreenHeader title='Wishlist' />
 
       {wishlist.length > 0 ? (
         <MovieGrid movies={wishlist} />
