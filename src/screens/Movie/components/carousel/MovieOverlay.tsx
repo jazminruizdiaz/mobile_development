@@ -5,8 +5,9 @@ import { styles } from './styles';
 import { Movie } from '../../../../types/Movie';
 import { useWishlist } from '../../../../contexts/Wishlist/WishlistContext';
 import { useMovieModal } from '../../../../contexts/MovieModal/MovieModalContext';
-import { useNavigation } from '@react-navigation/native';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { styles as textStyles } from '../../../../components/atoms/Text/styles';
+import { StackParams } from '../../../../types/StackNavigator';
 
 type Props = {
   movie: Movie;
@@ -15,7 +16,7 @@ type Props = {
 export const MovieOverlay = ({ movie }: Props) => {
   const { isInWishlist, toggleWishlist } = useWishlist();
   const { openMovieDetails } = useMovieModal();
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation<NavigationProp<StackParams>>();
 
   const handleDiscover = () => {
     navigation.navigate('Search');

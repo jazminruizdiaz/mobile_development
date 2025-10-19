@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
   },
   title: {
     paddingHorizontal: 16,
-    paddingBottom: 16,
   },
   searchContainer: {
     flex: 1,
