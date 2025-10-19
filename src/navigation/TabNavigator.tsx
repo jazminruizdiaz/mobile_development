@@ -1,10 +1,10 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from '../screens/Home/Home';
 import Movies from '../screens/Movie/Movies';
-import Search from '../screens/Search/Search';
 import Wishlist from '../screens/Wishlist/Wishlist';
 import { FontAwesome6 } from '@react-native-vector-icons/fontawesome6';
 import { TAB_ICONS, tabOptions } from './tabOptions';
+import { Search } from '../screens/Search/Search';
+import { Profile } from '../screens/Profile/Profile';
 
 const Tab = createBottomTabNavigator();
 
@@ -28,9 +28,9 @@ export const TabNavigator = () => {
       })}
     >
       <Tab.Screen name="Movies" component={Movies} />
-      <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Search" component={Search} />
       <Tab.Screen name="Wishlist" component={Wishlist} />
+      <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );
 };

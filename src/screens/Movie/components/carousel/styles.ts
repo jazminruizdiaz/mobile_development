@@ -86,6 +86,7 @@ export const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '600',
   },
+
   customButton: {
     backgroundColor: 'transparent',
     padding: 0,

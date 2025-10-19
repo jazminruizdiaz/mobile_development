@@ -16,16 +16,32 @@ type Props = {
 export const MovieOverlay = ({ movie }: Props) => {
   const { isInWishlist, toggleWishlist } = useWishlist();
   const { openMovieDetails } = useMovieModal();
-  const navigation = useNavigation<NavigationProp<StackParams>>()
+  const navigation = useNavigation<NavigationProp<StackParams>>();
+
+  const handleDiscover = () => {
+    navigation.navigate('Search');
+  };
   const handleWishlist = () => {
-    navigation.navigate('Wishlist')
-  }
+    navigation.navigate('Wishlist');
+  };
 
   return (
     <View style={styles.overlay}>
       <View style={styles.textRow}>
-        <Button title='My List' onPress={handleWishlist} variant='custom' style={styles.customButton} textStyle={textStyles.subtitle} />
-        <TextCustom variant="subtitle">Discover</TextCustom>
+        <Button
+          title="My List"
+          onPress={handleWishlist}
+          variant="custom"
+          style={styles.customButton}
+          textStyle={textStyles.subtitle}
+        />
+        <Button
+          title="Discover"
+          onPress={handleDiscover}
+          variant="custom"
+          style={styles.customButton}
+          textStyle={textStyles.subtitle}
+        />
       </View>
 
       <View style={styles.buttonRow}>
