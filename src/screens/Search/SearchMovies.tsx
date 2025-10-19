@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, ActivityIndicator, Text } from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import { TextCustom } from '../../components/atoms/Text/TextCustom';
 import { styles } from './styles';
 import { SearchBar } from './SearchBar';
@@ -64,7 +64,9 @@ export const SearchMovies = () => {
         <MovieGrid movies={moviesToShow} />
       ) : (
         <View style={styles.emptyContent}>
-          <TextCustom variant="body">No movies found</TextCustom>
+          <TextCustom variant="body">
+            No results found for "{searchText}"
+          </TextCustom>
         </View>
       )}
     </View>

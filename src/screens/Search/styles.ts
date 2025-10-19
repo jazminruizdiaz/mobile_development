@@ -39,5 +39,7 @@ export const styles = StyleSheet.create({
 
   emptyContent: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
