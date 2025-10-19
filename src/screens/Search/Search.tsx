@@ -1,6 +1,6 @@
 import { View } from 'react-native';
 import { TextCustom } from '../../components/atoms/Text/TextCustom';
-import { SearchMovies } from './SearchMovies';
+import { SearchMovies } from './components/SearchMovies';
 import { styles } from './styles';
 import {
   SafeAreaView,

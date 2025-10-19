@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { View, ActivityIndicator } from 'react-native';
-import { TextCustom } from '../../components/atoms/Text/TextCustom';
-import { styles } from './styles';
+import { TextCustom } from '../../../components/atoms/Text/TextCustom';
+import { styles } from '../styles';
 import { SearchBar } from './SearchBar';
-import { MovieGrid } from '../Movie/components/grid/MovieGrid';
-import { colors } from '../../constants/colors';
-import { useSearchMoviesByName } from '../../hooks/useSearchMoviesByName';
-import { usePopularMovies } from '../../hooks/usePopularMovies';
+import { MovieGrid } from '../../Movie/components/grid/MovieGrid';
+import { colors } from '../../../constants/colors';
+import { useSearchMoviesByName } from '../../../hooks/useSearchMoviesByName';
+import { usePopularMovies } from '../../../hooks/usePopularMovies';
 
 export const SearchMovies = () => {
   const [searchText, setSearchText] = useState('');
