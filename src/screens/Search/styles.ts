@@ -5,17 +5,11 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,
-  },
-  title: {
-    paddingHorizontal: 16,
-  },
-  searchContainer: {
-    flex: 1,
+    paddingHorizontal: 40,
   },
   searchBarContainer: {
     width: '100%',
     gap: 12,
-    paddingHorizontal: 16,
   },
   gridContainer: {
     flex: 1,

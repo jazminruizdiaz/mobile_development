@@ -4,12 +4,16 @@ import { MovieItem } from '../items/MovieItem';
 import { styles } from './styles';
 import { SectionType } from '../../../../types/Section';
 import { BestMovieItem } from '../items/BestMovieItem';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export interface MovieGridProps {
   movies: Movie[];
   type?: SectionType;
 }
 export const MovieGrid = ({ movies, type }: MovieGridProps) => {
+  const insets = useSafeAreaInsets();
+  const bottom = insets.bottom;
+
   return (
     <FlatList
       data={movies}
@@ -22,7 +26,7 @@ export const MovieGrid = ({ movies, type }: MovieGridProps) => {
           <MovieItem movie={item} />
         )
       }
-      contentContainerStyle={styles.gridContent}
+      contentContainerStyle={[styles.gridContent, { paddingBottom: bottom }]}
       columnWrapperStyle={styles.gridWrapper}
     />
   );

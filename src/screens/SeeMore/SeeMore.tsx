@@ -70,7 +70,7 @@ export const SeeMore = ({ route }: any) => {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       {movies.length > 0 ? (
         <MovieGrid movies={movies} type={type} />
       ) : (

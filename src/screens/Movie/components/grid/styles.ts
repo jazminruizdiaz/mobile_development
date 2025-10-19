@@ -2,11 +2,9 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   gridContent: {
-    padding: 16,
-    paddingBottom: 100,
+    gap: 16,
   },
   gridWrapper: {
-    justifyContent: 'space-around',
-    paddingHorizontal: 8,
+    justifyContent: 'space-between',
   },
 });

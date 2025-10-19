@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,
-    paddingHorizontal: 20,
+    paddingHorizontal: 40,
   },
   profileSection: {
     alignItems: 'center',
