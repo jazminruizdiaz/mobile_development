@@ -11,7 +11,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import { PromoBanner } from '../Movie/components/promo/PromoBanner.tsx';
 import { usePopularMovies } from '../../hooks/usePopularMovies.ts';
 import { SectionData } from '../../types/Section.ts';
-import { useNavigation } from '@react-navigation/native';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { StackParams } from '../../types/StackNavigator.ts';
 
 const Movies = () => {
   const { data, loading } = usePopularMovies();
@@ -19,7 +20,7 @@ const Movies = () => {
   const [genre, setGenre] = useState<Genre>(GENRES[0]);
   const bottom = insets.bottom;
 
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation<NavigationProp<StackParams>>();
 
   const movies = data?.results?.slice(0, 5) || [];
 

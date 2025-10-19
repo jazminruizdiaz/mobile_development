@@ -11,7 +11,7 @@ const TMDBClient = axios.create({
 });
 
 interface useTMDBResult<T> {
-  data:  T | null;
+  data: T | null;
   loading: boolean;
   error: string | null;
 }
@@ -21,18 +21,20 @@ type TMDBParams = {
   page?: number;
   with_genres?: number;
   with_companies?: number;
+  query?: string;
 };
 
 export const useTMDB = <T>(
   endpoint: string,
   params: TMDBParams = {},
-  enabled = true
+  enabled = true,
 ): useTMDBResult<T> => {
   const {
     language = 'en-US',
     page = 1,
     with_genres,
     with_companies,
+    query,
   } = params;
 
   const [data, setData] = useState<T | null>(null);
@@ -51,9 +53,13 @@ export const useTMDB = <T>(
       try {
         const APIParams: Record<string, any> = { language, page };
         if (with_genres !== undefined) APIParams.with_genres = with_genres;
-        if (with_companies !== undefined) APIParams.with_companies = with_companies;
+        if (with_companies !== undefined)
+          APIParams.with_companies = with_companies;
+        if (query !== undefined) APIParams.query = query;
 
-        const response = await TMDBClient.get<T>(endpoint, { params: APIParams });
+        const response = await TMDBClient.get<T>(endpoint, {
+          params: APIParams,
+        });
         setData(response.data);
       } catch (err) {
         if (err instanceof AxiosError) {
