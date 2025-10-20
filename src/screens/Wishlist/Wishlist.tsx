@@ -14,20 +14,20 @@ const Wishlist = () => {
   return (
 
     <SafeAreaView style={styles.container}>
-      <View style={styles.title}>
-        <ScreenHeader title='Wishlist' />
-        {wishlist.length > 0 ? (
-          <MovieGrid movies={wishlist} />
 
-        ) : (
-          <View style={styles.emptyContent}>
-            <TextCustom variant="body" >
-              No movies in your Wishlist yet
-            </TextCustom>
-          </View>
-        )}
+      <ScreenHeader title='Wishlist' />
+      {wishlist.length > 0 ? (
+        <MovieGrid movies={wishlist} />
 
-      </View>
+      ) : (
+        <View style={styles.emptyContent}>
+          <TextCustom variant="body" >
+            No movies in your Wishlist yet
+          </TextCustom>
+        </View>
+      )}
+
+
     </SafeAreaView>
   );
 };
