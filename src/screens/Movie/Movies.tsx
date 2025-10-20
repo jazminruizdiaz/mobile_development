@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { ScrollView, View, ActivityIndicator, Text, Button } from 'react-native';
-import { styles } from './styles.ts';
+import { createStyles } from './styles.ts';
 import { SectionsList } from './components/sections/SectionsList.tsx';
 import { MovieCarousel } from './components/carousel/MovieCarousel';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { GenresBar } from './components/genre/GenresBar.tsx';
-import { colors } from '../../constants/colors.ts';
+//import { colors } from '../../constants/colors.ts';
 import { Genre, GENRES } from '../../constants/genres';
 import LinearGradient from 'react-native-linear-gradient';
 import { PromoBanner } from '../Movie/components/promo/PromoBanner.tsx';
@@ -13,14 +13,16 @@ import { usePopularMovies } from '../../hooks/usePopularMovies.ts';
 import { SectionData } from '../../types/Section.ts';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { StackParams } from '../../types/StackNavigator.ts';
-import { useTheme } from '../../contexts/Theme/ThemeContext.tsx';
-
+import { getThemeColors } from '../../constants/colorsFun.ts';
+import { useTheme } from '../../contexts/Theme/ThemeContext';
 const Movies = () => {
   const { data, loading } = usePopularMovies();
   const insets = useSafeAreaInsets();
   const [genre, setGenre] = useState<Genre>(GENRES[0]);
   const bottom = insets.bottom;
-  const {themeMode, toggleThemeMode} = useTheme();
+  const { themeMode, toggleThemeMode } = useTheme();
+  const colors = getThemeColors(themeMode);
+  const styles = createStyles(colors);
 
   const navigation = useNavigation<NavigationProp<StackParams>>();
 
@@ -98,7 +100,7 @@ const Movies = () => {
             onSeeMore={handleSeeMore}
           />
         )}
-        <Button title='Toggle' onPress={()=>{toggleThemeMode}}/>
+        <Button title='Toggle' onPress={()=>{toggleThemeMode(); console.log("Change color")}}/>
         <PromoBanner
           image={require('../../assets/saveupto.jpg')}
           title="Black Friday is here!"

@@ -1,9 +1,21 @@
-import { useTheme } from '../contexts/Theme/ThemeContext';
+export interface ThemeColors {
+  primary: string;
+  primaryDark: string
+  background: string;
+  backgroundLight: string;
+  textPrimary: string;
+  textSecondary: string;
+  textDark: string;
+  gradientOverlayTop: string[];
+  buttonPrimary: string;
+  buttonSecondary: string;
+  gradientOverlayBottom: string[];
+  white: string;
+  black: string;
+  transparent: string;
+}
 
-
-export const colors = {
-
-    darkColors : {
+const darkColors = {
   // Primary colors
   primary: '#FFC107',
   primaryDark: '#FFA000',
@@ -29,9 +41,9 @@ export const colors = {
   white: '#FFFFFF',
   black: '#000000',
   transparent: 'transparent',
-    },
+};
 
-    lightColors : {
+const lightColors = {
   // Primary colors
   primary: '#FFC107',
   primaryDark: '#FFA000',
@@ -50,13 +62,23 @@ export const colors = {
   buttonSecondary: 'rgba(0, 0, 0, 0.1)',
 
   // Gradient colors
-  gradientOverlayBottom: ['rgba(255,255,255,0)', 'rgba(255,255,255,0.8)', 'rgba(255,255,255,1)'],
-  gradientOverlayTop: ['rgba(255,255,255,0.8)', 'rgba(255,255,255,0.4)', 'rgba(255,255,255,0.1)'],
+  gradientOverlayBottom: [
+    'rgba(255,255,255,0)',
+    'rgba(255,255,255,0.8)',
+    'rgba(255,255,255,1)',
+  ],
+  gradientOverlayTop: [
+    'rgba(255,255,255,0.8)',
+    'rgba(255,255,255,0.4)',
+    'rgba(255,255,255,0.1)',
+  ],
 
   // Other colors
   white: '#FFFFFF',
   black: '#000000',
   transparent: 'transparent',
-}
-}
+};
 
+export const getThemeColors = (themeMode: 'light' | 'dark') => {
+  return themeMode === 'dark' ? darkColors : lightColors;
+};
