@@ -1,7 +1,11 @@
-
+import { ColorSchemeName } from 'react-native';
+import { colors } from '../../constants/colors'
 import { createContext, useContext } from 'react';
+import { Appearance } from 'react-native';
+
 
 export type ThemeMode = 'light' | 'dark';
+
 
 export type ThemeContextType = {
   themeMode: ThemeMode;

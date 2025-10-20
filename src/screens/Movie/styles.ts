@@ -1,5 +1,12 @@
 import { StyleSheet, Dimensions } from 'react-native';
+//import { colors } from '../../constants/colorsFun';
 import { colors } from '../../constants/colors';
+export function createStyle(theme: string) {
+  let colors;
+  if (theme === 'dark') {
+  }
+  
+}
 
 export const styles = StyleSheet.create({
   container: {

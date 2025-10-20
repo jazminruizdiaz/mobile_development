@@ -3,10 +3,13 @@ import { TabNavigator } from './TabNavigator';
 import { StackParams } from '../types/StackNavigator';
 import { SeeMore } from '../screens/SeeMore/SeeMore';
 import { stackOptions } from './stackOptions';
+import { useContext } from 'react'
+import { ThemeContext } from '../contexts/Theme/ThemeContext'; 
 
 const Stack = createNativeStackNavigator<StackParams>();
 
 const MyStackNavigator = () => {
+
   return (
     <Stack.Navigator initialRouteName="TabNav" screenOptions={stackOptions}>
       <Stack.Screen

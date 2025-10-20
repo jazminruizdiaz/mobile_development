@@ -4,19 +4,22 @@ import { NavigationContainer } from '@react-navigation/native';
 import MyStackNavigator from './src/navigation/MyStackNavigator.tsx';
 import { WishlistProvider } from './src/contexts/Wishlist/WishlistProvider';
 import { MovieModalProvider } from './src/contexts/MovieModal/MovieModalProvider';
+import { ThemeProvider } from './src/contexts/Theme/ThemeProvider.tsx';
 
 function App() {
   return (
     <GestureHandlerRootView>
-      <SafeAreaProvider>
-        <WishlistProvider>
-          <MovieModalProvider>
-            <NavigationContainer>
-              <MyStackNavigator />
-            </NavigationContainer>
-          </MovieModalProvider>
-        </WishlistProvider>
-      </SafeAreaProvider>
+      <ThemeProvider>
+        <SafeAreaProvider>
+          <WishlistProvider>
+            <MovieModalProvider>
+              <NavigationContainer>
+                <MyStackNavigator />
+              </NavigationContainer>
+            </MovieModalProvider>
+          </WishlistProvider>
+        </SafeAreaProvider>
+      </ThemeProvider>
     </GestureHandlerRootView>
   );
 }
