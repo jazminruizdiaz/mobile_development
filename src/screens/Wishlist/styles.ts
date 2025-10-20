@@ -7,10 +7,6 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 40,
         backgroundColor: colors.background,
     },
-    title: {
-        marginVertical: 16,
-        flex: 1
-    },
     subtitle: {
         textAlign: 'center',
         marginTop: 8,
