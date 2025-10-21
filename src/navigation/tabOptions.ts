@@ -2,7 +2,7 @@ import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 import { colors } from '../constants/colors';
 
 export const TAB_ICONS: Record<string, string> = {
-  Movies: 'video',
+  Home: 'house',
   Search: 'magnifying-glass',
   Wishlist: 'heart',
   Profile: 'user',

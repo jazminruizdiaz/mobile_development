@@ -27,7 +27,7 @@ export const TabNavigator = () => {
         },
       })}
     >
-      <Tab.Screen name="Movies" component={Movies} />
+      <Tab.Screen name="Home" component={Movies} />
       <Tab.Screen name="Search" component={Search} />
       <Tab.Screen name="Wishlist" component={Wishlist} />
       <Tab.Screen name="Profile" component={Profile} />
