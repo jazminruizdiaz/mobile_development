@@ -1,0 +1,28 @@
+import React from "react";
+import { FlatList, Image, Text, View, StyleSheet } from "react-native";
+import { TMDB_IMAGE_BASE_URL } from "@env";
+import { CastMember } from "../../types/MovieCast";
+import { useMovieCredits } from "../../hooks/useMovieCredits";
+import { styles } from "./styles";
+
+
+export const CastList = ({ cast }: { cast: CastMember[] }) => {
+    return (
+        <FlatList
+            horizontal
+            data={cast}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
+                <View style={styles.actorCard}>
+                    <Image
+                        source={{ uri: `${TMDB_IMAGE_BASE_URL}${item.profile_path}` }}
+                        style={styles.actorImage}
+                    />
+                    <Text style={styles.actorName}>{item.name}</Text>
+                    <Text style={styles.actorCharacter}>{item.character}</Text>
+                </View>
+            )}
+            showsHorizontalScrollIndicator={false}
+        />
+    );
+};
