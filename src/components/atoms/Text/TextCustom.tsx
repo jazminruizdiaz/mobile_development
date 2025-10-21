@@ -1,5 +1,8 @@
 import { Text, TextStyle, StyleProp } from 'react-native';
-import { styles } from './styles';
+import { useTheme } from '../../../contexts/Theme/ThemeContext';
+import { getThemeColors } from '../../../constants/colorsFun';
+import { createStyles } from './styles';
+
 
 interface TextProps {
   children: string | React.ReactNode;
@@ -14,6 +17,10 @@ export const TextCustom = ({
   style,
   numberOfLines,
 }: TextProps) => {
+  const { themeMode } = useTheme();
+  const colors = getThemeColors(themeMode);
+  const styles = createStyles(colors);
+
   const getVariantStyle = () => {
     switch (variant) {
       case 'title':

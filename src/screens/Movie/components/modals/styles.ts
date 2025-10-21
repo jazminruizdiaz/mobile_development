@@ -1,7 +1,8 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../../../constants/colors';
+import type { ThemeColors } from '../../../../constants/colorsFun'; 
 
-export const styles = StyleSheet.create({
+export const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   modalOverlay: {
     flexDirection: 'column',
     flex: 1,

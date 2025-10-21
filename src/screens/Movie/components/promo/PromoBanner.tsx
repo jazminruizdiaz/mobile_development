@@ -3,6 +3,7 @@ import { View, ImageSourcePropType, Image } from "react-native";
 import { Button } from "../../../../components/atoms/Button/Button";
 import { styles } from "./PromoBanner";
 import { TextCustom } from "../../../../components/atoms/Text/TextCustom";
+import { colors } from "../../../../constants/colors";
 
 interface PromoProps {
     image: ImageSourcePropType;

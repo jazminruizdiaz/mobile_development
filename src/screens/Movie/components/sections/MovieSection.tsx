@@ -4,11 +4,12 @@ import { MovieItem } from '../items/MovieItem';
 import { Movie } from '../../../../types/Movie';
 import { SectionContent } from '../../../../types/Section';
 import { BestMovieItem } from '../items/BestMovieItem';
-import { colors } from '../../../../constants/colors';
-import { styles } from './styles';
 import { useMoviesByCompany } from '../../../../hooks/useMoviesByCompany';
 import { useMoviesByGenre } from '../../../../hooks/useMoviesByGenre';
 import { useTopRatedMovies } from '../../../../hooks/useTopRatedMovies';
+import { useTheme } from '../../../../contexts/Theme/ThemeContext';
+import { getThemeColors } from '../../../../constants/colorsFun';
+import { createStyles } from './styles';
 
 export const MovieSection = ({
   title,
@@ -18,6 +19,11 @@ export const MovieSection = ({
   companyId,
   genreId,
 }: SectionContent) => {
+  const { themeMode } = useTheme();
+    const colors = getThemeColors(themeMode);
+    const styles = createStyles(colors);
+
+
   const isCompanyEnabled = type === 'Company' && !!companyId;
   const isGenreEnabled = type === 'Genre' && !!genreId;
   const isBestEnabled = type === 'Best movies';

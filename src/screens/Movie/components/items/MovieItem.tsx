@@ -1,10 +1,12 @@
 import { View, TouchableOpacity, Pressable } from 'react-native';
 import { Movie } from '../../../../types/Movie';
-import { styles } from './styles';
+import { createStyles } from './styles';
 import { TextCustom } from '../../../../components/atoms/Text/TextCustom';
 import { MovieCard } from '../items/MovieCard';
 import { useWishlist } from '../../../../contexts/Wishlist/WishlistContext';
 import { useMovieModal } from '../../../../contexts/MovieModal/MovieModalContext';
+import { useTheme } from '../../../../contexts/Theme/ThemeContext';
+import { getThemeColors } from '../../../../constants/colorsFun';
 
 type Props = {
   movie: Movie;
@@ -14,6 +16,10 @@ export const MovieItem = ({ movie }: Props) => {
   const { isInWishlist, toggleWishlist } = useWishlist();
   const { openMovieDetails } = useMovieModal();
   const { poster_path, title, id } = movie;
+  const { themeMode, toggleThemeMode } = useTheme();
+    const colors = getThemeColors(themeMode);
+    const styles = createStyles(colors);
+    
   return (
     <TouchableOpacity
       style={styles.movieItemContainer}

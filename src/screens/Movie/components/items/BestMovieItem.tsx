@@ -1,16 +1,21 @@
 import { View, TouchableOpacity, Pressable } from 'react-native';
 import { Movie } from '../../../../types/Movie';
-import { styles } from './styles';
+import { createStyles } from './styles';
 import { TextCustom } from '../../../../components/atoms/Text/TextCustom';
 import { MovieCard } from '../items/MovieCard';
 import { useWishlist } from '../../../../contexts/Wishlist/WishlistContext';
 import { useMovieModal } from '../../../../contexts/MovieModal/MovieModalContext';
+import { useTheme } from '../../../../contexts/Theme/ThemeContext';
+import { getThemeColors } from '../../../../constants/colorsFun';
 
 type Props = {
   movie: Movie;
 };
 
 export const BestMovieItem = ({ movie }: Props) => {
+  const { themeMode } = useTheme();
+    const colors = getThemeColors(themeMode);
+    const styles = createStyles(colors);
   const { isInWishlist, toggleWishlist } = useWishlist();
   const { openMovieDetails } = useMovieModal();
   const { title, vote_average, poster_path, id } = movie;

@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
     paddingTop: 24,
   },
   paginationDot: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.textSecondary,
     borderRadius: 50,
     width: 10,
     height: 10,
@@ -98,6 +98,7 @@ export const styles = StyleSheet.create({
 
   customButton: {
     backgroundColor: 'transparent',
+    fontWeight:'600',
     padding: 0,
     paddingHorizontal: 0,
     paddingVertical: 0,

@@ -6,8 +6,8 @@ import { Movie } from '../../../../types/Movie';
 import { useWishlist } from '../../../../contexts/Wishlist/WishlistContext';
 import { useMovieModal } from '../../../../contexts/MovieModal/MovieModalContext';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { styles as textStyles } from '../../../../components/atoms/Text/styles';
 import { StackParams } from '../../../../types/StackNavigator';
+import { colors } from '../../../../constants/colors';
 
 type Props = {
   movie: Movie;
@@ -30,7 +30,6 @@ export const MovieOverlay = ({ movie }: Props) => {
           onPress={handleDiscover}
           variant="custom"
           style={styles.customButton}
-          textStyle={textStyles.subtitle}
         />
       </View>
 
@@ -39,6 +38,8 @@ export const MovieOverlay = ({ movie }: Props) => {
           title={isInWishlist(movie.id) ? '✓ In Wishlist' : '+ Wishlist'}
           variant="secondary"
           onPress={() => toggleWishlist(movie)}
+          
+
         />
         <Button
           title="Details"
