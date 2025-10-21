@@ -5,12 +5,16 @@ import { colors } from '../../constants/colors';
 import { useWishlist } from '../../contexts/Wishlist/WishlistContext';
 import { MovieGrid } from '../Movie/components/grid/MovieGrid';
 import { ScreenHeader } from '../../components/molecules/ScreenHeader/ScreenHeader';
-import { styles } from './styles';
+import { createStyles } from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useTheme } from '../../contexts/Theme/ThemeContext';
+import { getThemeColors } from '../../constants/colorsFun';
 
 const Wishlist = () => {
   const { wishlist } = useWishlist();
-
+const { themeMode, toggleThemeMode } = useTheme();
+  const colors = getThemeColors(themeMode);
+  const styles = createStyles(colors);
   return (
 
     <SafeAreaView style={styles.container}>

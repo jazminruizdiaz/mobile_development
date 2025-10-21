@@ -33,7 +33,6 @@ export const MovieOverlay = ({ movie }: Props) => {
           onPress={handleWishlist}
           variant="custom"
           style={styles.customButton}
-          textStyle={textStyles.subtitle}
         />
         <Button
           title="Discover"
