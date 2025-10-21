@@ -1,6 +1,6 @@
 export interface ThemeColors {
   primary: string;
-  primaryDark: string
+  primaryDark: string;
   background: string;
   backgroundLight: string;
   textPrimary: string;
@@ -63,14 +63,14 @@ const lightColors = {
 
   // Gradient colors
   gradientOverlayBottom: [
-    'rgba(255,255,255,0)',
-    'rgba(255,255,255,0.8)',
-    'rgba(255,255,255,1)',
+   'rgba(255,255,255,0.8)',
+    'rgba(78, 174, 40, 0.4)',
+    'rgba(255,255,255,0.1)',
   ],
   gradientOverlayTop: [
-    'rgba(255,255,255,0.8)',
-    'rgba(255,255,255,0.4)',
-    'rgba(255,255,255,0.1)',
+    'rgba(255, 255, 255, 0.8)',
+    'rgba(255, 255, 255, 1)',
+    'rgba(249, 249, 249, 1)',
   ],
 
   // Other colors

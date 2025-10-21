@@ -20,6 +20,15 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     paddingBottom: 20,
   },
+  gradientTop: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 180,
+    justifyContent: 'flex-end',
+    paddingBottom: 20,
+  },
   overlay: {
     paddingHorizontal: 24,
   },

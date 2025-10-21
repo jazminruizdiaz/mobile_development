@@ -42,7 +42,7 @@ export const MovieCarousel = ({ movies }: Props) => {
         width={width}
         height={height * 0.65}
         data={movies}
-        //autoPlay={true}
+        autoPlay={true}
         autoPlayInterval={3000}
         onProgressChange={progress}
         onSnapToItem={index => setActiveIndex(index)}
