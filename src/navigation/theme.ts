@@ -1,21 +1,20 @@
 import { DefaultTheme } from '@react-navigation/native';
 import { getThemeColors } from '../constants/colorsFun';
-import { ThemeMode } from '../contexts/Theme/ThemeContext';
+import type { ThemeMode } from '../contexts/Theme/ThemeContext';
 
 export const getNavigationTheme = (themeMode: ThemeMode) => {
   const colors = getThemeColors(themeMode);
-  const isDark = themeMode === 'dark';
 
   return {
-    ...DefaultTheme,
-    dark: isDark,
+    dark: themeMode === 'dark',
     colors: {
       primary: colors.primary,
-      background: colors.background,      
-      card: colors.backgroundLight,      
+      background: colors.background,
+      card: colors.backgroundLight,
       text: colors.textPrimary,
-      border: isDark ? '#333' : '#ddd',
+      border: colors.backgroundLight,
       notification: colors.primary,
     },
+    fonts: DefaultTheme.fonts, 
   };
 };
