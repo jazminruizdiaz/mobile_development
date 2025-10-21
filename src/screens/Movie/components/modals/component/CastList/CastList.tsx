@@ -1,11 +1,11 @@
 import React from "react";
 import { FlatList, Image, Text, View, StyleSheet } from "react-native";
 import { TMDB_IMAGE_BASE_URL } from "@env";
-import { CastMember } from "../../types/MovieCast";
-import { useMovieCredits } from "../../hooks/useMovieCredits";
+import { CastMember } from "../../../../../../types/MovieCast";
+import { useMovieCredits } from "../../../../../../hooks/useMovieCredits";
 import { styles } from "./styles";
 
-
+const DEFAULT_CAST_IMG = require("../../../../../../assets/defaultcastimg.jpeg");
 export const CastList = ({ cast }: { cast: CastMember[] }) => {
     return (
         <FlatList
@@ -15,7 +15,7 @@ export const CastList = ({ cast }: { cast: CastMember[] }) => {
             renderItem={({ item }) => (
                 <View style={styles.actorCard}>
                     <Image
-                        source={{ uri: `${TMDB_IMAGE_BASE_URL}${item.profile_path}` }}
+                        source={item.profile_path ? { uri: `${TMDB_IMAGE_BASE_URL}${item.profile_path}` } : DEFAULT_CAST_IMG}
                         style={styles.actorImage}
                     />
                     <Text style={styles.actorName}>{item.name}</Text>
