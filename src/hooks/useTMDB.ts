@@ -75,7 +75,7 @@ export const useTMDB = <T>(
     };
 
     fetchData();
-  }, [endpoint, language, page, with_genres, with_companies, enabled]);
+  }, [endpoint, language, page, with_genres, with_companies, enabled, query]);
 
   return { data, loading, error };
 };
