@@ -61,7 +61,7 @@ export const MovieCarousel = ({ movies }: Props) => {
         containerStyle={styles.paginationContainer}
         dotStyle={{
           ...styles.paginationDot,
-          backgroundColor: colors.white,
+          backgroundColor: colors.textSecondary,
         }}
         activeDotStyle={{
           ...styles.paginationActiveDot,

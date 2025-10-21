@@ -1,10 +1,6 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../../constants/colors.ts';
 
-export const styles = StyleSheet.create({
-  base: {
-    color: colors.textPrimary,
-  },
+export const textStyles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',

@@ -14,6 +14,7 @@ type Props = {
 export const MovieOverlay = ({ movie }: Props) => {
   const { isInWishlist, toggleWishlist } = useWishlist();
   const { openMovieDetails } = useMovieModal();
+  
   const navigation = useNavigation<NavigationProp<StackParams>>();
 
   const handleDiscover = () => {
@@ -43,7 +44,7 @@ export const MovieOverlay = ({ movie }: Props) => {
       <View style={styles.buttonRow}>
         <Button
           title={isInWishlist(movie.id) ? '✓ In Wishlist' : '+ Wishlist'}
-          variant="secondary"
+          variant="third"
           onPress={() => toggleWishlist(movie)}
         />
         <Button

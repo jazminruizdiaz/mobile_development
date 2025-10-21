@@ -49,7 +49,7 @@ const darkColors = {
 
 const lightColors = {
   // Primary colors
-  primary: '#d8c901',
+  primary: '#c9b954ff',
   primaryDark: '#FFA000',
 
   // Background colors
@@ -63,7 +63,7 @@ const lightColors = {
 
   // Button colors
   buttonPrimary: '#FFC107',
-  buttonSecondary: 'rgba(56, 53, 53, 1)',
+  buttonSecondary: 'rgba(104, 96, 96, 1)',
 
   // Gradient colors
   gradientOverlayBottom: [
