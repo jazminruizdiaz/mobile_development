@@ -5,7 +5,6 @@ import { Movie } from '../../../../types/Movie';
 import { useWishlist } from '../../../../contexts/Wishlist/WishlistContext';
 import { useMovieModal } from '../../../../contexts/MovieModal/MovieModalContext';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { styles as textStyles } from '../../../../components/atoms/Text/styles';
 import { StackParams } from '../../../../types/StackNavigator';
 import { useTheme } from '../../../../contexts/Theme/ThemeContext';
 import { getThemeColors } from '../../../../constants/colorsFun';
@@ -37,14 +36,12 @@ export const MovieOverlay = ({ movie }: Props) => {
           onPress={handleWishlist}
           variant="custom"
           style={styles.customButton}
-          textStyle={textStyles.subtitle}
         />
         <Button
           title="Discover"
           onPress={handleDiscover}
           variant="custom"
           style={styles.customButton}
-          textStyle={textStyles.subtitle}
         />
       </View>
 

@@ -64,7 +64,7 @@ export const MovieCarousel = ({ movies }: Props) => {
         progress={progress}
         data={movies}
         containerStyle={styles.paginationContainer}
-        dotStyle={styles.paginationDot}
+        dotStyle={ styles.paginationDot }
         activeDotStyle={styles.paginationActiveDot}
         onPress={onPressPagination}
       />

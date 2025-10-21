@@ -4,10 +4,10 @@ import {
   ViewStyle,
   TextStyle,
 } from 'react-native';
-import { createStyles } from './styles';
 import { TextCustom } from '../Text/TextCustom';
 import { useTheme } from '../../../contexts/Theme/ThemeContext';
 import { getThemeColors } from '../../../constants/colorsFun';
+import { createStyles } from './styles';
 
 interface ButtonProps {
   title: string;
@@ -26,7 +26,7 @@ export const Button = ({
   style,
   textStyle,
 }: ButtonProps) => {
-   const { themeMode } = useTheme();
+  const { themeMode } = useTheme();
     const colors = getThemeColors(themeMode);
     const styles = createStyles(colors);
   const getButtonStyle = () => {
