@@ -1,5 +1,5 @@
 import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
-import { colors } from '../constants/colors';
+import type { ThemeColors } from '../constants/colorsFun';
 
 export const TAB_ICONS: Record<string, string> = {
   Movies: 'video',
@@ -8,12 +8,12 @@ export const TAB_ICONS: Record<string, string> = {
   Profile: 'user',
 };
 
-export const tabOptions: BottomTabNavigationOptions = {
+export const getTabOptions = (colors: ThemeColors): BottomTabNavigationOptions => ({
   headerShown: false,
   tabBarActiveTintColor: colors.primary,
-  tabBarInactiveTintColor: colors.white,
+  tabBarInactiveTintColor: colors.textPrimary,
   tabBarStyle: {
-    backgroundColor: colors.black,
+    backgroundColor: colors.background, 
     borderTopWidth: 0,
     height: 80,
     paddingBottom: 30,
@@ -23,4 +23,4 @@ export const tabOptions: BottomTabNavigationOptions = {
     fontSize: 12,
     fontWeight: '500',
   },
-};
+});

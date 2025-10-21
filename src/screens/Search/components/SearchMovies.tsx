@@ -4,11 +4,13 @@ import { TextCustom } from '../../../components/atoms/Text/TextCustom';
 import { styles } from '../styles';
 import { SearchBar } from './SearchBar';
 import { MovieGrid } from '../../Movie/components/grid/MovieGrid';
-import { colors } from '../../../constants/colors';
 import { useSearchMoviesByName } from '../../../hooks/useSearchMoviesByName';
 import { usePopularMovies } from '../../../hooks/usePopularMovies';
+import { useThemedColors } from '../../../hooks/useThemedColors';
 
 export const SearchMovies = () => {
+  const colors = useThemedColors();
+
   const [searchText, setSearchText] = useState('');
   const [enabled, setEnabled] = useState(false);
 
@@ -42,9 +44,9 @@ export const SearchMovies = () => {
           onChange={handleChangeText}
           onSearch={handleSearch}
         />
-        <View style={styles.loadingContainer}>
+        <View style={[styles.loadingContainer, { backgroundColor: colors.background }]}>
           <ActivityIndicator size="large" color={colors.primary} />
-          <TextCustom variant="body" style={styles.loadingText}>
+          <TextCustom variant="body" style={[styles.loadingText, { color: colors.textPrimary }]}>
             Loading movies...
           </TextCustom>
         </View>

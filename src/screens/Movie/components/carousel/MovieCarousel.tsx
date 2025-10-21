@@ -9,9 +9,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import { Movie } from '../../../../types/Movie';
 import { MovieOverlay } from './MovieOverlay';
 import { MovieCard } from '../items/MovieCard';
-import { useTheme } from '../../../../contexts/Theme/ThemeContext';
-import { getThemeColors } from '../../../../constants/colorsFun';
-import { createStyles } from './styles';
+import { useThemedColors } from '../../../../hooks/useThemedColors';
+import { styles } from './styles';
 
 const { width, height } = Dimensions.get('window');
 
@@ -20,11 +19,7 @@ type Props = {
 };
 
 export const MovieCarousel = ({ movies }: Props) => {
-  const { themeMode } = useTheme();
-    const colors = getThemeColors(themeMode);
-    const styles = createStyles(colors);
-  
-    
+  const colors = useThemedColors();
   const ref = useRef<ICarouselInstance>(null);
   const progress = useSharedValue<number>(0);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -48,7 +43,7 @@ export const MovieCarousel = ({ movies }: Props) => {
         width={width}
         height={height * 0.65}
         data={movies}
-        autoPlay={true}
+        autoPlay={false}
         autoPlayInterval={3000}
         onProgressChange={progress}
         onSnapToItem={index => setActiveIndex(index)}
@@ -64,8 +59,14 @@ export const MovieCarousel = ({ movies }: Props) => {
         progress={progress}
         data={movies}
         containerStyle={styles.paginationContainer}
-        dotStyle={ styles.paginationDot }
-        activeDotStyle={styles.paginationActiveDot}
+        dotStyle={{
+          ...styles.paginationDot,
+          backgroundColor: colors.white,
+        }}
+        activeDotStyle={{
+          ...styles.paginationActiveDot,
+          backgroundColor: colors.primary,
+        }}
         onPress={onPressPagination}
       />
     </View>

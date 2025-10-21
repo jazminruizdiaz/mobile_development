@@ -1,8 +1,9 @@
 import { View, ImageSourcePropType, Image } from "react-native";
 
 import { Button } from "../../../../components/atoms/Button/Button";
-import { styles } from "./PromoBanner";
+import { styles } from "./style";
 import { TextCustom } from "../../../../components/atoms/Text/TextCustom";
+import { useThemedColors } from "../../../../hooks/useThemedColors";
 
 interface PromoProps {
     image: ImageSourcePropType;
@@ -15,13 +16,14 @@ interface PromoProps {
 export const PromoBanner: React.FC<PromoProps> = ({
     image, title, description, buttonText, onPress
 }) => {
+    const colors = useThemedColors();
     return (
         <View style={styles.container}>
             <Image
                 source={typeof image === "string" ? { uri: image } : image} style={styles.image} resizeMode="cover" />
             <View style={styles.textContainer}>
-                <TextCustom variant="subtitle">{title}</TextCustom>
-                <TextCustom variant="body">{description}</TextCustom>
+                <TextCustom style={[{ color: colors.textPrimary }]} variant="subtitle" >{title}</TextCustom>
+                <TextCustom variant="body" style={[{ color: colors.textPrimary }]}>{description}</TextCustom>
             </View>
 
             <Button textStyle={styles.buttonText} title={buttonText} variant="primary" onPress={onPress ?? (() => console.log("pressed"))} />

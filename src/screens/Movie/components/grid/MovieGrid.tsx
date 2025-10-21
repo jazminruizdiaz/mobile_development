@@ -1,4 +1,4 @@
-import { FlatList, View } from 'react-native';
+import { FlatList } from 'react-native';
 import { Movie } from '../../../../types/Movie';
 import { MovieItem } from '../items/MovieItem';
 import { styles } from './styles';

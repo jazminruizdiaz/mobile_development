@@ -1,11 +1,8 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import { ThemeColors } from '../../../../constants/colorsFun';
-
 
 const { width, height } = Dimensions.get('window');
 
-export const createStyles = (colors: ThemeColors) =>
-  StyleSheet.create({
+export const styles = StyleSheet.create({
   poster: {
     width: width,
     height: height * 0.65,
@@ -40,7 +37,6 @@ export const createStyles = (colors: ThemeColors) =>
     marginBottom: 16,
   },
   buttonRow: {
-    
     flexDirection: 'row',
     justifyContent: 'center',
     gap: 12,
@@ -52,13 +48,11 @@ export const createStyles = (colors: ThemeColors) =>
     paddingTop: 24,
   },
   paginationDot: {
-    backgroundColor: colors.white,
     borderRadius: 50,
     width: 10,
     height: 10,
   },
   paginationActiveDot: {
-    backgroundColor: colors.primary,
     borderRadius: 50,
     width: 10,
     height: 10,
@@ -84,7 +78,6 @@ export const createStyles = (colors: ThemeColors) =>
   },
   bestMovieTitle: {
     fontSize: 12,
-    color: colors.textPrimary,
     fontWeight: '600',
     flex: 1,
     maxWidth: 150,
@@ -94,11 +87,9 @@ export const createStyles = (colors: ThemeColors) =>
     alignItems: 'center',
   },
   ratingText: {
-    color: colors.primary,
     fontSize: 12,
     fontWeight: '600',
   },
-
   customButton: {
     backgroundColor: 'transparent',
     padding: 0,

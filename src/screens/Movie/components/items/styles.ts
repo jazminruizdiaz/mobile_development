@@ -1,5 +1,4 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import { colors } from '../../../../constants/colors';
 
 const { width, height } = Dimensions.get('window');
 
@@ -21,7 +20,6 @@ export const styles = StyleSheet.create({
     marginTop: 8,
     textAlign: 'center',
     fontSize: 12,
-    color: colors.textPrimary,
     maxWidth: 150,
   },
   bestMovieCardContainer: {
@@ -45,7 +43,6 @@ export const styles = StyleSheet.create({
   },
   bestMovieTitle: {
     fontSize: 12,
-    color: colors.textPrimary,
     fontWeight: '600',
     flex: 1,
     maxWidth: 150,
@@ -55,7 +52,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   ratingText: {
-    color: colors.primary,
     fontSize: 12,
     fontWeight: '600',
   },
@@ -72,7 +68,6 @@ export const styles = StyleSheet.create({
     zIndex: 3,
   },
   wishlistIconText: {
-    color: colors.textPrimary,
     fontSize: 20,
     fontWeight: '800',
   },

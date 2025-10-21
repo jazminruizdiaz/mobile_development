@@ -2,25 +2,25 @@ import { Modal, View, ScrollView, ActivityIndicator } from 'react-native';
 import { TextCustom } from '../../../../components/atoms/Text/TextCustom';
 import { Button } from '../../../../components/atoms/Button/Button';
 import { styles } from './styles';
-import { colors } from '../../../../constants/colors';
 import { useMovieModal } from '../../../../contexts/MovieModal/MovieModalContext';
 import { useMovieDetails } from '../../../../hooks/useMovieDetails';
+import { useThemedColors } from '../../../../hooks/useThemedColors';
 
 export const MovieDetailModal = () => {
   const { selectedMovieId, isModalVisible, closeMovieDetails } =
     useMovieModal();
+  const colors = useThemedColors();
 
-
-  const {  data, loading, error } = useMovieDetails(
-  selectedMovieId ?? 0,
-  !!selectedMovieId && isModalVisible
-);
+  const { data, loading, error } = useMovieDetails(
+    selectedMovieId ?? 0,
+    !!selectedMovieId && isModalVisible,
+  );
 
   const formatTime = (minutes: number) => {
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
     return hours > 0 ? `${hours}h ${mins}m` : `${mins}m`;
-  };  
+  };
 
   return (
     <Modal
@@ -31,58 +31,107 @@ export const MovieDetailModal = () => {
       onRequestClose={closeMovieDetails}
     >
       <View style={styles.modalOverlay}>
-        <View style={styles.modalContent}>
+        <View
+          style={[
+            styles.modalContent,
+            { backgroundColor: colors.backgroundLight },
+          ]}
+        >
           {loading ? (
             <View style={styles.loadingContainer}>
               <ActivityIndicator size="large" color={colors.primary} />
-              <TextCustom variant="body" style={styles.loadingText}>
+              <TextCustom
+                variant="body"
+                style={[styles.loadingText, { color: colors.textPrimary }]}
+              >
                 Loading details...
               </TextCustom>
             </View>
           ) : data ? (
             <ScrollView showsVerticalScrollIndicator={false}>
-              <View style={styles.titleContainer}>
-                <TextCustom variant="title" style={styles.movieTitleModal}>
+              <View
+                style={[
+                  styles.titleContainer,
+                  { backgroundColor: colors.backgroundLight },
+                ]}
+              >
+                <TextCustom
+                  variant="title"
+                  style={[
+                    styles.movieTitleModal,
+                    { color: colors.textPrimary },
+                  ]}
+                >
                   {data.title}
                 </TextCustom>
               </View>
 
               <View style={styles.movieInfoContainer}>
                 <View style={styles.infoRow}>
-                  <TextCustom variant="body" style={styles.infoLabel}>
+                  <TextCustom
+                    variant="body"
+                    style={[styles.infoLabel, { color: colors.textPrimary }]}
+                  >
                     Release Date:
                   </TextCustom>
-                  <TextCustom variant="body" style={styles.infoValue}>
+                  <TextCustom
+                    variant="body"
+                    style={[styles.infoValue, { color: colors.textSecondary }]}
+                  >
                     {data.release_date}
                   </TextCustom>
                 </View>
 
                 <View style={styles.infoRow}>
-                  <TextCustom variant="body" style={styles.infoLabel}>
+                  <TextCustom
+                    variant="body"
+                    style={[styles.infoLabel, { color: colors.textPrimary }]}
+                  >
                     Runtime:
                   </TextCustom>
-                  <TextCustom variant="body" style={styles.infoValue}>
+                  <TextCustom
+                    variant="body"
+                    style={[styles.infoValue, { color: colors.textSecondary }]}
+                  >
                     {formatTime(data.runtime)}
                   </TextCustom>
                 </View>
 
                 <View style={styles.infoRow}>
-                  <TextCustom variant="body" style={styles.infoLabel}>
+                  <TextCustom
+                    variant="body"
+                    style={[styles.infoLabel, { color: colors.textPrimary }]}
+                  >
                     Original Language:
                   </TextCustom>
-                  <TextCustom variant="body" style={styles.infoValue}>
+                  <TextCustom
+                    variant="body"
+                    style={[styles.infoValue, { color: colors.textSecondary }]}
+                  >
                     {data.original_language.toUpperCase()}
                   </TextCustom>
                 </View>
 
                 <View style={styles.genresContainer}>
-                  <TextCustom variant="body" style={styles.genresLabel}>
+                  <TextCustom
+                    variant="body"
+                    style={[styles.genresLabel, { color: colors.textPrimary }]}
+                  >
                     Genres:
                   </TextCustom>
                   <View style={styles.genresList}>
                     {data.genres.map(genre => (
-                      <View key={genre.id} style={styles.genreChip}>
-                        <TextCustom variant="body" style={styles.genreText}>
+                      <View
+                        key={genre.id}
+                        style={[
+                          styles.genreChip,
+                          { backgroundColor: colors.primary },
+                        ]}
+                      >
+                        <TextCustom
+                          variant="body"
+                          style={[styles.genreText, { color: colors.textDark }]}
+                        >
                           {genre.name}
                         </TextCustom>
                       </View>
@@ -91,10 +140,22 @@ export const MovieDetailModal = () => {
                 </View>
 
                 <View style={styles.overviewContainer}>
-                  <TextCustom variant="body" style={styles.overviewLabel}>
+                  <TextCustom
+                    variant="body"
+                    style={[
+                      styles.overviewLabel,
+                      { color: colors.textPrimary },
+                    ]}
+                  >
                     Overview:
                   </TextCustom>
-                  <TextCustom variant="body" style={styles.overviewText}>
+                  <TextCustom
+                    variant="body"
+                    style={[
+                      styles.overviewText,
+                      { color: colors.textSecondary },
+                    ]}
+                  >
                     {data.overview}
                   </TextCustom>
                 </View>
@@ -108,7 +169,10 @@ export const MovieDetailModal = () => {
             </ScrollView>
           ) : (
             <View style={styles.errorContainer}>
-              <TextCustom variant="body" style={styles.errorText}>
+              <TextCustom
+                variant="body"
+                style={[styles.errorText, { color: colors.textSecondary }]}
+              >
                 {`Error loading movie details: ${error}`}
               </TextCustom>
               <Button

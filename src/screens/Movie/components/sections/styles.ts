@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../../../constants/colors';
 
 export const styles = StyleSheet.create({
   separator: {
@@ -25,12 +24,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 10,
   },
-  title: {
-    color: colors.textPrimary,
-  },
-  actionLabel: {
-    color: colors.primary,
-  },
   customButton: {
     backgroundColor: 'transparent',
     padding: 0,
@@ -38,7 +31,6 @@ export const styles = StyleSheet.create({
     paddingVertical: 0,
   },
   customButtonText: {
-    color: colors.primary,
     fontSize: 15,
   },
 });
