@@ -31,7 +31,7 @@ const darkColors = {
 
   // Button colors
   buttonPrimary: '#FFC107',
-  buttonSecondary: 'rgba(255, 255, 255, 0.2)',
+ buttonSecondary: 'rgba(0, 0, 0, 0.1)',
 
   // Gradient colors
   gradientOverlayBottom: ['rgba(0,0,0,0)', 'rgba(0,0,0,0.8)', 'rgba(0,0,0,1)'],
@@ -45,7 +45,7 @@ const darkColors = {
 
 const lightColors = {
   // Primary colors
-  primary: '#FFC107',
+  primary: '#d8c901',
   primaryDark: '#FFA000',
 
   // Background colors
@@ -58,19 +58,19 @@ const lightColors = {
   textDark: '#000000',
 
   // Button colors
-  buttonPrimary: '#FFC107',
+  buttonPrimary: '#d8c901',
   buttonSecondary: 'rgba(0, 0, 0, 0.1)',
 
   // Gradient colors
   gradientOverlayBottom: [
-   'rgba(255,255,255,0.8)',
-    'rgba(78, 174, 40, 0.4)',
-    'rgba(255,255,255,0.1)',
+   'rgba(255, 255, 255, 0)',
+    'rgba(255, 255, 255, 0.63)',
+    'rgba(255, 255, 255, 1)',
   ],
   gradientOverlayTop: [
-    'rgba(255, 255, 255, 0.8)',
-    'rgba(255, 255, 255, 1)',
-    'rgba(249, 249, 249, 1)',
+    'rgba(247, 237, 237, 0.17)',
+    'rgba(255, 255, 255, 0.34)',
+    'rgba(255, 255, 255, 0)',
   ],
 
   // Other colors

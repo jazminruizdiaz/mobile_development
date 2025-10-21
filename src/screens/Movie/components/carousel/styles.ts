@@ -1,9 +1,11 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import { colors } from '../../../../constants/colors';
+import { ThemeColors } from '../../../../constants/colorsFun';
+
 
 const { width, height } = Dimensions.get('window');
 
-export const styles = StyleSheet.create({
+export const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   poster: {
     width: width,
     height: height * 0.65,
@@ -38,6 +40,7 @@ export const styles = StyleSheet.create({
     marginBottom: 16,
   },
   buttonRow: {
+    
     flexDirection: 'row',
     justifyContent: 'center',
     gap: 12,
