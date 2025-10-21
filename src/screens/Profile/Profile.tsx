@@ -3,12 +3,14 @@ import { View, Image, Switch } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { Button } from '../../components/atoms/Button/Button';
 import { TextCustom } from '../../components/atoms/Text/TextCustom';
-import { styles } from './styles';
+import { createStyles } from './styles';
 import { useWishlist } from '../../contexts/Wishlist/WishlistContext';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors } from '../../constants/colors';
 import { StackParams } from '../../types/StackNavigator';
 import { ScreenHeader } from '../../components/molecules/ScreenHeader/ScreenHeader';
+import { useTheme } from '../../contexts/Theme/ThemeContext';
+import { getThemeColors } from '../../constants/colorsFun';
 
 const user = {
   name: 'John Doe',
@@ -17,6 +19,9 @@ const user = {
 };
 
 export const Profile = () => {
+  const { themeMode, toggleThemeMode } = useTheme();
+    const colors = getThemeColors(themeMode);
+    const styles = createStyles(colors);
   const { wishlist } = useWishlist();
   const navigation = useNavigation<NavigationProp<StackParams>>();
   const [isDarkMode, setIsDarkMode] = useState(true);
