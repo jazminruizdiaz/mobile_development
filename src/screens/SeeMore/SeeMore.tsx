@@ -7,10 +7,14 @@ import { useMoviesByCompany } from '../../hooks/useMoviesByCompany';
 import { useMoviesByGenre } from '../../hooks/useMoviesByGenre';
 import { useTopRatedMovies } from '../../hooks/useTopRatedMovies';
 import { SectionType } from '../../types/Section';
+import { RouteProp } from '@react-navigation/native';
+import { StackParams } from '../../types/StackNavigator';
+
+type SeeMoreRouteProps = RouteProp<StackParams, 'SeeMore'>;
 import { useTheme } from '../../contexts/Theme/ThemeContext';
 import { getThemeColors } from '../../constants/colorsFun';
 
-export const SeeMore = ({ route }: any) => {
+export const SeeMore = ({ route }: { route: SeeMoreRouteProps }) => {
   const { type, companyId, genreId } = route.params;
 const { themeMode, toggleThemeMode } = useTheme();
   const colors = getThemeColors(themeMode);

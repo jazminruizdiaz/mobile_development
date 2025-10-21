@@ -21,10 +21,20 @@ export const MovieOverlay = ({ movie }: Props) => {
   const handleDiscover = () => {
     navigation.navigate('Search');
   };
+  const handleWishlist = () => {
+    navigation.navigate('Wishlist');
+  };
+
   return (
     <View style={styles.overlay}>
       <View style={styles.textRow}>
-        <TextCustom variant="subtitle">My list</TextCustom>
+        <Button
+          title="My List"
+          onPress={handleWishlist}
+          variant="custom"
+          style={styles.customButton}
+          textStyle={textStyles.subtitle}
+        />
         <Button
           title="Discover"
           onPress={handleDiscover}
