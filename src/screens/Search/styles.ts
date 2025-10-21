@@ -1,7 +1,8 @@
-import { colors } from '../../constants/colors';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { ThemeColors } from '../../constants/colorsFun';
 
-export const styles = StyleSheet.create({
+export const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,

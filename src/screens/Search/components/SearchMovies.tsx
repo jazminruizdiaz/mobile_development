@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import { TextCustom } from '../../../components/atoms/Text/TextCustom';
-import { styles } from '../styles';
+import { createStyles } from '../styles';
 import { SearchBar } from './SearchBar';
 import { MovieGrid } from '../../Movie/components/grid/MovieGrid';
 import { colors } from '../../../constants/colors';
 import { useSearchMoviesByName } from '../../../hooks/useSearchMoviesByName';
 import { usePopularMovies } from '../../../hooks/usePopularMovies';
+import { useTheme } from '../../../contexts/Theme/ThemeContext';
+import { getThemeColors } from '../../../constants/colorsFun';
 
 export const SearchMovies = () => {
+   const { themeMode, toggleThemeMode } = useTheme();
+      const colors = getThemeColors(themeMode);
+      const styles = createStyles(colors)
+      
   const [searchText, setSearchText] = useState('');
   const [enabled, setEnabled] = useState(false);
 
