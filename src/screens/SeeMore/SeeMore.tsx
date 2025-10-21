@@ -7,8 +7,12 @@ import { useMoviesByCompany } from '../../hooks/useMoviesByCompany';
 import { useMoviesByGenre } from '../../hooks/useMoviesByGenre';
 import { useTopRatedMovies } from '../../hooks/useTopRatedMovies';
 import { SectionType } from '../../types/Section';
+import { RouteProp } from '@react-navigation/native';
+import { StackParams } from '../../types/StackNavigator';
 
-export const SeeMore = ({ route }: any) => {
+type SeeMoreRouteProps = RouteProp<StackParams, 'SeeMore'>;
+
+export const SeeMore = ({ route }: { route: SeeMoreRouteProps }) => {
   const { type, companyId, genreId } = route.params;
 
   const isCompanyEnabled = type === 'Company' && !!companyId;
