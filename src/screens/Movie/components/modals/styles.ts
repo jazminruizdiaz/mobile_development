@@ -86,9 +86,7 @@ export const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '600',
   },
-  overviewContainer: {
-    marginBottom: 20,
-  },
+
   overviewLabel: {
     fontSize: 15,
     fontWeight: '600',

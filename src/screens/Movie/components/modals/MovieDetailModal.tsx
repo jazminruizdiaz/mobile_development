@@ -4,6 +4,8 @@ import { Button } from '../../../../components/atoms/Button/Button';
 import { styles } from './styles';
 import { useMovieModal } from '../../../../contexts/MovieModal/MovieModalContext';
 import { useMovieDetails } from '../../../../hooks/useMovieDetails';
+import { CastList } from './component/CastList/CastList';
+import { useMovieCredits } from '../../../../hooks/useMovieCredits';
 import { useThemedColors } from '../../../../hooks/useThemedColors';
 
 export const MovieDetailModal = () => {
@@ -11,11 +13,18 @@ export const MovieDetailModal = () => {
     useMovieModal();
   const colors = useThemedColors();
 
+
   const { data, loading, error } = useMovieDetails(
     selectedMovieId ?? 0,
-    !!selectedMovieId && isModalVisible,
+    !!selectedMovieId && isModalVisible
   );
 
+  const { data: credits, loading: loadingCredits } = useMovieCredits(
+    selectedMovieId ?? 0,
+    !!selectedMovieId && isModalVisible
+  );
+
+  const cast = credits?.cast ?? [];
   const formatTime = (minutes: number) => {
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
@@ -139,7 +148,7 @@ export const MovieDetailModal = () => {
                   </View>
                 </View>
 
-                <View style={styles.overviewContainer}>
+                <View>
                   <TextCustom
                     variant="body"
                     style={[
@@ -159,7 +168,23 @@ export const MovieDetailModal = () => {
                     {data.overview}
                   </TextCustom>
                 </View>
+                <TextCustom variant="body" style={styles.overviewLabel}>
+                  Overview:
+                </TextCustom>
+                <TextCustom variant="body" style={styles.overviewText}>
+                  {data.overview}
+                </TextCustom>
 
+                <View style={{ marginVertical: 20 }}>
+                  <TextCustom variant="body" style={styles.genresLabel}>
+                    Cast:
+                  </TextCustom>
+                  {loadingCredits ? (
+                    <ActivityIndicator size="small" color={colors.primary} />
+                  ) : (
+                    <CastList cast={cast.slice(0, 10)} />
+                  )}
+                </View>
                 <Button
                   title="Close"
                   onPress={closeMovieDetails}
