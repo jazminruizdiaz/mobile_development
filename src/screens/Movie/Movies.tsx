@@ -1,10 +1,5 @@
-import React, { useState } from 'react';
-import {
-  ScrollView,
-  View,
-  ActivityIndicator,
-  Text,
-} from 'react-native';
+import React, { useMemo, useState } from 'react';
+import { ScrollView, View, ActivityIndicator } from 'react-native';
 import { styles } from './styles';
 import { SectionsList } from './components/sections/SectionsList';
 import { MovieCarousel } from './components/carousel/MovieCarousel';
@@ -18,6 +13,7 @@ import { SectionData } from '../../types/Section';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { StackParams } from '../../types/StackNavigator';
 import { useThemedColors } from '../../hooks/useThemedColors';
+import { TextCustom } from '../../components/atoms/Text/TextCustom';
 
 const Movies = () => {
   const { data, loading } = usePopularMovies();
@@ -27,7 +23,7 @@ const Movies = () => {
   const colors = useThemedColors();
 
   const navigation = useNavigation<NavigationProp<StackParams>>();
-  const movies = data?.results?.slice(0, 5) || [];
+  const movies = useMemo(() => data?.results?.slice(0, 5) ?? [], [data]);
 
   const handleGenreChange = (genre: Genre) => setGenre(genre);
 
@@ -49,9 +45,9 @@ const Movies = () => {
         ]}
       >
         <ActivityIndicator size="large" color={colors.primary} />
-        <Text style={[styles.loadingText, { color: colors.textPrimary }]}>
+        <TextCustom style={[styles.loadingText, { color: colors.textPrimary }]}>
           Loading movies...
-        </Text>
+        </TextCustom>
       </View>
     );
   }
