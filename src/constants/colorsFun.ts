@@ -49,7 +49,7 @@ const darkColors = {
 
 const lightColors = {
   // Primary colors
-  primary: '#c9b954ff',
+  primary: '#FFC107',
   primaryDark: '#FFA000',
 
   // Background colors
