@@ -1,6 +1,5 @@
 import { DropdownOptions } from '../components/atoms/Dropdown/Dropdown';
-import { useGenres } from './useGenre';
-
+import { useGenres } from './useGenres';
 export const useGenresOptions = () => {
   const { data: genreData, loading, error } = useGenres();
 

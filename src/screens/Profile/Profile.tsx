@@ -9,8 +9,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors } from '../../constants/colors';
 import { StackParams } from '../../types/StackNavigator';
 import { ScreenHeader } from '../../components/molecules/ScreenHeader/ScreenHeader';
-import { useGenres } from '../../hooks/useGenre';
 import { MovieCard } from '../Movie/components/items/MovieCard';
+import { useGenres } from '../../hooks/useGenres';
 
 export const Profile = () => {
   const { wishlist, clearWishList } = useWishlist();

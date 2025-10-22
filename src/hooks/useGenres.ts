@@ -1,7 +1,7 @@
-import { Genre } from '../types/Genre';
+import { Genre } from '../types/Movie';
 import { useTMDB } from './useTMDB';
 
-export const useGenre = (enabled = true) => {
+export const useGenres = (enabled = true) => {
   return useTMDB<{ genres: Genre[] }>(
     '/genre/movie/list',
     { language: 'en-US' },
