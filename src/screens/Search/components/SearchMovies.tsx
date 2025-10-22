@@ -9,25 +9,28 @@ import { useSearchMoviesByName } from '../../../hooks/useSearchMoviesByName';
 import { usePopularMovies } from '../../../hooks/usePopularMovies';
 
 export const SearchMovies = () => {
-  const [searchText, setSearchText] = useState('');
+  const [inputText, setInputText] = useState('');
   const [enabled, setEnabled] = useState(false);
+  const [queryToSearch, setQueryToSearch] = useState('');
 
   const { data: searchData, loading: searchLoading } = useSearchMoviesByName(
-    searchText,
+    queryToSearch,
     enabled,
   );
   const { data: popularData, loading: popularLoading } = usePopularMovies();
 
   const handleSearch = () => {
-    if (searchText.trim()) {
+    if (inputText.trim()) {
+      setQueryToSearch(inputText);
       setEnabled(true);
     }
   };
 
   const handleChangeText = (text: string) => {
-    setSearchText(text);
+    setInputText(text);
     if (!text.trim()) {
       setEnabled(false);
+      setQueryToSearch('');
     }
   };
 
@@ -36,9 +39,9 @@ export const SearchMovies = () => {
 
   if (isLoading) {
     return (
-      <View style={styles.searchContainer}>
+      <>
         <SearchBar
-          value={searchText}
+          value={inputText}
           onChange={handleChangeText}
           onSearch={handleSearch}
         />
@@ -48,14 +51,14 @@ export const SearchMovies = () => {
             Loading movies...
           </TextCustom>
         </View>
-      </View>
+      </>
     );
   }
 
   return (
-    <View style={styles.searchContainer}>
+    <>
       <SearchBar
-        value={searchText}
+        value={inputText}
         onChange={handleChangeText}
         onSearch={handleSearch}
       />
@@ -65,10 +68,10 @@ export const SearchMovies = () => {
       ) : (
         <View style={styles.emptyContent}>
           <TextCustom variant="body">
-            No results found for "{searchText}"
+            No results found for "{inputText}"
           </TextCustom>
         </View>
       )}
-    </View>
+    </>
   );
 };

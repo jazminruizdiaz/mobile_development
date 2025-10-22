@@ -2,8 +2,9 @@ import { SectionType } from './Section';
 
 export type StackParams = {
   TabNav: undefined;
+  Wishlist: undefined;
   Search: undefined;
-  Home: undefined;
+  Profile: undefined;
   Movies: undefined;
   SeeMore: {
     type: SectionType;
