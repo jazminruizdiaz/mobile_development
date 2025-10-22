@@ -1,11 +1,10 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../../../constants/colors";
 
 export const styles = StyleSheet.create({
     container: {
         marginHorizontal: 16,
         marginTop: 20,
-        backgroundColor: "#000",
+        backgroundColor: "transparent",
         overflow: "hidden",
     },
     image: {
@@ -24,12 +23,10 @@ export const styles = StyleSheet.create({
         gap: 10,
     },
     title: {
-        color: "#fff",
         fontSize: 18,
         fontWeight: "600",
     },
     description: {
-        color: "#ccc",
         marginTop: 6,
         fontSize: 14,
         lineHeight: 20,

@@ -1,36 +1,35 @@
 import React, { useState } from 'react';
-import { ScrollView, View, ActivityIndicator, Text, Button } from 'react-native';
-import { createStyles } from './styles.ts';
-import { SectionsList } from './components/sections/SectionsList.tsx';
+import {
+  ScrollView,
+  View,
+  ActivityIndicator,
+  Text,
+} from 'react-native';
+import { styles } from './styles';
+import { SectionsList } from './components/sections/SectionsList';
 import { MovieCarousel } from './components/carousel/MovieCarousel';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { GenresBar } from './components/genre/GenresBar.tsx';
-//import { colors } from '../../constants/colors.ts';
+import { GenresBar } from './components/genre/GenresBar';
 import { Genre, GENRES } from '../../constants/genres';
 import LinearGradient from 'react-native-linear-gradient';
 import { PromoBanner } from '../Movie/components/promo/PromoBanner.tsx';
-import { usePopularMovies } from '../../hooks/usePopularMovies.ts';
-import { SectionData } from '../../types/Section.ts';
+import { usePopularMovies } from '../../hooks/usePopularMovies';
+import { SectionData } from '../../types/Section';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { StackParams } from '../../types/StackNavigator.ts';
-import { getThemeColors } from '../../constants/colorsFun.ts';
-import { useTheme } from '../../contexts/Theme/ThemeContext';
+import { StackParams } from '../../types/StackNavigator';
+import { useThemedColors } from '../../hooks/useThemedColors';
+
 const Movies = () => {
   const { data, loading } = usePopularMovies();
   const insets = useSafeAreaInsets();
   const [genre, setGenre] = useState<Genre>(GENRES[0]);
   const bottom = insets.bottom;
-  const { themeMode, toggleThemeMode } = useTheme();
-  const colors = getThemeColors(themeMode);
-  const styles = createStyles(colors);
+  const colors = useThemedColors();
 
   const navigation = useNavigation<NavigationProp<StackParams>>();
-
   const movies = data?.results?.slice(0, 5) || [];
 
-  const handleGenreChange = (genre: Genre) => {
-    setGenre(genre);
-  };
+  const handleGenreChange = (genre: Genre) => setGenre(genre);
 
   const handleSeeMore = (section: SectionData) => {
     navigation.navigate('SeeMore', {
@@ -43,16 +42,28 @@ const Movies = () => {
 
   if (loading) {
     return (
-      <View style={[styles.loadingContainer]}>
+      <View
+        style={[
+          styles.loadingContainer,
+          { backgroundColor: colors.background },
+        ]}
+      >
         <ActivityIndicator size="large" color={colors.primary} />
-        <Text style={styles.loadingText}>Loading movies...</Text>
+        <Text style={[styles.loadingText, { color: colors.textPrimary }]}>
+          Loading movies...
+        </Text>
       </View>
     );
   }
 
   return (
     <ScrollView>
-      <View style={[styles.container, { paddingBottom: bottom }]}>
+      <View
+        style={[
+          styles.container,
+          { backgroundColor: colors.background, paddingBottom: bottom },
+        ]}
+      >
         <LinearGradient
           colors={colors.gradientOverlayTop}
           style={styles.gradientTop}
@@ -63,7 +74,9 @@ const Movies = () => {
             onChange={handleGenreChange}
           />
         </LinearGradient>
+
         <MovieCarousel movies={movies} />
+
         {genre.name === 'All' ? (
           <SectionsList
             sections={[
@@ -100,7 +113,7 @@ const Movies = () => {
             onSeeMore={handleSeeMore}
           />
         )}
-        <Button title='Toggle' onPress={()=>{toggleThemeMode(); console.log("Change color")}}/>
+
         <PromoBanner
           image={require('../../assets/saveupto.jpg')}
           title="Black Friday is here!"

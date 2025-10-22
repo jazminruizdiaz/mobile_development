@@ -4,15 +4,14 @@ import {
   ViewStyle,
   TextStyle,
 } from 'react-native';
+import { useThemedColors } from '../../../hooks/useThemedColors';
 import { TextCustom } from '../Text/TextCustom';
-import { useTheme } from '../../../contexts/Theme/ThemeContext';
-import { getThemeColors } from '../../../constants/colorsFun';
-import { createStyles } from './styles';
+import { buttonStyles } from './styles';
 
 interface ButtonProps {
   title: string;
   onPress: () => void;
-  variant?: 'primary' | 'secondary' | 'custom';
+  variant?: 'primary' | 'secondary' | 'third'  |'custom';
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
@@ -26,39 +25,40 @@ export const Button = ({
   style,
   textStyle,
 }: ButtonProps) => {
-  const { themeMode } = useTheme();
-    const colors = getThemeColors(themeMode);
-    const styles = createStyles(colors);
-  const getButtonStyle = () => {
-    if (variant === 'custom') {
-      return [style];
-    }
-    return [
-      styles.button,
-      variant === 'primary' ? styles.primary : styles.secondary,
-      disabled && styles.disabled,
-      style,
-    ];
-  };
+  const colors = useThemedColors();
 
-  const getTextStyle = () => {
-    if (variant === 'custom') {
-      return [textStyle];
-    }
-    return [
-      variant === 'primary' ? styles.primaryText : styles.secondaryText,
+  const buttonStyle: StyleProp<ViewStyle> = variant === 'custom'
+    ? style
+    : [
+        buttonStyles.button,
+        variant === 'primary'
+          ? { backgroundColor: colors.buttonPrimary }
+          : { backgroundColor: colors.buttonSecondary },
+        disabled && buttonStyles.disabled,
+        style,
+      ].filter(Boolean);
+
+  const textStyleArray: StyleProp<TextStyle> = variant === 'custom'
+  ? textStyle
+  : [
+      variant === 'primary'
+        ? { ...buttonStyles.primaryText, color: colors.textDark }
+        : variant === 'secondary'
+        ? { ...buttonStyles.secondaryText, color: colors.textPrimary }
+        : { ...buttonStyles.thirdText, color: colors.white },
       textStyle,
-    ];
-  };
+    ].filter(Boolean);
 
+  
   return (
     <TouchableOpacity
-      style={getButtonStyle()}
+      style={buttonStyle}
       onPress={onPress}
       disabled={disabled}
       activeOpacity={0.7}
     >
-      <TextCustom style={getTextStyle()}>{title}</TextCustom>
+      <TextCustom style={textStyleArray}>{title}</TextCustom>
     </TouchableOpacity>
   );
 };
+

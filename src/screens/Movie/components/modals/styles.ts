@@ -1,10 +1,7 @@
 import { StyleSheet } from 'react-native';
-import type { ThemeColors } from '../../../../constants/colorsFun'; 
 
-export const createStyles = (colors: ThemeColors) =>
-  StyleSheet.create({
+export const modalStyles = StyleSheet.create({
   modalOverlay: {
-    flexDirection: 'column',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -13,7 +10,6 @@ export const createStyles = (colors: ThemeColors) =>
   modalContent: {
     width: '95%',
     maxHeight: '90%',
-    backgroundColor: colors.backgroundLight,
     borderRadius: 16,
     overflow: 'hidden',
   },
@@ -23,7 +19,6 @@ export const createStyles = (colors: ThemeColors) =>
     justifyContent: 'center',
   },
   loadingText: {
-    color: colors.textPrimary,
     marginTop: 16,
     fontSize: 16,
   },
@@ -34,36 +29,21 @@ export const createStyles = (colors: ThemeColors) =>
     flex: 1,
   },
   errorText: {
-    color: colors.textSecondary,
     fontSize: 16,
     textAlign: 'center',
   },
   titleContainer: {
     padding: 20,
-    backgroundColor: colors.backgroundLight,
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(255,255,255,0.1)',
   },
   movieTitleModal: {
-    color: colors.textPrimary,
     fontSize: 18,
     fontWeight: '600',
     textAlign: 'center',
   },
   movieInfoContainer: {
     padding: 20,
-  },
-  ratingLabel: {
-    color: colors.textPrimary,
-    fontSize: 16,
-    fontWeight: '600',
-    marginRight: 12,
-  },
-  ratingBadge: {
-    backgroundColor: colors.primary,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 16,
   },
   infoRow: {
     flexDirection: 'row',
@@ -75,13 +55,11 @@ export const createStyles = (colors: ThemeColors) =>
     borderBottomColor: 'rgba(255,255,255,0.1)',
   },
   infoLabel: {
-    color: colors.textPrimary,
     fontSize: 14,
     fontWeight: '600',
     flex: 1,
   },
   infoValue: {
-    color: colors.textSecondary,
     fontSize: 14,
     fontWeight: '600',
   },
@@ -89,7 +67,6 @@ export const createStyles = (colors: ThemeColors) =>
     marginBottom: 20,
   },
   genresLabel: {
-    color: colors.textPrimary,
     fontSize: 15,
     fontWeight: '600',
     marginBottom: 12,
@@ -100,27 +77,21 @@ export const createStyles = (colors: ThemeColors) =>
     gap: 8,
   },
   genreChip: {
-    backgroundColor: colors.primary,
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 16,
   },
   genreText: {
-    color: colors.textDark,
     fontSize: 12,
     fontWeight: '600',
   },
-  overviewContainer: {
-    marginBottom: 20,
-  },
+  overviewCast: { marginVertical: 20 },
   overviewLabel: {
-    color: colors.textPrimary,
     fontSize: 15,
     fontWeight: '600',
     marginBottom: 12,
   },
   overviewText: {
-    color: colors.textSecondary,
     fontSize: 14,
     lineHeight: 20,
   },

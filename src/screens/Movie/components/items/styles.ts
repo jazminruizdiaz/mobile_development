@@ -1,10 +1,8 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import { ThemeColors } from '../../../../constants/colorsFun';
 
 const { width, height } = Dimensions.get('window');
 
-export const createStyles = (colors: ThemeColors) =>
-  StyleSheet.create({
+export const styles = StyleSheet.create({
   poster: {
     width: width,
     height: height * 0.65,
@@ -22,7 +20,6 @@ export const createStyles = (colors: ThemeColors) =>
     marginTop: 8,
     textAlign: 'center',
     fontSize: 12,
-    color: colors.textPrimary,
     maxWidth: 150,
   },
   bestMovieCardContainer: {
@@ -46,7 +43,6 @@ export const createStyles = (colors: ThemeColors) =>
   },
   bestMovieTitle: {
     fontSize: 12,
-    color: colors.textPrimary,
     fontWeight: '600',
     flex: 1,
     maxWidth: 150,
@@ -56,7 +52,6 @@ export const createStyles = (colors: ThemeColors) =>
     alignItems: 'center',
   },
   ratingText: {
-    color: colors.primary,
     fontSize: 12,
     fontWeight: '600',
   },
@@ -73,7 +68,6 @@ export const createStyles = (colors: ThemeColors) =>
     zIndex: 3,
   },
   wishlistIconText: {
-    color: colors.textPrimary,
     fontSize: 20,
     fontWeight: '800',
   },

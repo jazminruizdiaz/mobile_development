@@ -1,41 +1,35 @@
 import React, { useState } from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import { TextCustom } from '../../../components/atoms/Text/TextCustom';
-import { createStyles } from '../styles';
+import { styles } from '../styles';
 import { SearchBar } from './SearchBar';
 import { MovieGrid } from '../../Movie/components/grid/MovieGrid';
 import { useSearchMoviesByName } from '../../../hooks/useSearchMoviesByName';
 import { usePopularMovies } from '../../../hooks/usePopularMovies';
-import { useTheme } from '../../../contexts/Theme/ThemeContext';
-import { getThemeColors } from '../../../constants/colorsFun';
+import { useThemedColors } from '../../../hooks/useThemedColors';
 
 export const SearchMovies = () => {
-   const { themeMode, toggleThemeMode } = useTheme();
-      const colors = getThemeColors(themeMode);
-      const styles = createStyles(colors)
-      
-  const [inputText, setInputText] = useState('');
+  const colors = useThemedColors();
+
+  const [searchText, setSearchText] = useState('');
   const [enabled, setEnabled] = useState(false);
-  const [queryToSearch, setQueryToSearch] = useState('');
 
   const { data: searchData, loading: searchLoading } = useSearchMoviesByName(
-    queryToSearch,
+    searchText,
     enabled,
   );
   const { data: popularData, loading: popularLoading } = usePopularMovies();
 
   const handleSearch = () => {
-    if (inputText.trim()) {
-      setQueryToSearch(inputText);
+    if (searchText.trim()) {
       setEnabled(true);
     }
   };
 
   const handleChangeText = (text: string) => {
-    setInputText(text);
+    setSearchText(text);
     if (!text.trim()) {
       setEnabled(false);
-      setQueryToSearch('');
     }
   };
 
@@ -46,13 +40,13 @@ export const SearchMovies = () => {
     return (
       <>
         <SearchBar
-          value={inputText}
+          value={searchText}
           onChange={handleChangeText}
           onSearch={handleSearch}
         />
-        <View style={styles.loadingContainer}>
+        <View style={[styles.loadingContainer, { backgroundColor: colors.background }]}>
           <ActivityIndicator size="large" color={colors.primary} />
-          <TextCustom variant="body" style={styles.loadingText}>
+          <TextCustom variant="body" style={[styles.loadingText, { color: colors.textPrimary }]}>
             Loading movies...
           </TextCustom>
         </View>
@@ -63,7 +57,7 @@ export const SearchMovies = () => {
   return (
     <>
       <SearchBar
-        value={inputText}
+        value={searchText}
         onChange={handleChangeText}
         onSearch={handleSearch}
       />
@@ -73,7 +67,7 @@ export const SearchMovies = () => {
       ) : (
         <View style={styles.emptyContent}>
           <TextCustom variant="body">
-            No results found for "{inputText}"
+            No results found for "{searchText}"
           </TextCustom>
         </View>
       )}

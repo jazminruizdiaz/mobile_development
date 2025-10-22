@@ -4,12 +4,11 @@ import { MovieItem } from '../items/MovieItem';
 import { Movie } from '../../../../types/Movie';
 import { SectionContent } from '../../../../types/Section';
 import { BestMovieItem } from '../items/BestMovieItem';
+import { styles } from './styles';
 import { useMoviesByCompany } from '../../../../hooks/useMoviesByCompany';
 import { useMoviesByGenre } from '../../../../hooks/useMoviesByGenre';
 import { useTopRatedMovies } from '../../../../hooks/useTopRatedMovies';
-import { useTheme } from '../../../../contexts/Theme/ThemeContext';
-import { getThemeColors } from '../../../../constants/colorsFun';
-import { createStyles } from './styles';
+import { useThemedColors } from '../../../../hooks/useThemedColors'; 
 
 export const MovieSection = ({
   title,
@@ -19,11 +18,7 @@ export const MovieSection = ({
   companyId,
   genreId,
 }: SectionContent) => {
-  const { themeMode } = useTheme();
-    const colors = getThemeColors(themeMode);
-    const styles = createStyles(colors);
-
-
+  const colors = useThemedColors(); 
   const isCompanyEnabled = type === 'Company' && !!companyId;
   const isGenreEnabled = type === 'Genre' && !!genreId;
   const isBestEnabled = type === 'Best movies';
@@ -38,8 +33,7 @@ export const MovieSection = ({
     isGenreEnabled,
   );
 
-  const { data: bestData, loading: bestLoading } =
-    useTopRatedMovies(isBestEnabled);
+  const { data: bestData, loading: bestLoading } = useTopRatedMovies(isBestEnabled);
 
   let movies: Movie[] = [];
   let loading = false;
@@ -54,6 +48,7 @@ export const MovieSection = ({
     movies = bestData?.results ?? [];
     loading = bestLoading;
   }
+
   return (
     <View style={styles.sectionContainer}>
       <MovieSectionHeader

@@ -1,24 +1,18 @@
 import { TextCustom } from '../../components/atoms/Text/TextCustom';
 import { ActivityIndicator, View } from 'react-native';
-import { colors } from '../../constants/colors';
 import { MovieGrid } from '../Movie/components/grid/MovieGrid';
-import { createStyles } from './styles';
+import { styles } from './styles';
 import { useMoviesByCompany } from '../../hooks/useMoviesByCompany';
 import { useMoviesByGenre } from '../../hooks/useMoviesByGenre';
 import { useTopRatedMovies } from '../../hooks/useTopRatedMovies';
 import { SectionType } from '../../types/Section';
-import { RouteProp } from '@react-navigation/native';
-import { StackParams } from '../../types/StackNavigator';
+import { useThemedColors } from '../../hooks/useThemedColors'; 
 
-type SeeMoreRouteProps = RouteProp<StackParams, 'SeeMore'>;
-import { useTheme } from '../../contexts/Theme/ThemeContext';
-import { getThemeColors } from '../../constants/colorsFun';
+export const SeeMore = ({ route }: any) => {
+  const colors = useThemedColors(); 
 
-export const SeeMore = ({ route }: { route: SeeMoreRouteProps }) => {
-  const { type, companyId, genreId } = route.params;
-const { themeMode, toggleThemeMode } = useTheme();
-  const colors = getThemeColors(themeMode);
-  const styles = createStyles(colors);
+  const { type, companyId, genreId } = route.params || {};
+
   const isCompanyEnabled = type === 'Company' && !!companyId;
   const isGenreEnabled = type === 'Genre' && !!genreId;
   const isBestEnabled = type === 'Best movies';
@@ -28,11 +22,13 @@ const { themeMode, toggleThemeMode } = useTheme();
     loading: companyLoading,
     error: companyError,
   } = useMoviesByCompany(companyId ?? 0, isCompanyEnabled);
+
   const {
     data: genreData,
     loading: genreLoading,
     error: genreError,
   } = useMoviesByGenre(genreId ?? 0, isGenreEnabled);
+
   const {
     data: bestData,
     loading: bestLoading,
@@ -68,9 +64,9 @@ const { themeMode, toggleThemeMode } = useTheme();
 
   if (loading) {
     return (
-      <View style={styles.loadingContainer}>
+      <View style={[styles.loadingContainer, { backgroundColor: colors.background }]}>
         <ActivityIndicator size="large" color={colors.primary} />
-        <TextCustom variant="body" style={styles.loadingText}>
+        <TextCustom variant="body" style={[styles.loadingText, { color: colors.textPrimary }]}>
           Loading movies...
         </TextCustom>
       </View>
@@ -78,7 +74,7 @@ const { themeMode, toggleThemeMode } = useTheme();
   }
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
       {movies.length > 0 ? (
         <MovieGrid movies={movies} type={type} />
       ) : (

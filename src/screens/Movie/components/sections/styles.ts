@@ -1,8 +1,6 @@
 import { StyleSheet } from 'react-native';
-import type { ThemeColors } from '../../../../constants/colorsFun'; 
 
-export const createStyles = (colors: ThemeColors) =>
-  StyleSheet.create({
+export const styles = StyleSheet.create({
   separator: {
     width: 16,
   },
@@ -26,12 +24,6 @@ export const createStyles = (colors: ThemeColors) =>
     alignItems: 'center',
     marginTop: 10,
   },
-  title: {
-    color: colors.textPrimary,
-  },
-  actionLabel: {
-    color: colors.primary,
-  },
   customButton: {
     backgroundColor: 'transparent',
     padding: 0,
@@ -39,7 +31,6 @@ export const createStyles = (colors: ThemeColors) =>
     paddingVertical: 0,
   },
   customButtonText: {
-    color: colors.primary,
     fontSize: 15,
   },
 });

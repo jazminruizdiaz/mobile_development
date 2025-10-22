@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { styles } from './styles';
-import { colors } from '../../../constants/colors';
+import { useThemedColors } from '../../../hooks/useThemedColors';
 
 export interface InputTextProps {
   value: string;
@@ -16,10 +16,18 @@ export const InputText = ({
   onSubmitEditing,
   placeholder = 'Search...',
 }: InputTextProps) => {
+  const colors = useThemedColors();
   return (
     <View style={styles.container}>
       <TextInput
-        style={styles.input}
+        style={[
+          styles.input,
+          {
+            backgroundColor: colors.backgroundLight,
+            color: colors.textSecondary,
+            borderColor: colors.backgroundLight,
+          },
+        ]}
         placeholder={placeholder}
         placeholderTextColor={colors.textSecondary}
         value={value}

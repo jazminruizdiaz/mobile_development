@@ -1,8 +1,6 @@
 import { Text, TextStyle, StyleProp } from 'react-native';
-import { useTheme } from '../../../contexts/Theme/ThemeContext';
-import { getThemeColors } from '../../../constants/colorsFun';
-import { createStyles } from './styles';
-
+import { useThemedColors } from '../../../hooks/useThemedColors';
+import { textStyles } from './styles';
 
 interface TextProps {
   children: string | React.ReactNode;
@@ -17,25 +15,25 @@ export const TextCustom = ({
   style,
   numberOfLines,
 }: TextProps) => {
-  const { themeMode } = useTheme();
-  const colors = getThemeColors(themeMode);
-  const styles = createStyles(colors);
+  const colors = useThemedColors();
 
-  const getVariantStyle = () => {
+  const getVariantStyle = (): TextStyle => {
     switch (variant) {
       case 'title':
-        return styles.title;
+        return textStyles.title;
       case 'subtitle':
-        return styles.subtitle;
+        return textStyles.subtitle;
       case 'body':
       default:
-        return styles.body;
+        return textStyles.body;
     }
   };
 
+  const dynamicColor = { color: colors.textPrimary };
+
   return (
     <Text
-      style={[styles.base, getVariantStyle(), style]}
+      style={[dynamicColor, getVariantStyle(), style]}
       numberOfLines={numberOfLines}
     >
       {children}

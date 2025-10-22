@@ -1,5 +1,4 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import { colors } from '../../../../constants/colors';
 
 const { width, height } = Dimensions.get('window');
 
@@ -49,13 +48,11 @@ export const styles = StyleSheet.create({
     paddingTop: 24,
   },
   paginationDot: {
-    backgroundColor: colors.textSecondary,
     borderRadius: 50,
     width: 10,
     height: 10,
   },
   paginationActiveDot: {
-    backgroundColor: colors.primary,
     borderRadius: 50,
     width: 10,
     height: 10,
@@ -81,7 +78,6 @@ export const styles = StyleSheet.create({
   },
   bestMovieTitle: {
     fontSize: 12,
-    color: colors.textPrimary,
     fontWeight: '600',
     flex: 1,
     maxWidth: 150,
@@ -91,14 +87,11 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   ratingText: {
-    color: colors.primary,
     fontSize: 12,
     fontWeight: '600',
   },
-
   customButton: {
     backgroundColor: 'transparent',
-    fontWeight:'600',
     padding: 0,
     paddingHorizontal: 0,
     paddingVertical: 0,
