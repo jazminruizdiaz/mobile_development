@@ -7,7 +7,6 @@ export interface WishlistContextType {
   removeFromWishlist: (movieId: number) => void;
   isInWishlist: (movieId: number) => boolean;
   toggleWishlist: (movie: Movie) => void;
-  clearWishList: () => void;
 }
 
 export const WishlistContext = createContext<WishlistContextType | undefined>(
