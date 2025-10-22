@@ -3,9 +3,29 @@ import { StyleSheet, Dimensions } from 'react-native';
 const { width, height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
+  posterWrapper: {
+    position: 'relative',
+    overflow: 'hidden',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   poster: {
     width: width,
     height: height * 0.65,
+  },
+  posterImage: {
+    width: '100%',
+    height: '100%',
+  },
+  loaderContainer: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.25)',
   },
   movieCard: {
     width: 150,
@@ -24,7 +44,6 @@ export const styles = StyleSheet.create({
   },
   bestMovieCardContainer: {
     position: 'relative',
-    marginRight: 16,
     alignItems: 'center',
   },
   movieInfoOverlay: {

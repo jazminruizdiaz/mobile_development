@@ -5,7 +5,7 @@ import { modalStyles } from './styles';
 import { useThemedColors } from '../../../../hooks/useThemedColors';
 import { useMovieModal } from '../../../../contexts/MovieModal/MovieModalContext';
 import { useMovieDetails } from '../../../../hooks/useMovieDetails';
-import { CastList } from './component/CastList/CastList';
+import { CastList } from './component/Cast/CastList';
 import { useMovieCredits } from '../../../../hooks/useMovieCredits';
 
 export const MovieDetailModal = () => {
