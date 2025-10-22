@@ -1,8 +1,7 @@
 import { StyleSheet } from 'react-native';
 
-export const styles = StyleSheet.create({
+export const modalStyles = StyleSheet.create({
   modalOverlay: {
-    flexDirection: 'column',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -86,7 +85,7 @@ export const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '600',
   },
-
+  overviewCast: { marginVertical: 20 },
   overviewLabel: {
     fontSize: 15,
     fontWeight: '600',

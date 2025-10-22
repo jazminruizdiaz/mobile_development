@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../../../../../constants/colors";
 
 export const styles = StyleSheet.create({
     actorCard: {
@@ -17,7 +16,6 @@ export const styles = StyleSheet.create({
         fontSize: 12,
         fontWeight: "600",
         textAlign: "center",
-        color: colors.primary
     },
     actorCharacter: {
         fontSize: 11,
