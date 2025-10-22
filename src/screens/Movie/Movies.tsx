@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
   ScrollView,
   View,
@@ -27,7 +27,7 @@ const Movies = () => {
   const colors = useThemedColors();
 
   const navigation = useNavigation<NavigationProp<StackParams>>();
-  const movies = data?.results?.slice(0, 5) || [];
+  const movies = useMemo(() => data?.results?.slice(0, 5) ?? [], [data]);
 
   const handleGenreChange = (genre: Genre) => setGenre(genre);
 

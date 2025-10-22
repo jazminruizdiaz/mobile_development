@@ -25,7 +25,7 @@ export const MovieCarousel = ({ movies }: Props) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const currentMovie = useMemo(
-    () => movies[activeIndex],
+    () => movies[activeIndex] ?? null,
     [movies, activeIndex],
   );
 
@@ -49,12 +49,14 @@ export const MovieCarousel = ({ movies }: Props) => {
         onSnapToItem={index => setActiveIndex(index)}
         renderItem={({ item }) => <MovieCard posterPath={item.poster_path} />}
       />
-      <LinearGradient
-        colors={colors.gradientOverlayBottom}
-        style={styles.gradientBottom}
-      >
-        <MovieOverlay movie={currentMovie} />
-      </LinearGradient>
+      {currentMovie ? (
+        <LinearGradient
+          colors={colors.gradientOverlayBottom}
+          style={styles.gradientBottom}
+        >
+          <MovieOverlay movie={currentMovie} />
+        </LinearGradient>
+      ) : null}
       <Pagination.Basic
         progress={progress}
         data={movies}

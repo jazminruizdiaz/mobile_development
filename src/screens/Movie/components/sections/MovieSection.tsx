@@ -1,4 +1,5 @@
 import { FlatList, View, ActivityIndicator } from 'react-native';
+import { useMemo } from 'react';
 import { MovieSectionHeader } from './MovieSectionHeader';
 import { MovieItem } from '../items/MovieItem';
 import { Movie } from '../../../../types/Movie';
@@ -49,6 +50,8 @@ export const MovieSection = ({
     loading = bestLoading;
   }
 
+  const limitedMovies = useMemo(() => movies.slice(0, 5), [movies]);
+
   return (
     <View style={styles.sectionContainer}>
       <MovieSectionHeader
@@ -64,7 +67,7 @@ export const MovieSection = ({
         </View>
       ) : (
         <FlatList
-          data={movies.slice(0, 5)}
+          data={limitedMovies}
           renderItem={({ item }) => {
             if (type === 'Best movies') {
               return <BestMovieItem movie={item} />;

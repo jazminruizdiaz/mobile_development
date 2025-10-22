@@ -1,4 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useMemo } from 'react';
 import Movies from '../screens/Movie/Movies';
 import Wishlist from '../screens/Wishlist/Wishlist';
 import { FontAwesome6 } from '@react-native-vector-icons/fontawesome6';
@@ -11,7 +12,7 @@ const Tab = createBottomTabNavigator();
 
 export const TabNavigator = () => {
   const colors = useThemedColors(); 
-  const tabOptions = getTabOptions(colors);
+  const tabOptions = useMemo(() => getTabOptions(colors), [colors]);
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
