@@ -3,6 +3,8 @@ import { Dropdown, DropdownOptions } from '../../atoms/Dropdown/Dropdown';
 import { styles } from './styles';
 import { InputText } from '../../atoms/InputText/InputText';
 import { Button } from '../../atoms/Button/Button';
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
+import { colors } from '../../../constants/colors';
 
 interface SearchFilterProps {
   inputText: string;
@@ -11,7 +13,6 @@ interface SearchFilterProps {
   selectedGenre: string | null;
   onSelectedGenre: (genreId: string | null) => void;
   genreOptions: DropdownOptions[];
-  searchButtonText?: string;
   placeholder?: string;
 }
 
@@ -22,10 +23,9 @@ export const SearchFilter = ({
   selectedGenre,
   onSelectedGenre,
   genreOptions,
-  searchButtonText = 'Search',
   placeholder = 'Search movies by name',
 }: SearchFilterProps) => {
-  const isSearchEnabled = inputText.trim().length > 0 || selectedGenre != null;
+  const isSearchEnabled = !!inputText.trim() || !!selectedGenre;
 
   return (
     <View style={styles.container}>
@@ -36,19 +36,32 @@ export const SearchFilter = ({
         placeholder="Select genre"
         searchable={false}
       />
-      <InputText
-        value={inputText}
-        onChange={onChangeText}
-        placeholder={placeholder}
-        onSubmitEditing={onSearch}
-      />
-      <Button
-        title={searchButtonText}
-        onPress={onSearch}
-        disabled={!isSearchEnabled}
-        variant="primary"
-        style={styles.searchButton}
-      />
+      <View style={styles.searchRow}>
+        <View style={styles.inputWrapper}>
+          <InputText
+            value={inputText}
+            onChange={onChangeText}
+            placeholder={placeholder}
+            onSubmitEditing={onSearch}
+            inpuStyle={styles.input}
+          />
+        </View>
+
+        <Button
+          title=""
+          onPress={onSearch}
+          disabled={!isSearchEnabled}
+          variant="custom"
+          style={styles.searchButton}
+        >
+          <FontAwesome6
+            name="magnifying-glass"
+            size={18}
+            color={isSearchEnabled ? colors.textDark : colors.textSecondary}
+            iconStyle="solid"
+          />
+        </Button>
+      </View>
     </View>
   );
 };

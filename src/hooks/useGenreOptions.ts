@@ -4,11 +4,13 @@ import { useGenre } from './useGenre';
 export const useGenreOptions = () => {
   const { data: genreData, loading, error } = useGenre();
 
-  const genreOptions: DropdownOptions[] =
-    genreData?.genres.map(genre => ({
+  const genreOptions: DropdownOptions[] = [
+    { label: 'All', value: 'all' },
+    ...(genreData?.genres.map(genre => ({
       label: genre.name,
       value: genre.id.toString(),
-    })) ?? [];
+    })) ?? []),
+  ];
 
   return { genreOptions, loading, error };
 };

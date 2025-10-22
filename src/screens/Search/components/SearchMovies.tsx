@@ -10,11 +10,14 @@ import { SearchFilter } from '../../../components/molecules/SearchFilter/SearchF
 import { useMoviesByGenre } from '../../../hooks/useMoviesByGenre';
 import { useSearchFilter } from '../../../hooks/useSearchFilter';
 import { useGenreOptions } from '../../../hooks/useGenreOptions';
+import { DEFAULT_GENRE } from '../../../types/Genre';
 
 export const SearchMovies = () => {
   const {
     inputText,
     selectedGenre,
+    activeGenre,
+    activeQuery,
     handleChangeText,
     handleSearch,
     handleSelectedGenre,
@@ -22,17 +25,22 @@ export const SearchMovies = () => {
 
   const { genreOptions } = useGenreOptions();
 
-  const query = inputText.trim();
-  const hasQuery = query !== '';
-  const hasGenre = query !== null;
+  const hasQuery = !!activeQuery;
+  const hasGenre = activeGenre !== DEFAULT_GENRE && !!activeGenre;
 
   const { data: searchData, loading: searchLoading } = useSearchMoviesByName(
-    query,
+    activeQuery,
     hasQuery,
   );
 
+  const filteredSearchResults = hasQuery
+    ? (searchData?.results ?? []).filter(movie =>
+        hasGenre ? movie.genre_ids.includes(Number(activeGenre)) : true,
+      )
+    : [];
+
   const { data: genreMoviesData, loading: genreLoading } = useMoviesByGenre(
-    Number(selectedGenre),
+    Number(activeGenre),
     hasGenre && !hasQuery,
   );
 
@@ -40,7 +48,7 @@ export const SearchMovies = () => {
 
   const getMoviesAndLoading = () => {
     if (hasQuery) {
-      return { movies: searchData?.results, loading: searchLoading };
+      return { movies: filteredSearchResults, loading: searchLoading };
     }
 
     if (hasGenre) {
@@ -83,7 +91,7 @@ export const SearchMovies = () => {
         genreOptions={genreOptions}
       />
 
-      {movies && movies.length > 0 ? (
+      {movies && movies.length ? (
         <MovieGrid movies={movies} />
       ) : (
         <View style={styles.emptyContent}>

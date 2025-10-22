@@ -17,6 +17,8 @@ const Wishlist = () => {
   const {
     inputText,
     selectedGenre,
+    activeGenre,
+    activeQuery,
     handleChangeText,
     handleSearch,
     handleSelectedGenre,
@@ -29,15 +31,15 @@ const Wishlist = () => {
     if (!isSearchActive) return movies;
 
     return movies.filter(movie => {
-      const matchGenre = selectedGenre
-        ? movie.genre_ids.includes(Number(selectedGenre))
+      const matchesGenre = activeGenre
+        ? movie.genre_ids.includes(Number(activeGenre))
         : true;
 
-      const matchText = inputText.trim()
-        ? movie.title.toLowerCase().includes(inputText.trim().toLowerCase())
+      const matchesQuery = activeQuery
+        ? movie.title.toLowerCase().includes(activeQuery.toLowerCase())
         : true;
 
-      return matchGenre && matchText;
+      return matchesGenre && matchesQuery;
     });
   };
 
@@ -54,17 +56,14 @@ const Wishlist = () => {
         selectedGenre={selectedGenre}
         onSelectedGenre={handleSelectedGenre}
         genreOptions={genreOptions}
-        searchButtonText="Filter"
         placeholder="Search movies in wishlist"
       />
-      {filteredMovies.length > 0 ? (
+      {filteredMovies.length ? (
         <MovieGrid movies={filteredMovies} />
       ) : (
         <View style={styles.emptyContent}>
           <TextCustom variant="body">
-            {isSearchActive
-              ? 'No movies match ypur search'
-              : 'No movies found in your Wishlist'}
+            No movies found in your Wishlist
           </TextCustom>
         </View>
       )}

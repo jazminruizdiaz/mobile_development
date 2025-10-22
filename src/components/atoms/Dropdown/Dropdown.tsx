@@ -55,6 +55,7 @@ export const Dropdown = ({
         style={styles.dropdown}
         textStyle={styles.text}
         dropDownContainerStyle={styles.dropdown}
+        maxHeight={300}
       />
     </View>
   );

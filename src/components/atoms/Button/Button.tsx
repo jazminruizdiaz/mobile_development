@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 import { styles } from './styles';
 import { TextCustom } from '../Text/TextCustom';
+import React from 'react';
 
 interface ButtonProps {
   title: string;
@@ -14,6 +15,7 @@ interface ButtonProps {
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
+  children?: React.ReactNode;
 }
 
 export const Button = ({
@@ -23,6 +25,7 @@ export const Button = ({
   disabled = false,
   style,
   textStyle,
+  children,
 }: ButtonProps) => {
   const getButtonStyle = () => {
     if (variant === 'custom') {
@@ -53,7 +56,11 @@ export const Button = ({
       disabled={disabled}
       activeOpacity={0.7}
     >
-      <TextCustom style={getTextStyle()}>{title}</TextCustom>
+      {children ? (
+        children
+      ) : (
+        <TextCustom style={getTextStyle()}>{title}</TextCustom>
+      )}
     </TouchableOpacity>
   );
 };
