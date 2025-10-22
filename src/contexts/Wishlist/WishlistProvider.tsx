@@ -44,7 +44,6 @@ export const WishlistProvider: React.FC<{ children: ReactNode }> = ({
 
         const detailedMovie: Movie = {
           ...movie,
-          genre_ids: data.genres.map((g: any) => g.id),
           genre: data.genres,
         };
 
