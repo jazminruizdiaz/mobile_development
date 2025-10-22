@@ -35,7 +35,6 @@ export const modalStyles = StyleSheet.create({
   titleContainer: {
     padding: 20,
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(255,255,255,0.1)',
   },
   movieTitleModal: {
     fontSize: 18,
@@ -52,7 +51,6 @@ export const modalStyles = StyleSheet.create({
     marginBottom: 12,
     paddingVertical: 8,
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(255,255,255,0.1)',
   },
   infoLabel: {
     fontSize: 14,

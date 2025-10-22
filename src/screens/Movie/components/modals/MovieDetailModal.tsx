@@ -17,7 +17,7 @@ export const MovieDetailModal = () => {
     !!selectedMovieId && isModalVisible
   );
 
-  const { data: credits, loading: loadingCredits } = useMovieCredits(
+  const {  data: credits, loading: loadingCredits } = useMovieCredits(
     selectedMovieId ?? 0,
     !!selectedMovieId && isModalVisible
   );
@@ -52,7 +52,15 @@ export const MovieDetailModal = () => {
             </View>
           ) : data ? (
             <ScrollView showsVerticalScrollIndicator={false}>
-              <View style={[modalStyles.titleContainer, { backgroundColor: colors.backgroundLight }]}>
+              <View
+                style={[
+                  modalStyles.titleContainer,
+                  {
+                    backgroundColor: colors.backgroundLight,
+                    borderBottomColor: colors.textPrimary + '1a', 
+                  },
+                ]}
+              >
                 <TextCustom
                   variant="title"
                   style={[modalStyles.movieTitleModal, { color: colors.textPrimary }]}
@@ -62,7 +70,12 @@ export const MovieDetailModal = () => {
               </View>
 
               <View style={modalStyles.movieInfoContainer}>
-                <View style={modalStyles.infoRow}>
+                <View
+                  style={[
+                    modalStyles.infoRow,
+                    { borderBottomColor: colors.textPrimary + '1a' }, 
+                  ]}
+                >
                   <TextCustom variant="body" style={[modalStyles.infoLabel, { color: colors.textPrimary }]}>
                     Release Date:
                   </TextCustom>
@@ -71,7 +84,12 @@ export const MovieDetailModal = () => {
                   </TextCustom>
                 </View>
 
-                <View style={modalStyles.infoRow}>
+                <View
+                  style={[
+                    modalStyles.infoRow,
+                    { borderBottomColor: colors.textPrimary + '1a' }, 
+                  ]}
+                >
                   <TextCustom variant="body" style={[modalStyles.infoLabel, { color: colors.textPrimary }]}>
                     Runtime:
                   </TextCustom>
@@ -80,7 +98,12 @@ export const MovieDetailModal = () => {
                   </TextCustom>
                 </View>
 
-                <View style={modalStyles.infoRow}>
+                <View
+                  style={[
+                    modalStyles.infoRow,
+                    { borderBottomColor: colors.textPrimary + '1a' }, 
+                  ]}
+                >
                   <TextCustom variant="body" style={[modalStyles.infoLabel, { color: colors.textPrimary }]}>
                     Original Language:
                   </TextCustom>
@@ -122,11 +145,7 @@ export const MovieDetailModal = () => {
                   )}
                 </View>
 
-                <Button
-                  title="Close"
-                  onPress={closeMovieDetails}
-                  variant="primary"
-                />
+                <Button title="Close" onPress={closeMovieDetails} variant="primary" />
               </View>
             </ScrollView>
           ) : (
@@ -137,11 +156,7 @@ export const MovieDetailModal = () => {
               >
                 {`Error loading movie details: ${error}`}
               </TextCustom>
-              <Button
-                title="Close"
-                onPress={closeMovieDetails}
-                variant="primary"
-              />
+              <Button title="Close" onPress={closeMovieDetails} variant="primary" />
             </View>
           )}
         </View>
