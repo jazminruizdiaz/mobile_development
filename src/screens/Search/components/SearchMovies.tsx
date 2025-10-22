@@ -62,7 +62,7 @@ export const SearchMovies = () => {
         onSearch={handleSearch}
       />
 
-      {moviesToShow && moviesToShow.length > 0 ? (
+      {moviesToShow && moviesToShow.length ? (
         <MovieGrid movies={moviesToShow} />
       ) : (
         <View style={styles.emptyContent}>
