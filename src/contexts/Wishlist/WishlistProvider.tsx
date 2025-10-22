@@ -23,7 +23,7 @@ export const WishlistProvider: React.FC<{ children: ReactNode }> = ({
 
   const clearWishList = () => {
     setWishlist([]);
-  }
+  };
 
   const isInWishlist = (movieId: number): boolean => {
     return wishlist.some(movie => movie.id === movieId);
@@ -34,17 +34,19 @@ export const WishlistProvider: React.FC<{ children: ReactNode }> = ({
       removeFromWishlist(movie.id);
     } else {
       try {
-        const response = await fetch(`${TMDB_BASE_URL}/movie/${movie.id}?language=en-US`, {
-          headers: {
-            Authorization: `Bearer ${TMDB_ACCESS_TOKEN}`,
-            'Content-Type': 'application/json',
+        const response = await fetch(
+          `${TMDB_BASE_URL}/movie/${movie.id}?language=en-US`,
+          {
+            headers: {
+              Authorization: `Bearer ${TMDB_ACCESS_TOKEN}`,
+              'Content-Type': 'application/json',
+            },
           },
-        });
+        );
         const data = await response.json();
 
         const detailedMovie: Movie = {
           ...movie,
-          genre_ids: data.genres.map((g: any) => g.id),
           genre: data.genres,
         };
 
@@ -53,7 +55,7 @@ export const WishlistProvider: React.FC<{ children: ReactNode }> = ({
         console.error('Error fetching detailed movie:', error);
       }
     }
-  }
+  };
 
   const value = {
     wishlist,
@@ -62,7 +64,6 @@ export const WishlistProvider: React.FC<{ children: ReactNode }> = ({
     isInWishlist,
     toggleWishlist,
     clearWishList,
-
   };
 
   return (

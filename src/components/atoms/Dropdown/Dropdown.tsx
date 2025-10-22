@@ -27,7 +27,7 @@ export const Dropdown = ({
   const [value, setValue] = useState(selectedValue);
   const [items, setItems] = useState(options);
 
-  //vlaue chaznge in the father compoentn
+  //value change in the father compoentn
   useEffect(() => {
     setValue(selectedValue);
   }, [selectedValue]);

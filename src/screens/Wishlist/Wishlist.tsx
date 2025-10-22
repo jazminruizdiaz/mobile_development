@@ -9,7 +9,7 @@ import { SearchFilter } from '../../components/molecules/SearchFilter/SearchFilt
 import { View } from 'react-native';
 import { useSearchFilter } from '../../hooks/useSearchFilter';
 import { Movie } from '../../types/Movie';
-import { useGenreOptions } from '../../hooks/useGenreOptions';
+import { useGenresOptions } from '../../hooks/useGenresOptions';
 
 const Wishlist = () => {
   const { wishlist } = useWishlist();
@@ -25,14 +25,14 @@ const Wishlist = () => {
     isSearchActive,
   } = useSearchFilter();
 
-  const { genreOptions } = useGenreOptions();
+  const { genreOptions } = useGenresOptions();
 
   const filterMovies = (movies: Movie[]) => {
     if (!isSearchActive) return movies;
 
     return movies.filter(movie => {
       const matchesGenre = activeGenre
-        ? movie.genre_ids.includes(Number(activeGenre))
+        ? movie.genre.some(g => g.id === Number(activeGenre))
         : true;
 
       const matchesQuery = activeQuery

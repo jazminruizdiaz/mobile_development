@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { DEFAULT_GENRE } from '../types/Genre';
+import { DEFAULT_GENRE } from '../types/Movie';
 interface UseSearchFilterReturn {
   inputText: string;
   selectedGenre: string | null;

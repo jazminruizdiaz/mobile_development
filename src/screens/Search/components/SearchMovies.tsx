@@ -9,8 +9,8 @@ import { usePopularMovies } from '../../../hooks/usePopularMovies';
 import { SearchFilter } from '../../../components/molecules/SearchFilter/SearchFilter';
 import { useMoviesByGenre } from '../../../hooks/useMoviesByGenre';
 import { useSearchFilter } from '../../../hooks/useSearchFilter';
-import { useGenreOptions } from '../../../hooks/useGenreOptions';
-import { DEFAULT_GENRE } from '../../../types/Genre';
+import { useGenresOptions } from '../../../hooks/useGenresOptions';
+import { DEFAULT_GENRE } from '../../../types/Movie';
 
 export const SearchMovies = () => {
   const {
@@ -23,7 +23,7 @@ export const SearchMovies = () => {
     handleSelectedGenre,
   } = useSearchFilter();
 
-  const { genreOptions } = useGenreOptions();
+  const { genreOptions } = useGenresOptions();
 
   const hasQuery = !!activeQuery;
   const hasGenre = activeGenre !== DEFAULT_GENRE && !!activeGenre;
@@ -35,7 +35,7 @@ export const SearchMovies = () => {
 
   const filteredSearchResults = hasQuery
     ? (searchData?.results ?? []).filter(movie =>
-        hasGenre ? movie.genre_ids.includes(Number(activeGenre)) : true,
+        hasGenre ? movie.genre.some(g => g.id === Number(activeGenre)) : true,
       )
     : [];
 

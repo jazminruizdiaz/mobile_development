@@ -12,8 +12,6 @@ import { ScreenHeader } from '../../components/molecules/ScreenHeader/ScreenHead
 import { useGenres } from '../../hooks/useGenre';
 import { MovieCard } from '../Movie/components/items/MovieCard';
 
-
-
 export const Profile = () => {
   const { wishlist, clearWishList } = useWishlist();
   const navigation = useNavigation<NavigationProp<StackParams>>();
@@ -21,13 +19,14 @@ export const Profile = () => {
   const { data, loading } = useGenres(true);
   const genres = data?.genres ?? [];
 
-
-  const user = useMemo(() => ({
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    profilePicture: 'https://randomuser.me/api/portraits/men/1.jpg',
-  }), [])
-
+  const user = useMemo(
+    () => ({
+      name: 'John Doe',
+      email: 'john.doe@example.com',
+      profilePicture: 'https://randomuser.me/api/portraits/men/1.jpg',
+    }),
+    [],
+  );
 
   const favoriteGenre = useMemo(() => {
     if (wishlist.length === 0 || genres.length === 0) return null;
@@ -46,7 +45,6 @@ export const Profile = () => {
 
     return name ? { name, count } : null;
   }, [wishlist, genres]);
-
 
   const averageRating = useMemo(() => {
     if (wishlist.length === 0) return 0;
@@ -82,7 +80,6 @@ export const Profile = () => {
           </View>
           <TextCustom style={styles.name}>{user.name}</TextCustom>
           <TextCustom style={styles.email}>{user.email}</TextCustom>
-
         </View>
 
         <View style={styles.section}>
@@ -159,23 +156,31 @@ export const Profile = () => {
                 <TextCustom style={styles.subSectionSubtitle}>
                   {favoriteGenre.name} Movies
                 </TextCustom>
-                <FlatList horizontal showsHorizontalScrollIndicator={false}
+                <FlatList
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
                   data={wishlist.filter(movie =>
-                    movie.genre?.some(g => g.name === favoriteGenre.name)
+                    movie.genre?.some(g => g.name === favoriteGenre.name),
                   )}
                   keyExtractor={movie => movie.id.toString()}
                   renderItem={({ item }) => (
                     <View style={styles.movieCardSmall}>
-                      <MovieCard posterPath={item.poster_path} style={styles.moviePosterSmall} />
-                      <TextCustom numberOfLines={1} style={styles.movieTitleSmall}>
+                      <MovieCard
+                        posterPath={item.poster_path}
+                        style={styles.moviePosterSmall}
+                      />
+                      <TextCustom
+                        numberOfLines={1}
+                        style={styles.movieTitleSmall}
+                      >
                         {item.title}
                       </TextCustom>
                     </View>
-                  )} />
+                  )}
+                />
               </View>
             )}
           </View>
-
         )}
       </ScrollView>
     </SafeAreaView>
