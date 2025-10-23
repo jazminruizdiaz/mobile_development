@@ -60,7 +60,7 @@ export const Button = ({
       disabled={disabled}
       activeOpacity={0.7}
     >
-      <TextCustom style={textStyleArray}>{title}</TextCustom>
+      {children ? children : <TextCustom style={textStyleArray}>{title}</TextCustom>}
     </TouchableOpacity>
   );
 };
