@@ -1,8 +1,3 @@
-// export type Genre = {
-//   id: number;
-//   name: string;
-// };
-
 export interface Movie {
   id: number;
   title: string;
@@ -10,5 +5,4 @@ export interface Movie {
   vote_average: number;
   release_date: string;
   genre_ids?: number[];
-
 }

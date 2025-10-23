@@ -9,7 +9,6 @@ export const styles = StyleSheet.create({
   },
   profileSection: {
     alignItems: 'center',
-
   },
   avatarContainer: {
     width: 120,
@@ -50,7 +49,6 @@ export const styles = StyleSheet.create({
     color: colors.textSecondary,
   },
   section: {
-    //marginBottom: 24,
     marginTop: 24,
   },
   sectionTitle: {
@@ -120,7 +118,6 @@ export const styles = StyleSheet.create({
   statsRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: 10,
   },
   statCard: {
     flex: 1,
@@ -174,8 +171,7 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     color: colors.primary,
     marginBottom: 6,
-    fontWeight: '500'
-
+    fontWeight: '500',
   },
   highlightText: {
     color: colors.primary,
@@ -185,6 +181,5 @@ export const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'space-between',
     flexDirection: 'row',
-
-  }
+  },
 });

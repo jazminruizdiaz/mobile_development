@@ -10,10 +10,7 @@ import { colors } from '../../constants/colors';
 import { StackParams } from '../../types/StackNavigator';
 import { ScreenHeader } from '../../components/molecules/ScreenHeader/ScreenHeader';
 import { useGenres } from '../../hooks/useGenre';
-import { MovieCard } from '../Movie/components/items/MovieCard';
 import { MovieItem } from '../Movie/components/items/MovieItem';
-
-
 
 export const Profile = () => {
   const { wishlist, clearWishList } = useWishlist();
@@ -22,13 +19,14 @@ export const Profile = () => {
   const { data, loading } = useGenres(true);
   const genres = data?.genres ?? [];
 
-
-  const user = useMemo(() => ({
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    profilePicture: 'https://randomuser.me/api/portraits/men/1.jpg',
-  }), [])
-
+  const user = useMemo(
+    () => ({
+      name: 'John Doe',
+      email: 'john.doe@example.com',
+      profilePicture: 'https://randomuser.me/api/portraits/men/1.jpg',
+    }),
+    [],
+  );
 
   const favoriteGenre = useMemo(() => {
     if (wishlist.length === 0 || genres.length === 0) return null;
@@ -48,8 +46,6 @@ export const Profile = () => {
 
     return genreName ? { id: Number(genreId), name: genreName, count } : null;
   }, [wishlist, genres]);
-
-
 
   const averageRating = useMemo(() => {
     if (wishlist.length === 0) return 0;
@@ -71,7 +67,6 @@ export const Profile = () => {
 
   const moviesInWishlist = useMemo(() => wishlist.length, [wishlist]);
 
-
   return (
     <SafeAreaView style={styles.container}>
       <ScreenHeader title="Profile" />
@@ -86,16 +81,15 @@ export const Profile = () => {
           </View>
           <TextCustom style={styles.name}>{user.name}</TextCustom>
           <TextCustom style={styles.email}>{user.email}</TextCustom>
-
         </View>
         <View style={styles.section}>
-          <TextCustom style={styles.sectionTitle}>Movie Overview</TextCustom>
+          <TextCustom style={styles.sectionTitle}>Wishlist Stats</TextCustom>
           <View style={styles.statsRow}>
             <View style={styles.statCard}>
               <TextCustom style={styles.statNumber}>
                 {moviesInWishlist}
               </TextCustom>
-              <TextCustom style={styles.statLabel}>wishlist Movies</TextCustom>
+              <TextCustom style={styles.statLabel}>Wishlist Movies</TextCustom>
             </View>
 
             <View style={styles.statCard}>
@@ -106,9 +100,7 @@ export const Profile = () => {
             </View>
 
             <View style={styles.statCard}>
-              <TextCustom style={styles.statNumber}>
-                {genreVariety}
-              </TextCustom>
+              <TextCustom style={styles.statNumber}>{genreVariety}</TextCustom>
               <TextCustom style={styles.statLabel}>Genres Movies</TextCustom>
             </View>
           </View>
@@ -155,8 +147,6 @@ export const Profile = () => {
         </View>
         {wishlist.length > 0 && (
           <View style={styles.section}>
-
-
             {favoriteGenre && (
               <View style={styles.favoriteGenreSection}>
                 <View style={styles.containerFav}>
@@ -167,22 +157,26 @@ export const Profile = () => {
                     {favoriteGenre.name} Movies
                   </TextCustom>
                 </View>
-                <FlatList horizontal showsHorizontalScrollIndicator={false}
+                <FlatList
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
                   data={wishlist.filter(movie =>
-                    movie.genre_ids?.includes(favoriteGenre.id)
+                    movie.genre_ids?.includes(favoriteGenre.id),
                   )}
                   keyExtractor={movie => movie.id.toString()}
                   renderItem={({ item }) => (
                     <View style={styles.movieCardSmall}>
-                      {/* <MovieCard posterPath={item.poster_path} style={styles.moviePosterSmall} /> */}
-                      <MovieItem movie={item} style={styles.moviePosterSmall} showToggle={false} />
-
+                      <MovieItem
+                        movie={item}
+                        style={styles.moviePosterSmall}
+                        showToggle={false}
+                      />
                     </View>
-                  )} />
+                  )}
+                />
               </View>
             )}
           </View>
-
         )}
       </ScrollView>
     </SafeAreaView>

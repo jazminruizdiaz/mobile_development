@@ -1,7 +1,6 @@
 import React, { ReactNode, useState } from 'react';
 import { WishlistContext } from './WishlistContext';
 import { Movie } from '../../types/Movie';
-import { useMovieDetails } from '../../hooks/useMovieDetails';
 
 export const WishlistProvider: React.FC<{ children: ReactNode }> = ({
   children,
@@ -23,7 +22,7 @@ export const WishlistProvider: React.FC<{ children: ReactNode }> = ({
 
   const clearWishList = () => {
     setWishlist([]);
-  }
+  };
 
   const isInWishlist = (movieId: number): boolean => {
     return wishlist.some(movie => movie.id === movieId);
@@ -41,7 +40,6 @@ export const WishlistProvider: React.FC<{ children: ReactNode }> = ({
     isInWishlist,
     toggleWishlist,
     clearWishList,
-
   };
 
   return (
