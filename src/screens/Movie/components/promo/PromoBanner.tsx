@@ -18,7 +18,7 @@ export const PromoBanner: React.FC<PromoProps> = ({
 }) => {
     const colors = useThemedColors();
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, {backgroundColor: colors.background}]}>
             <Image
                 source={typeof image === "string" ? { uri: image } : image} style={styles.image} resizeMode="cover" />
             <View style={styles.textContainer}>

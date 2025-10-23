@@ -4,7 +4,6 @@ export const styles = StyleSheet.create({
     container: {
         marginHorizontal: 16,
         marginTop: 20,
-        backgroundColor: "transparent",
         overflow: "hidden",
     },
     image: {
