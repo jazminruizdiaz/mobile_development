@@ -1,48 +1,84 @@
-import React, { useState } from 'react';
+import React, { useCallback } from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import { TextCustom } from '../../../components/atoms/Text/TextCustom';
 import { styles } from '../styles';
-import { SearchBar } from './SearchBar';
 import { MovieGrid } from '../../Movie/components/grid/MovieGrid';
 import { useSearchMoviesByName } from '../../../hooks/useSearchMoviesByName';
 import { usePopularMovies } from '../../../hooks/usePopularMovies';
+import { SearchFilter } from '../../../components/molecules/SearchFilter/SearchFilter';
+import { useMoviesByGenre } from '../../../hooks/useMoviesByGenre';
+import { useSearchFilter } from '../../../hooks/useSearchFilter';
+import { useGenresOptions } from '../../../hooks/useGenresOptions';
+import { DEFAULT_GENRE } from '../../../types/Movie';
+import { useFocusEffect } from '@react-navigation/native';
 import { useThemedColors } from '../../../hooks/useThemedColors';
 
 export const SearchMovies = () => {
-  const colors = useThemedColors();
+  const {
+    inputText,
+    selectedGenre,
+    activeGenre,
+    activeQuery,
+    handleChangeText,
+    handleSearch,
+    handleSelectedGenre,
+    resetFilters,
+  } = useSearchFilter();
 
-  const [searchText, setSearchText] = useState('');
-  const [enabled, setEnabled] = useState(false);
+  const { genreOptions } = useGenresOptions();
+
+  useFocusEffect(
+    useCallback(() => {
+      return () => {
+        resetFilters();
+      };
+    }, [resetFilters]),
+  );
+
+  const hasQuery = !!activeQuery;
+  const hasGenre = activeGenre !== DEFAULT_GENRE && !!activeGenre;
 
   const { data: searchData, loading: searchLoading } = useSearchMoviesByName(
-    searchText,
-    enabled,
+    activeQuery,
+    hasQuery,
   );
+
+  const filteredSearchResults = hasQuery
+    ? (searchData?.results ?? []).filter(movie =>
+        hasGenre ? movie.genre_ids.includes(Number(activeGenre)) : true,
+      )
+    : [];
+
+  const { data: genreMoviesData, loading: genreLoading } = useMoviesByGenre(
+    Number(activeGenre),
+    hasGenre && !hasQuery,
+  );
+
   const { data: popularData, loading: popularLoading } = usePopularMovies();
 
-  const handleSearch = () => {
-    if (searchText.trim()) {
-      setEnabled(true);
+  const getMoviesAndLoading = () => {
+    if (hasQuery) {
+      return { movies: filteredSearchResults, loading: searchLoading };
     }
-  };
 
-  const handleChangeText = (text: string) => {
-    setSearchText(text);
-    if (!text.trim()) {
-      setEnabled(false);
+    if (hasGenre) {
+      return { movies: genreMoviesData?.results, loading: genreLoading };
     }
+
+    return { movies: popularData?.results, loading: popularLoading };
   };
-
-  const moviesToShow = enabled ? searchData?.results : popularData?.results;
-  const isLoading = enabled ? searchLoading : popularLoading;
-
-  if (isLoading) {
+  const colors = useThemedColors();
+  const { movies, loading } = getMoviesAndLoading();
+  if (loading) {
     return (
       <>
-        <SearchBar
-          value={searchText}
-          onChange={handleChangeText}
+        <SearchFilter
+          inputText={inputText}
+          onChangeText={handleChangeText}
           onSearch={handleSearch}
+          selectedGenre={selectedGenre}
+          onSelectedGenre={handleSelectedGenre}
+          genreOptions={genreOptions}
         />
         <View style={[styles.loadingContainer, { backgroundColor: colors.background }]}>
           <ActivityIndicator size="large" color={colors.primary} />
@@ -56,19 +92,20 @@ export const SearchMovies = () => {
 
   return (
     <>
-      <SearchBar
-        value={searchText}
-        onChange={handleChangeText}
+      <SearchFilter
+        inputText={inputText}
+        onChangeText={handleChangeText}
         onSearch={handleSearch}
+        selectedGenre={selectedGenre}
+        onSelectedGenre={handleSelectedGenre}
+        genreOptions={genreOptions}
       />
 
-      {moviesToShow && moviesToShow.length ? (
-        <MovieGrid movies={moviesToShow} />
+      {movies && movies.length ? (
+        <MovieGrid movies={movies} />
       ) : (
         <View style={styles.emptyContent}>
-          <TextCustom variant="body">
-            No results found for "{searchText}"
-          </TextCustom>
+          <TextCustom variant="body">No results found</TextCustom>
         </View>
       )}
     </>

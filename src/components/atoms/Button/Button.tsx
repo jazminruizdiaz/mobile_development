@@ -7,6 +7,7 @@ import {
 import { useThemedColors } from '../../../hooks/useThemedColors';
 import { TextCustom } from '../Text/TextCustom';
 import { buttonStyles } from './styles';
+import React from 'react';
 
 interface ButtonProps {
   title: string;
@@ -15,6 +16,7 @@ interface ButtonProps {
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
+  children?: React.ReactNode;
 }
 
 export const Button = ({
@@ -24,6 +26,7 @@ export const Button = ({
   disabled = false,
   style,
   textStyle,
+  children,
 }: ButtonProps) => {
   const colors = useThemedColors();
 
@@ -32,8 +35,11 @@ export const Button = ({
     : [
         buttonStyles.button,
         variant === 'primary'
-          ? { backgroundColor: colors.buttonPrimary }
-          : { backgroundColor: colors.buttonSecondary },
+        ? { backgroundColor: colors.buttonPrimary }
+        : variant === 'secondary'
+        ? { backgroundColor: colors.buttonSecondary }
+        : { backgroundColor: colors.gray },
+
         disabled && buttonStyles.disabled,
         style,
       ].filter(Boolean);
@@ -51,14 +57,19 @@ export const Button = ({
 
   
   return (
-    <TouchableOpacity
+   <TouchableOpacity
       style={buttonStyle}
       onPress={onPress}
       disabled={disabled}
       activeOpacity={0.7}
     >
-      <TextCustom style={textStyleArray}>{title}</TextCustom>
+      {children ? (
+        children
+      ) : (
+        <TextCustom style={textStyleArray}>{title}</TextCustom>
+      )}
     </TouchableOpacity>
+
   );
 };
 
