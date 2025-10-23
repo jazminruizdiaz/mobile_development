@@ -1,8 +1,3 @@
-export type Genre = {
-  id: number;
-  name: string;
-};
-
 export const DEFAULT_GENRE = 'all';
 
 export interface Movie {
@@ -11,5 +6,5 @@ export interface Movie {
   poster_path: string;
   vote_average: number;
   release_date: string;
-  genre_ids: number[];
+  genre_ids?: number[];
 }

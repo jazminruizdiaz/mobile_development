@@ -20,6 +20,10 @@ export const WishlistProvider: React.FC<{ children: ReactNode }> = ({
     setWishlist(prev => prev.filter(movie => movie.id !== movieId));
   };
 
+  const clearWishList = () => {
+    setWishlist([]);
+  };
+
   const isInWishlist = (movieId: number): boolean => {
     return wishlist.some(movie => movie.id === movieId);
   };
@@ -38,6 +42,7 @@ export const WishlistProvider: React.FC<{ children: ReactNode }> = ({
     removeFromWishlist,
     isInWishlist,
     toggleWishlist,
+    clearWishList,
   };
 
   return (

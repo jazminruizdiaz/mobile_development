@@ -6,14 +6,14 @@ import { MovieCarousel } from './components/carousel/MovieCarousel';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { GenresBar } from './components/genre/GenresBar.tsx';
 import { colors } from '../../constants/colors.ts';
-import { GENRES } from '../../constants/genres';
+import { GENRES } from '../../constants/genres.ts';
+import { Genre } from '../../types/Genre.ts';
 import LinearGradient from 'react-native-linear-gradient';
 import { PromoBanner } from '../Movie/components/promo/PromoBanner.tsx';
 import { usePopularMovies } from '../../hooks/usePopularMovies.ts';
 import { SectionData } from '../../types/Section.ts';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { StackParams } from '../../types/StackNavigator.ts';
-import { Genre } from '../../types/Movie.ts';
 
 const Movies = () => {
   const { data, loading } = usePopularMovies();
