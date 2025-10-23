@@ -45,7 +45,9 @@ export const SearchMovies = () => {
 
   const filteredSearchResults = hasQuery
     ? (searchData?.results ?? []).filter(movie =>
-        hasGenre ? movie.genre_ids.includes(Number(activeGenre)) : true,
+        hasGenre && Array.isArray(movie.genre_ids)
+          ? movie.genre_ids.includes(Number(activeGenre))
+          : true,
       )
     : [];
 
