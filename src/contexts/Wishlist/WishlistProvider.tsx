@@ -29,8 +29,11 @@ export const WishlistProvider: React.FC<{ children: ReactNode }> = ({
   };
 
   const toggleWishlist = (movie: Movie) => {
-    if (isInWishlist(movie.id)) removeFromWishlist(movie.id);
-    else addToWishlist(movie);
+    if (isInWishlist(movie.id)) {
+      removeFromWishlist(movie.id);
+    } else {
+      addToWishlist(movie);
+    }
   };
 
   const value = {

@@ -1,3 +1,5 @@
+export const DEFAULT_GENRE = 'all';
+
 export interface Movie {
   id: number;
   title: string;
