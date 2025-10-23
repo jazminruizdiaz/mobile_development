@@ -42,7 +42,7 @@ export const styles = StyleSheet.create({
     fontWeight: '400',
   },
   section: {
-    marginBottom: 24,
+    marginTop: 24,
   },
   sectionTitle: {
     fontSize: 18,
@@ -51,6 +51,13 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 4,
   },
   button: {
+    paddingVertical: 12,
+    borderRadius: 12,
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  buttonLogout: {
+    backgroundColor: 'red',
     paddingVertical: 12,
     borderRadius: 12,
     alignItems: 'center',
@@ -71,5 +78,51 @@ export const styles = StyleSheet.create({
   toggleLabel: {
     fontSize: 16,
     fontWeight: '700',
+  },
+  statsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  statCard: {
+    flex: 1,
+    alignItems: 'center',
+    borderRadius: 12,
+    paddingVertical: 12,
+    marginHorizontal: 4,
+  },
+  statNumber: {
+    fontSize: 16,
+    fontWeight: '700',
+  },
+  statLabel: {
+    fontSize: 13,
+    marginTop: 4,
+  },
+
+  favoriteGenreSection: {
+    marginTop: 16,
+  },
+  movieCardSmall: {
+    width: 90,
+    marginRight: 12,
+    alignItems: 'center',
+  },
+  moviePosterSmall: {
+    width: 90,
+    height: 130,
+    borderRadius: 8,
+  },
+  favoriteGenreHeader: {
+    marginBottom: 10,
+  },
+  subSectionSubtitle: {
+    fontSize: 16,
+    marginBottom: 6,
+    fontWeight: '500',
+  },
+  containerFav: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
   },
 });

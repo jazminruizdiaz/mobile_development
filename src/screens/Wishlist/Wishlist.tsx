@@ -15,8 +15,7 @@ import { useThemedColors } from '../../hooks/useThemedColors';
 
 const Wishlist = () => {
   const { wishlist } = useWishlist();
-  const colors = useThemedColors(); 
-
+  const colors =  useThemedColors();
   const {
     inputText,
     selectedGenre,
@@ -58,7 +57,8 @@ const Wishlist = () => {
   const filteredMovies = filterMovies(wishlist);
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
+    <SafeAreaView style={[styles.container, {
+        backgroundColor: colors.background,}]}>
       <ScreenHeader title="Wishlist" />
 
       <SearchFilter

@@ -20,12 +20,13 @@ export const WishlistProvider: React.FC<{ children: ReactNode }> = ({
     setWishlist(prev => prev.filter(movie => movie.id !== movieId));
   }, []);
 
-  const isInWishlist = useCallback(
-    (movieId: number): boolean => {
-      return wishlist.some(movie => movie.id === movieId);
-    },
-    [wishlist],
-  );
+  const clearWishList = () => {
+    setWishlist([]);
+  };
+
+  const isInWishlist = (movieId: number): boolean => {
+    return wishlist.some(movie => movie.id === movieId);
+  };
 
   const toggleWishlist = useCallback(
     (movie: Movie) => {
@@ -38,16 +39,14 @@ export const WishlistProvider: React.FC<{ children: ReactNode }> = ({
     [addToWishlist, isInWishlist, removeFromWishlist],
   );
 
-  const value = useMemo(
-    () => ({
-      wishlist,
-      addToWishlist,
-      removeFromWishlist,
-      isInWishlist,
-      toggleWishlist,
-    }),
-    [wishlist, addToWishlist, removeFromWishlist, isInWishlist, toggleWishlist],
-  );
+  const value = {
+    wishlist,
+    addToWishlist,
+    removeFromWishlist,
+    isInWishlist,
+    toggleWishlist,
+    clearWishList,
+  };
 
   return (
     <WishlistContext.Provider value={value}>

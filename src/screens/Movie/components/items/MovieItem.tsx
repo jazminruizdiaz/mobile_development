@@ -1,4 +1,9 @@
-import { TouchableOpacity, Pressable } from 'react-native';
+import {
+  TouchableOpacity,
+  Pressable,
+  StyleProp,
+  ImageStyle,
+} from 'react-native';
 import { Movie } from '../../../../types/Movie';
 import { styles } from './styles';
 import { TextCustom } from '../../../../components/atoms/Text/TextCustom';
@@ -9,9 +14,11 @@ import { useThemedColors } from '../../../../hooks/useThemedColors';
 
 type Props = {
   movie: Movie;
+  style?: StyleProp<ImageStyle>;
+  showToggle?: boolean;
 };
 
-export const MovieItem = ({ movie }: Props) => {
+export const MovieItem = ({ movie, style, showToggle = true }: Props) => {
   const { isInWishlist, toggleWishlist } = useWishlist();
   const { openMovieDetails } = useMovieModal();
   const { poster_path, title, id } = movie;
