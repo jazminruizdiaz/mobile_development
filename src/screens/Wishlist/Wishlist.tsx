@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { TextCustom } from '../../components/atoms/Text/TextCustom';
 import { useWishlist } from '../../contexts/Wishlist/WishlistContext';
 import { MovieGrid } from '../Movie/components/grid/MovieGrid';
@@ -10,6 +10,7 @@ import { View } from 'react-native';
 import { useSearchFilter } from '../../hooks/useSearchFilter';
 import { Movie } from '../../types/Movie';
 import { useGenresOptions } from '../../hooks/useGenresOptions';
+import { useFocusEffect } from '@react-navigation/native';
 
 const Wishlist = () => {
   const { wishlist } = useWishlist();
@@ -23,16 +24,25 @@ const Wishlist = () => {
     handleSearch,
     handleSelectedGenre,
     isSearchActive,
+    resetFilters,
   } = useSearchFilter();
 
   const { genreOptions } = useGenresOptions();
+
+  useFocusEffect(
+    useCallback(() => {
+      return () => {
+        resetFilters();
+      };
+    }, [resetFilters]),
+  );
 
   const filterMovies = (movies: Movie[]) => {
     if (!isSearchActive) return movies;
 
     return movies.filter(movie => {
       const matchesGenre = activeGenre
-        ? movie.genre.some(g => g.id === Number(activeGenre))
+        ? movie.genre_ids.includes(Number(activeGenre))
         : true;
 
       const matchesQuery = activeQuery

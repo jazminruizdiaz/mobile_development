@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { DEFAULT_GENRE } from '../types/Movie';
 interface UseSearchFilterReturn {
   inputText: string;
@@ -9,6 +9,7 @@ interface UseSearchFilterReturn {
   handleSelectedGenre: (genreId: string | null) => void;
   handleSearch: () => void;
   isSearchActive: boolean;
+  resetFilters: () => void;
 }
 
 export const useSearchFilter = (): UseSearchFilterReturn => {
@@ -41,6 +42,13 @@ export const useSearchFilter = (): UseSearchFilterReturn => {
     }
   };
 
+  const resetFilters = useCallback(() => {
+    setInputText('');
+    setSelectedGenre(DEFAULT_GENRE);
+    setActiveGenre(DEFAULT_GENRE);
+    setActiveQuery('');
+  }, []);
+
   const isSearchActive = Boolean(activeQuery || activeGenre !== DEFAULT_GENRE);
 
   return {
@@ -52,5 +60,6 @@ export const useSearchFilter = (): UseSearchFilterReturn => {
     handleSearch,
     handleSelectedGenre,
     isSearchActive,
+    resetFilters,
   };
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import { TextCustom } from '../../../components/atoms/Text/TextCustom';
 import { styles } from '../styles';
@@ -11,6 +11,7 @@ import { useMoviesByGenre } from '../../../hooks/useMoviesByGenre';
 import { useSearchFilter } from '../../../hooks/useSearchFilter';
 import { useGenresOptions } from '../../../hooks/useGenresOptions';
 import { DEFAULT_GENRE } from '../../../types/Movie';
+import { useFocusEffect } from '@react-navigation/native';
 
 export const SearchMovies = () => {
   const {
@@ -21,9 +22,18 @@ export const SearchMovies = () => {
     handleChangeText,
     handleSearch,
     handleSelectedGenre,
+    resetFilters,
   } = useSearchFilter();
 
   const { genreOptions } = useGenresOptions();
+
+  useFocusEffect(
+    useCallback(() => {
+      return () => {
+        resetFilters();
+      };
+    }, [resetFilters]),
+  );
 
   const hasQuery = !!activeQuery;
   const hasGenre = activeGenre !== DEFAULT_GENRE && !!activeGenre;
@@ -35,7 +45,7 @@ export const SearchMovies = () => {
 
   const filteredSearchResults = hasQuery
     ? (searchData?.results ?? []).filter(movie =>
-        hasGenre ? movie.genre.some(g => g.id === Number(activeGenre)) : true,
+        hasGenre ? movie.genre_ids.includes(Number(activeGenre)) : true,
       )
     : [];
 
