@@ -176,9 +176,7 @@ export const Profile = () => {
                     <View style={styles.movieCardSmall}>
                       {/* <MovieCard posterPath={item.poster_path} style={styles.moviePosterSmall} /> */}
                       <MovieItem movie={item} style={styles.moviePosterSmall} showToggle={false} />
-                      <TextCustom numberOfLines={1} style={styles.movieTitleSmall}>
-                        {item.title}
-                      </TextCustom>
+
                     </View>
                   )} />
               </View>

@@ -12,7 +12,7 @@ type Props = {
   showToggle?: boolean;
 };
 
-export const MovieItem = ({ movie, style, showToggle }: Props) => {
+export const MovieItem = ({ movie, style, showToggle = true }: Props) => {
   const { isInWishlist, toggleWishlist } = useWishlist();
   const { openMovieDetails } = useMovieModal();
   const { poster_path, title, id } = movie;
