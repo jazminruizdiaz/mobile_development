@@ -7,6 +7,7 @@ import {
 import { useThemedColors } from '../../../hooks/useThemedColors';
 import { TextCustom } from '../Text/TextCustom';
 import { buttonStyles } from './styles';
+import React from 'react';
 
 interface ButtonProps {
   title: string;
@@ -15,6 +16,7 @@ interface ButtonProps {
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
+  children?: React.ReactNode;
 }
 
 export const Button = ({
@@ -24,6 +26,7 @@ export const Button = ({
   disabled = false,
   style,
   textStyle,
+  children,
 }: ButtonProps) => {
   const colors = useThemedColors();
 

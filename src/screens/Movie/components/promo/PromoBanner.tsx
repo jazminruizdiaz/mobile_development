@@ -6,15 +6,19 @@ import { TextCustom } from "../../../../components/atoms/Text/TextCustom";
 import { useThemedColors } from "../../../../hooks/useThemedColors";
 
 interface PromoProps {
-    image: ImageSourcePropType;
-    title: string;
-    description: string;
-    buttonText: string;
-    onPress?: () => void;
+  image: ImageSourcePropType;
+  title: string;
+  description: string;
+  buttonText: string;
+  onPress?: () => void;
 }
 
 export const PromoBanner: React.FC<PromoProps> = ({
-    image, title, description, buttonText, onPress
+  image,
+  title,
+  description,
+  buttonText,
+  onPress,
 }) => {
     const colors = useThemedColors();
     return (
@@ -31,6 +35,3 @@ export const PromoBanner: React.FC<PromoProps> = ({
         </View>
     )
 }
-
-
-
