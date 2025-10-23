@@ -70,7 +70,7 @@ export const Profile = () => {
   };
 
   const moviesInWishlist = useMemo(() => wishlist.length, [wishlist]);
-  console.log('Wishlist actual:', JSON.stringify(wishlist, null, 2));
+
 
   return (
     <SafeAreaView style={styles.container}>
