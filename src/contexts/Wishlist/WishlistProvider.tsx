@@ -2,7 +2,7 @@ import React, { ReactNode, useState } from 'react';
 import { WishlistContext } from './WishlistContext';
 import { Movie } from '../../types/Movie';
 import { useMovieDetails } from '../../hooks/useMovieDetails';
-import { TMDB_BASE_URL, TMDB_ACCESS_TOKEN } from '@env';
+
 export const WishlistProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
@@ -29,30 +29,10 @@ export const WishlistProvider: React.FC<{ children: ReactNode }> = ({
     return wishlist.some(movie => movie.id === movieId);
   };
 
-  const toggleWishlist = async (movie: Movie) => {
-    if (isInWishlist(movie.id)) {
-      removeFromWishlist(movie.id);
-    } else {
-      try {
-        const response = await fetch(`${TMDB_BASE_URL}/movie/${movie.id}?language=en-US`, {
-          headers: {
-            Authorization: `Bearer ${TMDB_ACCESS_TOKEN}`,
-            'Content-Type': 'application/json',
-          },
-        });
-        const data = await response.json();
-
-        const detailedMovie: Movie = {
-          ...movie,
-          genre: data.genres,
-        };
-
-        addToWishlist(detailedMovie);
-      } catch (error) {
-        console.error('Error fetching detailed movie:', error);
-      }
-    }
-  }
+  const toggleWishlist = (movie: Movie) => {
+    if (isInWishlist(movie.id)) removeFromWishlist(movie.id);
+    else addToWishlist(movie);
+  };
 
   const value = {
     wishlist,

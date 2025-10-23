@@ -9,7 +9,6 @@ export const styles = StyleSheet.create({
   },
   profileSection: {
     alignItems: 'center',
-    marginTop: 12,
 
   },
   avatarContainer: {
@@ -51,7 +50,8 @@ export const styles = StyleSheet.create({
     color: colors.textSecondary,
   },
   section: {
-    marginBottom: 24,
+    //marginBottom: 24,
+    marginTop: 24,
   },
   sectionTitle: {
     fontSize: 18,
@@ -62,6 +62,13 @@ export const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: colors.primary,
+    paddingVertical: 12,
+    borderRadius: 12,
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  buttonLogout: {
+    backgroundColor: 'red',
     paddingVertical: 12,
     borderRadius: 12,
     alignItems: 'center',
@@ -87,7 +94,7 @@ export const styles = StyleSheet.create({
     color: colors.textPrimary,
   },
   insightCard: {
-    backgroundColor: colors.backgroundLight, // combina con tu paleta actual
+    backgroundColor: colors.backgroundLight,
     borderRadius: 12,
     padding: 16,
     alignItems: 'flex-start',
@@ -165,12 +172,19 @@ export const styles = StyleSheet.create({
   },
   subSectionSubtitle: {
     fontSize: 16,
-    color: colors.textSecondary,
+    color: colors.primary,
     marginBottom: 6,
+    fontWeight: '500'
+
   },
   highlightText: {
     color: colors.primary,
     fontWeight: '700',
   },
+  containerFav: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
 
+  }
 });

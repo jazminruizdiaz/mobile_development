@@ -11,6 +11,7 @@ import { StackParams } from '../../types/StackNavigator';
 import { ScreenHeader } from '../../components/molecules/ScreenHeader/ScreenHeader';
 import { useGenres } from '../../hooks/useGenre';
 import { MovieCard } from '../Movie/components/items/MovieCard';
+import { MovieItem } from '../Movie/components/items/MovieItem';
 
 
 
@@ -32,20 +33,22 @@ export const Profile = () => {
   const favoriteGenre = useMemo(() => {
     if (wishlist.length === 0 || genres.length === 0) return null;
 
-    const genreCount: Record<string, number> = {};
+    const genreCount: Record<number, number> = {};
 
     wishlist.forEach(movie => {
-      if (movie.genre && Array.isArray(movie.genre)) {
-        movie.genre.forEach(g => {
-          genreCount[g.name] = (genreCount[g.name] || 0) + 1;
-        });
-      }
+      movie.genre_ids?.forEach(id => {
+        genreCount[id] = (genreCount[id] || 0) + 1;
+      });
     });
-    const sorted = Object.entries(genreCount).sort((a, b) => b[1] - a[1]);
-    const [name, count] = sorted[0] || [];
 
-    return name ? { name, count } : null;
+    const sorted = Object.entries(genreCount).sort((a, b) => b[1] - a[1]);
+    const [genreId, count] = sorted[0] || [];
+
+    const genreName = genres.find(g => g.id === Number(genreId))?.name;
+
+    return genreName ? { id: Number(genreId), name: genreName, count } : null;
   }, [wishlist, genres]);
+
 
 
   const averageRating = useMemo(() => {
@@ -55,11 +58,11 @@ export const Profile = () => {
   }, [wishlist]);
 
   const genreVariety = useMemo(() => {
-    const uniqueGenres = new Set<string>();
+    const uniqueId = new Set<number>();
     wishlist.forEach(movie => {
-      movie.genre?.forEach(g => uniqueGenres.add(g.name));
+      movie.genre_ids?.forEach(id => uniqueId.add(id));
     });
-    return uniqueGenres.size;
+    return uniqueId.size;
   }, [wishlist]);
 
   const handleGoToWishlist = () => {
@@ -67,6 +70,7 @@ export const Profile = () => {
   };
 
   const moviesInWishlist = useMemo(() => wishlist.length, [wishlist]);
+  console.log('Wishlist actual:', JSON.stringify(wishlist, null, 2));
 
   return (
     <SafeAreaView style={styles.container}>
@@ -84,7 +88,31 @@ export const Profile = () => {
           <TextCustom style={styles.email}>{user.email}</TextCustom>
 
         </View>
+        <View style={styles.section}>
+          <TextCustom style={styles.sectionTitle}>Movie Overview</TextCustom>
+          <View style={styles.statsRow}>
+            <View style={styles.statCard}>
+              <TextCustom style={styles.statNumber}>
+                {moviesInWishlist}
+              </TextCustom>
+              <TextCustom style={styles.statLabel}>wishlist Movies</TextCustom>
+            </View>
 
+            <View style={styles.statCard}>
+              <TextCustom style={styles.statNumber}>
+                {averageRating || 0}
+              </TextCustom>
+              <TextCustom style={styles.statLabel}>Avg Rating</TextCustom>
+            </View>
+
+            <View style={styles.statCard}>
+              <TextCustom style={styles.statNumber}>
+                {genreVariety}
+              </TextCustom>
+              <TextCustom style={styles.statLabel}>Genres Movies</TextCustom>
+            </View>
+          </View>
+        </View>
         <View style={styles.section}>
           <TextCustom style={styles.sectionTitle}>Quick Actions</TextCustom>
           <Button
@@ -95,17 +123,17 @@ export const Profile = () => {
             textStyle={styles.buttonText}
           />
           <Button
-            title="Logout"
-            variant="custom"
-            onPress={() => console.log('logout')}
-            style={styles.button}
-            textStyle={styles.buttonText}
-          />
-          <Button
             title="Clear Wishlist"
             variant="custom"
             onPress={clearWishList}
             style={styles.button}
+            textStyle={styles.buttonText}
+          />
+          <Button
+            title="Logout"
+            variant="custom"
+            onPress={() => console.log('logout')}
+            style={styles.buttonLogout}
             textStyle={styles.buttonText}
           />
         </View>
@@ -127,46 +155,27 @@ export const Profile = () => {
         </View>
         {wishlist.length > 0 && (
           <View style={styles.section}>
-            <TextCustom style={styles.sectionTitle}>Insights</TextCustom>
-            <View style={styles.statsRow}>
-              <View style={styles.statCard}>
-                <TextCustom style={styles.statNumber}>
-                  {moviesInWishlist}
-                </TextCustom>
-                <TextCustom style={styles.statLabel}>wishlist</TextCustom>
-              </View>
 
-              <View style={styles.statCard}>
-                <TextCustom style={styles.statNumber}>
-                  {averageRating || 0}
-                </TextCustom>
-                <TextCustom style={styles.statLabel}>Avg Rating</TextCustom>
-              </View>
-
-              <View style={styles.statCard}>
-                <TextCustom style={styles.statNumber}>
-                  {genreVariety}
-                </TextCustom>
-                <TextCustom style={styles.statLabel}>Genres</TextCustom>
-              </View>
-            </View>
 
             {favoriteGenre && (
               <View style={styles.favoriteGenreSection}>
-                <TextCustom style={styles.subSectionTitle}>
-                  Favorite Genre ⭐
-                </TextCustom>
-                <TextCustom style={styles.subSectionSubtitle}>
-                  {favoriteGenre.name} Movies
-                </TextCustom>
+                <View style={styles.containerFav}>
+                  <TextCustom style={styles.sectionTitle}>
+                    Favorite Genre:
+                  </TextCustom>
+                  <TextCustom style={styles.subSectionSubtitle}>
+                    {favoriteGenre.name} Movies
+                  </TextCustom>
+                </View>
                 <FlatList horizontal showsHorizontalScrollIndicator={false}
                   data={wishlist.filter(movie =>
-                    movie.genre?.some(g => g.name === favoriteGenre.name)
+                    movie.genre_ids?.includes(favoriteGenre.id)
                   )}
                   keyExtractor={movie => movie.id.toString()}
                   renderItem={({ item }) => (
                     <View style={styles.movieCardSmall}>
-                      <MovieCard posterPath={item.poster_path} style={styles.moviePosterSmall} />
+                      {/* <MovieCard posterPath={item.poster_path} style={styles.moviePosterSmall} /> */}
+                      <MovieItem movie={item} style={styles.moviePosterSmall} showToggle={false} />
                       <TextCustom numberOfLines={1} style={styles.movieTitleSmall}>
                         {item.title}
                       </TextCustom>

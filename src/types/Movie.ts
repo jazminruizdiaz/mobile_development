@@ -1,7 +1,7 @@
-export type Genre = {
-  id: number;
-  name: string;
-};
+// export type Genre = {
+//   id: number;
+//   name: string;
+// };
 
 export interface Movie {
   id: number;
@@ -9,6 +9,6 @@ export interface Movie {
   poster_path: string;
   vote_average: number;
   release_date: string;
-  genre: Genre[];
+  genre_ids?: number[];
 
 }
