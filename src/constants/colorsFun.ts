@@ -12,6 +12,7 @@ export interface ThemeColors {
   gradientOverlayBottom: string[];
   white: string;
   black: string;
+  gray: string;
   transparent: string;
 }
 
@@ -31,7 +32,7 @@ const darkColors = {
 
   // Button colors
   buttonPrimary: '#FFC107',
-  buttonSecondary: 'rgba(43, 42, 42, 1)',
+  buttonSecondary: 'rgba(99, 99, 99, 1)',
 
   // Gradient colors
   gradientOverlayBottom: ['rgba(0,0,0,0)', 'rgba(0,0,0,0.8)', 'rgba(0,0,0,1)'],
@@ -44,6 +45,7 @@ const darkColors = {
   // Other colors
   white: '#FFFFFF',
   black: '#000000',
+  gray: '#686868ff',
   transparent: 'transparent',
 };
 
@@ -58,12 +60,12 @@ const lightColors = {
 
   // Text colors
   textPrimary: '#000000',
-  textSecondary: '#666666',
+  textSecondary: '#928787ff',
   textDark: '#000000',
 
   // Button colors
   buttonPrimary: '#FFC107',
-  buttonSecondary: 'rgba(104, 96, 96, 1)',
+  buttonSecondary: 'rgba(230, 229, 229, 0.94)',
 
   // Gradient colors
   gradientOverlayBottom: [
@@ -81,6 +83,7 @@ const lightColors = {
   // Other colors
   white: '#FFFFFF',
   black: '#000000',
+  gray: '#686868ff',
   transparent: 'transparent',
 };
 

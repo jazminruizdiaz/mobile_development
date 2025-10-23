@@ -22,7 +22,7 @@ export const InputText = ({
   return (
     <View style={styles.container}>
       <TextInput
-        style={[styles.input, inpuStyle]}
+        style={[styles.input, inpuStyle, {color: colors.textPrimary}]}
         placeholder={placeholder}
         placeholderTextColor={colors.textSecondary}
         value={value}

@@ -56,13 +56,12 @@ export const SearchFilter = ({
           variant="custom"
           style={[styles.searchButton, {backgroundColor: colors.buttonPrimary}]}
         > 
-          {/* <FontAwesome6
-            name="heart"
+          <FontAwesome6
+            name="magnifying-glass"
             size={18}
-            //color={isSearchEnabled ? colors.black : colors.buttonSecondary}
-            color="red"
+            color={isSearchEnabled ? colors.black : colors.buttonSecondary}
             iconStyle="solid"
-          /> */}
+          />
         </Button>
       </View>
     </View>

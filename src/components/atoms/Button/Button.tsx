@@ -35,8 +35,11 @@ export const Button = ({
     : [
         buttonStyles.button,
         variant === 'primary'
-          ? { backgroundColor: colors.buttonPrimary }
-          : { backgroundColor: colors.buttonSecondary },
+        ? { backgroundColor: colors.buttonPrimary }
+        : variant === 'secondary'
+        ? { backgroundColor: colors.buttonSecondary }
+        : { backgroundColor: colors.gray },
+
         disabled && buttonStyles.disabled,
         style,
       ].filter(Boolean);
@@ -54,14 +57,19 @@ export const Button = ({
 
   
   return (
-    <TouchableOpacity
+   <TouchableOpacity
       style={buttonStyle}
       onPress={onPress}
       disabled={disabled}
       activeOpacity={0.7}
     >
-      {children ? children : <TextCustom style={textStyleArray}>{title}</TextCustom>}
+      {children ? (
+        children
+      ) : (
+        <TextCustom style={textStyleArray}>{title}</TextCustom>
+      )}
     </TouchableOpacity>
+
   );
 };
 

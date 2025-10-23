@@ -54,10 +54,10 @@ export const Dropdown = ({
         onChangeValue={handleValueChange}
         placeholder={placeholder}
         searchable={searchable}
-        style={[styles.dropdown, {backgroundColor: colors.backgroundLight}]}
+        style={[styles.dropdown, {backgroundColor: colors.buttonSecondary}]}
         textStyle={[styles.text, {
     color: colors.textPrimary}]}
-        dropDownContainerStyle={styles.dropdown}
+        dropDownContainerStyle={[styles.dropdown, {backgroundColor: colors.buttonSecondary}] }
         maxHeight={300}
       />
     </View>
