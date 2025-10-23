@@ -21,14 +21,16 @@ export const useSearchFilter = (): UseSearchFilterReturn => {
   const [activeGenre, setActiveGenre] = useState<string | null>(DEFAULT_GENRE);
 
   useEffect(() => {
-    if (!inputText.trim()) {
-      setActiveQuery('');
-      setActiveGenre(selectedGenre ?? DEFAULT_GENRE);
-    }
-  }, [inputText, selectedGenre]);
+    setActiveGenre(selectedGenre ?? DEFAULT_GENRE);
+    setActiveQuery('');
+    setInputText('');
+  }, [selectedGenre]);
 
   const handleChangeText = (text: string) => {
     setInputText(text);
+    if (!text.trim()) {
+      setActiveQuery('');
+    }
   };
 
   const handleSelectedGenre = (genreId: string | null) => {

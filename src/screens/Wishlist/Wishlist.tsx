@@ -8,7 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { SearchFilter } from '../../components/molecules/SearchFilter/SearchFilter';
 import { View } from 'react-native';
 import { useSearchFilter } from '../../hooks/useSearchFilter';
-import { Movie } from '../../types/Movie';
+import { DEFAULT_GENRE, Movie } from '../../types/Movie';
 import { useGenresOptions } from '../../hooks/useGenresOptions';
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -41,9 +41,11 @@ const Wishlist = () => {
     if (!isSearchActive) return movies;
 
     return movies.filter(movie => {
-      const matchesGenre = activeGenre
-        ? movie.genre_ids.includes(Number(activeGenre))
-        : true;
+      const matchesGenre =
+        activeGenre !== DEFAULT_GENRE
+          ? Array.isArray(movie.genre_ids) &&
+            movie.genre_ids.includes(Number(activeGenre))
+          : true;
 
       const matchesQuery = activeQuery
         ? movie.title.toLowerCase().includes(activeQuery.toLowerCase())
