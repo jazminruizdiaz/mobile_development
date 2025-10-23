@@ -1,4 +1,4 @@
-import { View, TouchableOpacity, Pressable } from 'react-native';
+import { TouchableOpacity, Pressable } from 'react-native';
 import { Movie } from '../../../../types/Movie';
 import { styles } from './styles';
 import { TextCustom } from '../../../../components/atoms/Text/TextCustom';
