@@ -16,7 +16,6 @@ import { MovieItem } from '../Movie/components/items/MovieItem';
 export const Profile = () => {
   const { wishlist, clearWishList } = useWishlist();
   const navigation = useNavigation<NavigationProp<StackParams>>();
-  const [isDarkMode, setIsDarkMode] = useState(true);
   const { data, loading } = useGenres(true);
   const genres = data?.genres ?? [];
   const colors = useThemedColors();
@@ -67,8 +66,8 @@ export const Profile = () => {
     navigation.navigate('Wishlist');
   };
 
-  
-    const { toggleThemeMode, themeMode } = useTheme();
+
+  const { toggleThemeMode, themeMode } = useTheme();
   const moviesInWishlist = useMemo(() => wishlist.length, [wishlist]);
 
   const isDark = themeMode === "dark";
@@ -92,23 +91,23 @@ export const Profile = () => {
         <View style={styles.section}>
           <TextCustom style={styles.sectionTitle}>Wishlist Stats</TextCustom>
           <View style={styles.statsRow}>
-            <View style={[styles.statCard, {backgroundColor: colors.backgroundLight}]}>
-              <TextCustom style={[styles.statNumber, {color: colors.primary}]}>
+            <View style={[styles.statCard, { backgroundColor: colors.backgroundLight }]}>
+              <TextCustom style={[styles.statNumber, { color: colors.primary }]}>
                 {moviesInWishlist}
               </TextCustom>
-              <TextCustom style={[styles.statLabel, {color: colors.textSecondary}]}>Wishlist Movies</TextCustom>
+              <TextCustom style={[styles.statLabel, { color: colors.textSecondary }]}>Wishlist Movies</TextCustom>
             </View>
 
-            <View style={[styles.statCard, {backgroundColor: colors.backgroundLight}]}>
-              <TextCustom style={[styles.statNumber, {color: colors.primary}]}>
+            <View style={[styles.statCard, { backgroundColor: colors.backgroundLight }]}>
+              <TextCustom style={[styles.statNumber, { color: colors.primary }]}>
                 {averageRating || 0}
               </TextCustom>
-              <TextCustom style={[styles.statLabel, {color: colors.textSecondary}]}>Avg Rating</TextCustom>
+              <TextCustom style={[styles.statLabel, { color: colors.textSecondary }]}>Avg Rating</TextCustom>
             </View>
 
-            <View style={[styles.statCard, {backgroundColor: colors.backgroundLight}]}>
-              <TextCustom style={[styles.statNumber, {color: colors.primary}]}>{genreVariety}</TextCustom>
-              <TextCustom style={[styles.statLabel, {color: colors.textSecondary}]}>Genres Movies</TextCustom>
+            <View style={[styles.statCard, { backgroundColor: colors.backgroundLight }]}>
+              <TextCustom style={[styles.statNumber, { color: colors.primary }]}>{genreVariety}</TextCustom>
+              <TextCustom style={[styles.statLabel, { color: colors.textSecondary }]}>Genres Movies</TextCustom>
             </View>
           </View>
         </View>
@@ -117,20 +116,20 @@ export const Profile = () => {
           <Button
             title="My Wishlist"
             onPress={handleGoToWishlist}
-            variant="custom"
+            variant="primary"
             style={styles.button}
             textStyle={styles.buttonText}
           />
           <Button
             title="Clear Wishlist"
-            variant="custom"
+            variant="primary"
             onPress={clearWishList}
             style={styles.button}
             textStyle={styles.buttonText}
           />
           <Button
             title="Logout"
-            variant="custom"
+            variant="third"
             onPress={() => console.log('logout')}
             style={styles.buttonLogout}
             textStyle={styles.buttonText}
@@ -142,13 +141,13 @@ export const Profile = () => {
           <View style={styles.toggleRow}>
             <TextCustom style={styles.toggleLabel}>Dark Mode</TextCustom>
             <Switch
-              value={isDarkMode}
-              onValueChange={setIsDarkMode}
+              value={isDark}
+              onValueChange={toggleThemeMode}
               trackColor={{
                 false: colors.buttonSecondary,
                 true: colors.primary,
               }}
-              thumbColor={isDarkMode ? colors.primary : colors.white}
+              thumbColor={isDark ? colors.primary : colors.white}
             />
           </View>
         </View>
@@ -160,7 +159,7 @@ export const Profile = () => {
                   <TextCustom style={styles.sectionTitle}>
                     Favorite Genre:
                   </TextCustom>
-                  <TextCustom style={[styles.subSectionSubtitle, {color: colors.primary}]}>
+                  <TextCustom style={[styles.subSectionSubtitle, { color: colors.primary }]}>
                     {favoriteGenre.name} Movies
                   </TextCustom>
                 </View>
