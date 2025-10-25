@@ -22,25 +22,26 @@ export const MovieItem = ({ movie, style, showToggle = true }: Props) => {
   const { isInWishlist, toggleWishlist } = useWishlist();
   const { openMovieDetails } = useMovieModal();
   const { poster_path, title, id } = movie;
-  const colors = useThemedColors();
-  
+  const  colors = useThemedColors();
   return (
     <TouchableOpacity
       style={styles.movieItemContainer}
       onPress={() => openMovieDetails(id)}
     >
-      <MovieCard posterPath={poster_path} style={styles.movieCard} />
-      <Pressable
-        style={styles.wishlistIcon}
-        onPress={e => {
-          e.stopPropagation();
-          toggleWishlist(movie);
-        }}
-      >
-        <TextCustom style={[styles.wishlistIconText, { color: colors.white }]}>
+      <MovieCard posterPath={poster_path} style={style ?? styles.movieCard} />
+      {showToggle && (
+        <Pressable
+          style={styles.wishlistIcon}
+          onPress={e => {
+            e.stopPropagation();
+            toggleWishlist(movie);
+          }}
+        >
+          <TextCustom style={[styles.wishlistIconText, { color: colors.white }]}>
           {isInWishlist(id) ? '✓' : '+'}
         </TextCustom>
-      </Pressable>
+        </Pressable>
+      )}
       <TextCustom style={[styles.movieTitle, { color: colors.textPrimary }]} numberOfLines={1}>
         {title}
       </TextCustom>

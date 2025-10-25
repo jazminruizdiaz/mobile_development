@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { View, Image, Switch, ScrollView, FlatList } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { Button } from '../../components/atoms/Button/Button';
@@ -8,17 +8,21 @@ import { useWishlist } from '../../contexts/Wishlist/WishlistContext';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackParams } from '../../types/StackNavigator';
 import { ScreenHeader } from '../../components/molecules/ScreenHeader/ScreenHeader';
-import { useThemedColors } from '../../hooks/useThemedColors';
-import { useTheme } from '../../contexts/Theme/ThemeContext';
 import { useGenres } from '../../hooks/useGenre';
 import { MovieItem } from '../Movie/components/items/MovieItem';
+import { useThemedColors } from '../../hooks/useThemedColors'; 
+import { useTheme } from '../../contexts/Theme/ThemeContext';
 
 export const Profile = () => {
+  const colors = useThemedColors(); 
+
   const { wishlist, clearWishList } = useWishlist();
   const navigation = useNavigation<NavigationProp<StackParams>>();
-  const { data, loading } = useGenres(true);
-  const genres = data?.genres ?? [];
-  const colors = useThemedColors();
+  const { data } = useGenres(true);
+  const {themeMode, toggleThemeMode} = useTheme();
+  const genres = useMemo(() => data?.genres ?? [], [data]);
+
+  const isDark = themeMode === 'dark';
 
   const user = useMemo(
     () => ({
@@ -66,30 +70,26 @@ export const Profile = () => {
     navigation.navigate('Wishlist');
   };
 
-
-  const { toggleThemeMode, themeMode } = useTheme();
   const moviesInWishlist = useMemo(() => wishlist.length, [wishlist]);
 
-  const isDark = themeMode === "dark";
   return (
-    <SafeAreaView
-      style={[styles.container, { backgroundColor: colors.background }]}
-    >
+    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
       <ScreenHeader title="Profile" />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.profileSection}>
-          <View style={styles.avatarContainer}>
+          <View style={[styles.avatarContainer, { borderColor: colors.primary }]}>
             <Image
               source={{ uri: user.profilePicture }}
               style={styles.avatar}
               resizeMode="cover"
             />
           </View>
-          <TextCustom style={styles.name}>{user.name}</TextCustom>
-          <TextCustom style={styles.email}>{user.email}</TextCustom>
+          <TextCustom style={[styles.name, { color: colors.textPrimary }]}>{user.name}</TextCustom>
+          <TextCustom style={[styles.email, { color: colors.textSecondary }]}>{user.email}</TextCustom>
         </View>
+
         <View style={styles.section}>
-          <TextCustom style={styles.sectionTitle}>Wishlist Stats</TextCustom>
+          <TextCustom style={[styles.sectionTitle, { color: colors.textPrimary }]}>Wishlist Stats</TextCustom>
           <View style={styles.statsRow}>
             <View style={[styles.statCard, { backgroundColor: colors.backgroundLight }]}>
               <TextCustom style={[styles.statNumber, { color: colors.primary }]}>
@@ -111,35 +111,36 @@ export const Profile = () => {
             </View>
           </View>
         </View>
+
         <View style={styles.section}>
-          <TextCustom style={styles.sectionTitle}>Quick Actions</TextCustom>
+          <TextCustom style={[styles.sectionTitle, { color: colors.textPrimary }]}>Quick Actions</TextCustom>
           <Button
             title="My Wishlist"
             onPress={handleGoToWishlist}
-            variant="primary"
-            style={styles.button}
-            textStyle={styles.buttonText}
+            variant="custom"
+            style={[styles.button, { backgroundColor: colors.primary }]}
+            textStyle={[styles.buttonText, { color: colors.textDark }]}
           />
           <Button
             title="Clear Wishlist"
-            variant="primary"
+            variant="custom"
             onPress={clearWishList}
-            style={styles.button}
-            textStyle={styles.buttonText}
+            style={[styles.button, { backgroundColor: colors.primary }]}
+            textStyle={[styles.buttonText, { color: colors.textDark }]}
           />
           <Button
             title="Logout"
-            variant="third"
+            variant="custom"
             onPress={() => console.log('logout')}
             style={styles.buttonLogout}
-            textStyle={styles.buttonText}
+            textStyle={[styles.buttonText, { color: colors.textDark }]}
           />
         </View>
 
         <View style={styles.section}>
-          <TextCustom style={styles.sectionTitle}>Appearance</TextCustom>
-          <View style={styles.toggleRow}>
-            <TextCustom style={styles.toggleLabel}>Dark Mode</TextCustom>
+          <TextCustom style={[styles.sectionTitle, { color: colors.textPrimary }]}>Appearance</TextCustom>
+          <View style={[styles.toggleRow, { backgroundColor: colors.backgroundLight }]}>
+            <TextCustom style={[styles.toggleLabel, { color: colors.textPrimary }]}>Dark Mode</TextCustom>
             <Switch
               value={isDark}
               onValueChange={toggleThemeMode}
@@ -151,37 +152,36 @@ export const Profile = () => {
             />
           </View>
         </View>
-        {wishlist.length > 0 && (
+
+        {wishlist.length > 0 && favoriteGenre && (
           <View style={styles.section}>
-            {favoriteGenre && (
-              <View style={styles.favoriteGenreSection}>
-                <View style={styles.containerFav}>
-                  <TextCustom style={styles.sectionTitle}>
-                    Favorite Genre:
-                  </TextCustom>
-                  <TextCustom style={[styles.subSectionSubtitle, { color: colors.primary }]}>
-                    {favoriteGenre.name} Movies
-                  </TextCustom>
-                </View>
-                <FlatList
-                  horizontal
-                  showsHorizontalScrollIndicator={false}
-                  data={wishlist.filter(movie =>
-                    movie.genre_ids?.includes(favoriteGenre.id),
-                  )}
-                  keyExtractor={movie => movie.id.toString()}
-                  renderItem={({ item }) => (
-                    <View style={styles.movieCardSmall}>
-                      <MovieItem
-                        movie={item}
-                        style={styles.moviePosterSmall}
-                        showToggle={false}
-                      />
-                    </View>
-                  )}
-                />
+            <View style={styles.favoriteGenreSection}>
+              <View style={styles.containerFav}>
+                <TextCustom style={[styles.sectionTitle, { color: colors.textPrimary }]}>
+                  Favorite Genre:
+                </TextCustom>
+                <TextCustom style={[styles.subSectionSubtitle, { color: colors.primary }]}>
+                  {favoriteGenre.name} Movies
+                </TextCustom>
               </View>
-            )}
+              <FlatList
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                data={wishlist.filter(movie =>
+                  movie.genre_ids?.includes(favoriteGenre.id),
+                )}
+                keyExtractor={movie => movie.id.toString()}
+                renderItem={({ item }) => (
+                  <View style={styles.movieCardSmall}>
+                    <MovieItem
+                      movie={item}
+                      style={styles.moviePosterSmall}
+                      showToggle={false}
+                    />
+                  </View>
+                )}
+              />
+            </View>
           </View>
         )}
       </ScrollView>

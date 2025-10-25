@@ -79,6 +79,26 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '700',
   },
+  insightCard: {
+    borderRadius: 12,
+    padding: 16,
+    alignItems: 'flex-start',
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  insightText: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginBottom: 4,
+  },
+  insightSubText: {
+    fontSize: 14,
+  },
+  highlight: {
+    fontWeight: '700',
+  },
   statsRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -98,9 +118,13 @@ export const styles = StyleSheet.create({
     fontSize: 13,
     marginTop: 4,
   },
-
   favoriteGenreSection: {
     marginTop: 16,
+  },
+  subSectionTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginBottom: 8,
   },
   movieCardSmall: {
     width: 90,
@@ -112,6 +136,12 @@ export const styles = StyleSheet.create({
     height: 130,
     borderRadius: 8,
   },
+  movieTitleSmall: {
+    fontSize: 12,
+    textAlign: 'center',
+    marginTop: 4,
+    width: 90,
+  },
   favoriteGenreHeader: {
     marginBottom: 10,
   },
@@ -119,6 +149,9 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 6,
     fontWeight: '500',
+  },
+  highlightText: {
+    fontWeight: '700',
   },
   containerFav: {
     display: 'flex',
