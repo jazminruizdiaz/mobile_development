@@ -11,21 +11,27 @@ import { useThemedColors } from '../hooks/useThemedColors';
 const Tab = createBottomTabNavigator();
 
 export const TabNavigator = () => {
-  const colors = useThemedColors(); 
+  const colors = useThemedColors();
   const tabOptions = useMemo(() => getTabOptions(colors), [colors]);
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         ...tabOptions,
-        tabBarIcon: ({ color, size }) => {
+        tabBarIcon: ({ color, size, focused }) => {
           const iconName = TAB_ICONS[route.name] as any;
+          const iconStyle =
+            route.name === 'Wishlist'
+              ? focused
+                ? 'solid'
+                : 'regular'
+              : 'solid';
 
           return (
             <FontAwesome6
               name={iconName || 'circle-question'}
               size={size * 0.75}
               color={color}
-              iconStyle="solid"
+              iconStyle={iconStyle}
             />
           );
         },

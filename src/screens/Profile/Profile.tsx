@@ -145,10 +145,10 @@ export const Profile = () => {
               value={isDark}
               onValueChange={toggleThemeMode}
               trackColor={{
-                false: colors.buttonSecondary,
+                false: colors.gray,
                 true: colors.primary,
               }}
-              thumbColor={isDark ? colors.primary : colors.white}
+              thumbColor={isDark ? colors.primary : colors.gray}
             />
           </View>
         </View>

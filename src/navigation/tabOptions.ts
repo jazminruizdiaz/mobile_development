@@ -4,7 +4,7 @@ import type { ThemeColors } from '../constants/colorsFun';
 export const TAB_ICONS: Record<string, string> = {
   Home: 'house',
   Search: 'magnifying-glass',
-  Wishlist: 'heart',
+  Wishlist: 'bookmark',
   Profile: 'user',
 };
 

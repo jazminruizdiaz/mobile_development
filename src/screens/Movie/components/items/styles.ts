@@ -86,8 +86,4 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     zIndex: 3,
   },
-  wishlistIconText: {
-    fontSize: 20,
-    fontWeight: '800',
-  },
 });

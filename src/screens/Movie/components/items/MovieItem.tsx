@@ -1,16 +1,11 @@
-import {
-  TouchableOpacity,
-  Pressable,
-  StyleProp,
-  ImageStyle,
-} from 'react-native';
+import { TouchableOpacity, StyleProp, ImageStyle } from 'react-native';
 import { Movie } from '../../../../types/Movie';
 import { styles } from './styles';
 import { TextCustom } from '../../../../components/atoms/Text/TextCustom';
 import { MovieCard } from '../items/MovieCard';
-import { useWishlist } from '../../../../contexts/Wishlist/WishlistContext';
 import { useMovieModal } from '../../../../contexts/MovieModal/MovieModalContext';
 import { useThemedColors } from '../../../../hooks/useThemedColors';
+import { WishlistToggle } from '../../../../components/atoms/WishlistToggle/WishlistToggle';
 
 type Props = {
   movie: Movie;
@@ -19,10 +14,9 @@ type Props = {
 };
 
 export const MovieItem = ({ movie, style, showToggle = true }: Props) => {
-  const { isInWishlist, toggleWishlist } = useWishlist();
   const { openMovieDetails } = useMovieModal();
   const { poster_path, title, id } = movie;
-  const  colors = useThemedColors();
+  const colors = useThemedColors();
   return (
     <TouchableOpacity
       style={styles.movieItemContainer}
@@ -30,19 +24,12 @@ export const MovieItem = ({ movie, style, showToggle = true }: Props) => {
     >
       <MovieCard posterPath={poster_path} style={style ?? styles.movieCard} />
       {showToggle && (
-        <Pressable
-          style={styles.wishlistIcon}
-          onPress={e => {
-            e.stopPropagation();
-            toggleWishlist(movie);
-          }}
-        >
-          <TextCustom style={[styles.wishlistIconText, { color: colors.white }]}>
-          {isInWishlist(id) ? '✓' : '+'}
-        </TextCustom>
-        </Pressable>
+        <WishlistToggle movie={movie} containerStyle={styles.wishlistIcon} />
       )}
-      <TextCustom style={[styles.movieTitle, { color: colors.textPrimary }]} numberOfLines={1}>
+      <TextCustom
+        style={[styles.movieTitle, { color: colors.textPrimary }]}
+        numberOfLines={1}
+      >
         {title}
       </TextCustom>
     </TouchableOpacity>
