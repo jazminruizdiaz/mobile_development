@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { ViewStyle, StyleProp, View } from 'react-native';
+import { View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { styles } from './styles';
+import { useThemedColors } from '../../../hooks/useThemedColors';
 
 export interface DropdownOptions {
   label: string;
@@ -39,6 +40,7 @@ export const Dropdown = ({
   const handleValueChange = (value: string | null) => {
     onSelect(value);
   };
+  const colors = useThemedColors();
 
   return (
     <View>
@@ -52,9 +54,10 @@ export const Dropdown = ({
         onChangeValue={handleValueChange}
         placeholder={placeholder}
         searchable={searchable}
-        style={styles.dropdown}
-        textStyle={styles.text}
-        dropDownContainerStyle={styles.dropdown}
+        style={[styles.dropdown, {backgroundColor: colors.buttonSecondary}]}
+        textStyle={[styles.text, {
+    color: colors.textPrimary}]}
+        dropDownContainerStyle={[styles.dropdown, {backgroundColor: colors.buttonSecondary}] }
         maxHeight={300}
       />
     </View>

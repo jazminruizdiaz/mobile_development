@@ -1,7 +1,7 @@
 import { StyleProp, TextStyle, View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { styles } from './styles';
-import { colors } from '../../../constants/colors';
+import { useThemedColors } from '../../../hooks/useThemedColors';
 
 export interface InputTextProps {
   value: string;
@@ -18,10 +18,11 @@ export const InputText = ({
   placeholder = 'Search...',
   inpuStyle,
 }: InputTextProps) => {
+  const colors = useThemedColors();
   return (
     <View style={styles.container}>
       <TextInput
-        style={[styles.input, inpuStyle]}
+        style={[styles.input, inpuStyle, {color: colors.textPrimary}]}
         placeholder={placeholder}
         placeholderTextColor={colors.textSecondary}
         value={value}

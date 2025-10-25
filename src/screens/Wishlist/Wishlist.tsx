@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { TextCustom } from '../../components/atoms/Text/TextCustom';
 import { useWishlist } from '../../contexts/Wishlist/WishlistContext';
-import { MovieGrid } from '../Movie/components/grid/MovieGrid';
+import { MovieGrid } from '../../components/organisms/MovieGrid/MovieGrid';
 import { ScreenHeader } from '../../components/molecules/ScreenHeader/ScreenHeader';
 import { styles } from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -11,10 +11,11 @@ import { useSearchFilter } from '../../hooks/useSearchFilter';
 import { DEFAULT_GENRE, Movie } from '../../types/Movie';
 import { useGenresOptions } from '../../hooks/useGenresOptions';
 import { useFocusEffect } from '@react-navigation/native';
+import { useThemedColors } from '../../hooks/useThemedColors';
 
 const Wishlist = () => {
   const { wishlist } = useWishlist();
-
+  const colors = useThemedColors();
   const {
     inputText,
     selectedGenre,
@@ -58,7 +59,14 @@ const Wishlist = () => {
   const filteredMovies = filterMovies(wishlist);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[
+        styles.container,
+        {
+          backgroundColor: colors.background,
+        },
+      ]}
+    >
       <ScreenHeader title="Wishlist" />
 
       <SearchFilter

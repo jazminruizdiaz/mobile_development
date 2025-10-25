@@ -1,18 +1,23 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../../constants/colors';
 
 export const styles = StyleSheet.create({
   container: {
     gap: 16,
     marginBottom: 24,
+    
   },
   searchRow: {
     flexDirection: 'row',
     gap: 0,
     alignItems: 'center',
+    
   },
   inputWrapper: {
     flex: 1,
+    borderWidth: 1,
+    borderBottomLeftRadius:10,
+    borderTopLeftRadius:10,
+    height: 44.2,
   },
   searchButton: {
     width: 50,
@@ -22,7 +27,6 @@ export const styles = StyleSheet.create({
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
     borderRadius: 8,
-    backgroundColor: colors.buttonPrimary,
     alignItems: 'center',
     justifyContent: 'center',
   },

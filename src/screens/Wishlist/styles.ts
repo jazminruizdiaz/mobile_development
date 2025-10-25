@@ -1,11 +1,9 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../constants/colors";
 
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingHorizontal: 40,
-        backgroundColor: colors.background,
     },
     subtitle: {
         textAlign: 'center',

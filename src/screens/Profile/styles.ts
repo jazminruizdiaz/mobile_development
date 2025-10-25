@@ -1,10 +1,8 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../constants/colors';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
     paddingHorizontal: 40,
   },
   profileSection: {
@@ -17,7 +15,6 @@ export const styles = StyleSheet.create({
     overflow: 'hidden',
     marginBottom: 20,
     borderWidth: 2,
-    borderColor: colors.primary,
   },
   avatar: {
     width: '100%',
@@ -29,24 +26,20 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 6,
     borderRadius: 20,
-    backgroundColor: colors.buttonSecondary,
   },
   statBadgeText: {
     fontSize: 14,
     fontWeight: '600',
-    color: colors.textPrimary,
     textAlign: 'center',
   },
   name: {
     fontSize: 25,
     fontWeight: '600',
     marginBottom: 8,
-    color: colors.textPrimary,
   },
   email: {
     fontSize: 16,
     fontWeight: '400',
-    color: colors.textSecondary,
   },
   section: {
     marginTop: 24,
@@ -56,10 +49,8 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
     marginBottom: 16,
     paddingHorizontal: 4,
-    color: colors.textPrimary,
   },
   button: {
-    backgroundColor: colors.primary,
     paddingVertical: 12,
     borderRadius: 12,
     alignItems: 'center',
@@ -70,10 +61,8 @@ export const styles = StyleSheet.create({
     paddingVertical: 12,
     borderRadius: 12,
     alignItems: 'center',
-    marginBottom: 12,
   },
   buttonText: {
-    color: colors.textDark,
     fontSize: 16,
     fontWeight: '700',
   },
@@ -84,15 +73,12 @@ export const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 16,
     borderRadius: 12,
-    backgroundColor: colors.backgroundLight,
   },
   toggleLabel: {
     fontSize: 16,
     fontWeight: '700',
-    color: colors.textPrimary,
   },
   insightCard: {
-    backgroundColor: colors.backgroundLight,
     borderRadius: 12,
     padding: 16,
     alignItems: 'flex-start',
@@ -103,16 +89,13 @@ export const styles = StyleSheet.create({
   },
   insightText: {
     fontSize: 16,
-    color: colors.textPrimary,
     fontWeight: '600',
     marginBottom: 4,
   },
   insightSubText: {
     fontSize: 14,
-    color: colors.textSecondary,
   },
   highlight: {
-    color: colors.primary,
     fontWeight: '700',
   },
   statsRow: {
@@ -122,7 +105,6 @@ export const styles = StyleSheet.create({
   statCard: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: colors.backgroundLight,
     borderRadius: 12,
     paddingVertical: 12,
     marginHorizontal: 4,
@@ -130,21 +112,14 @@ export const styles = StyleSheet.create({
   statNumber: {
     fontSize: 16,
     fontWeight: '700',
-    color: colors.primary,
   },
   statLabel: {
     fontSize: 13,
-    color: colors.textSecondary,
     marginTop: 4,
-  },
-
-  favoriteGenreSection: {
-    marginTop: 16,
   },
   subSectionTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: colors.textPrimary,
     marginBottom: 8,
   },
   movieCardSmall: {
@@ -158,7 +133,6 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
   },
   movieTitleSmall: {
-    color: colors.textPrimary,
     fontSize: 12,
     textAlign: 'center',
     marginTop: 4,
@@ -169,12 +143,10 @@ export const styles = StyleSheet.create({
   },
   subSectionSubtitle: {
     fontSize: 16,
-    color: colors.primary,
     marginBottom: 6,
     fontWeight: '500',
   },
   highlightText: {
-    color: colors.primary,
     fontWeight: '700',
   },
   containerFav: {

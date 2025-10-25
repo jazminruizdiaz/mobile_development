@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../../constants/colors';
 
 export const styles = StyleSheet.create({
   container: {
@@ -8,11 +7,9 @@ export const styles = StyleSheet.create({
   },
   dropdown: {
     borderWidth: 1,
-    backgroundColor: colors.backgroundLight,
     paddingHorizontal: 16,
   },
   text: {
     fontSize: 16,
-    color: colors.textPrimary,
   },
 });
