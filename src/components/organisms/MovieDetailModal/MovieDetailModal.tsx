@@ -1,12 +1,12 @@
 import { Modal, View, ScrollView, ActivityIndicator } from 'react-native';
-import { TextCustom } from '../../../../components/atoms/Text/TextCustom';
-import { Button } from '../../../../components/atoms/Button/Button';
+import { TextCustom } from '../../atoms/Text/TextCustom';
+import { Button } from '../../atoms/Button/Button';
 import { modalStyles } from './styles';
-import { useThemedColors } from '../../../../hooks/useThemedColors';
-import { useMovieModal } from '../../../../contexts/MovieModal/MovieModalContext';
-import { useMovieDetails } from '../../../../hooks/useMovieDetails';
+import { useThemedColors } from '../../../hooks/useThemedColors';
+import { useMovieModal } from '../../../contexts/MovieModal/MovieModalContext';
+import { useMovieDetails } from '../../../hooks/useMovieDetails';
 import { CastList } from './component/Cast/CastList';
-import { useMovieCredits } from '../../../../hooks/useMovieCredits';
+import { useMovieCredits } from '../../../hooks/useMovieCredits';
 
 export const MovieDetailModal = () => {
   const { selectedMovieId, isModalVisible, closeMovieDetails } = useMovieModal();

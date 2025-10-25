@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { ActivityIndicator, Image, View } from 'react-native';
 import { TMDB_IMAGE_BASE_URL } from '@env';
-import { CastMember } from '../../../../../../types/MovieCast';
+import { CastMember } from '../../../../../types/MovieCast';
 import { styles } from './styles';
-import { useThemedColors } from '../../../../../../hooks/useThemedColors';
-import { TextCustom } from '../../../../../../components/atoms/Text/TextCustom';
+import { useThemedColors } from '../../../../../hooks/useThemedColors';
+import { TextCustom } from '../../../../atoms/Text/TextCustom';
 
-const DEFAULT_CAST_IMG = require('../../../../../../assets/defaultcastimg.jpeg');
+const DEFAULT_CAST_IMG = require('../../../../../assets/defaultcastimg.jpeg');
 
 type CastItemProps = {
   member: CastMember;

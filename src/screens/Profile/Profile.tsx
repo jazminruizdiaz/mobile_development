@@ -9,17 +9,17 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackParams } from '../../types/StackNavigator';
 import { ScreenHeader } from '../../components/molecules/ScreenHeader/ScreenHeader';
 import { useGenres } from '../../hooks/useGenre';
-import { MovieItem } from '../Movie/components/items/MovieItem';
-import { useThemedColors } from '../../hooks/useThemedColors'; 
+import { MovieItem } from '../../components/molecules/MovieItems/MovieItem';
+import { useThemedColors } from '../../hooks/useThemedColors';
 import { useTheme } from '../../contexts/Theme/ThemeContext';
 
 export const Profile = () => {
-  const colors = useThemedColors(); 
+  const colors = useThemedColors();
 
   const { wishlist, clearWishList } = useWishlist();
   const navigation = useNavigation<NavigationProp<StackParams>>();
   const { data } = useGenres(true);
-  const {themeMode, toggleThemeMode} = useTheme();
+  const { themeMode, toggleThemeMode } = useTheme();
   const genres = useMemo(() => data?.genres ?? [], [data]);
 
   const isDark = themeMode === 'dark';
@@ -73,47 +73,98 @@ export const Profile = () => {
   const moviesInWishlist = useMemo(() => wishlist.length, [wishlist]);
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: colors.background }]}
+    >
       <ScreenHeader title="Profile" />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.profileSection}>
-          <View style={[styles.avatarContainer, { borderColor: colors.primary }]}>
+          <View
+            style={[styles.avatarContainer, { borderColor: colors.primary }]}
+          >
             <Image
               source={{ uri: user.profilePicture }}
               style={styles.avatar}
               resizeMode="cover"
             />
           </View>
-          <TextCustom style={[styles.name, { color: colors.textPrimary }]}>{user.name}</TextCustom>
-          <TextCustom style={[styles.email, { color: colors.textSecondary }]}>{user.email}</TextCustom>
+          <TextCustom style={[styles.name, { color: colors.textPrimary }]}>
+            {user.name}
+          </TextCustom>
+          <TextCustom style={[styles.email, { color: colors.textSecondary }]}>
+            {user.email}
+          </TextCustom>
         </View>
 
         <View style={styles.section}>
-          <TextCustom style={[styles.sectionTitle, { color: colors.textPrimary }]}>Wishlist Stats</TextCustom>
+          <TextCustom
+            style={[styles.sectionTitle, { color: colors.textPrimary }]}
+          >
+            Wishlist Stats
+          </TextCustom>
           <View style={styles.statsRow}>
-            <View style={[styles.statCard, { backgroundColor: colors.backgroundLight }]}>
-              <TextCustom style={[styles.statNumber, { color: colors.primary }]}>
+            <View
+              style={[
+                styles.statCard,
+                { backgroundColor: colors.backgroundLight },
+              ]}
+            >
+              <TextCustom
+                style={[styles.statNumber, { color: colors.primary }]}
+              >
                 {moviesInWishlist}
               </TextCustom>
-              <TextCustom style={[styles.statLabel, { color: colors.textSecondary }]}>Wishlist Movies</TextCustom>
+              <TextCustom
+                style={[styles.statLabel, { color: colors.textSecondary }]}
+              >
+                Wishlist Movies
+              </TextCustom>
             </View>
 
-            <View style={[styles.statCard, { backgroundColor: colors.backgroundLight }]}>
-              <TextCustom style={[styles.statNumber, { color: colors.primary }]}>
+            <View
+              style={[
+                styles.statCard,
+                { backgroundColor: colors.backgroundLight },
+              ]}
+            >
+              <TextCustom
+                style={[styles.statNumber, { color: colors.primary }]}
+              >
                 {averageRating || 0}
               </TextCustom>
-              <TextCustom style={[styles.statLabel, { color: colors.textSecondary }]}>Avg Rating</TextCustom>
+              <TextCustom
+                style={[styles.statLabel, { color: colors.textSecondary }]}
+              >
+                Avg Rating
+              </TextCustom>
             </View>
 
-            <View style={[styles.statCard, { backgroundColor: colors.backgroundLight }]}>
-              <TextCustom style={[styles.statNumber, { color: colors.primary }]}>{genreVariety}</TextCustom>
-              <TextCustom style={[styles.statLabel, { color: colors.textSecondary }]}>Genres Movies</TextCustom>
+            <View
+              style={[
+                styles.statCard,
+                { backgroundColor: colors.backgroundLight },
+              ]}
+            >
+              <TextCustom
+                style={[styles.statNumber, { color: colors.primary }]}
+              >
+                {genreVariety}
+              </TextCustom>
+              <TextCustom
+                style={[styles.statLabel, { color: colors.textSecondary }]}
+              >
+                Genres Movies
+              </TextCustom>
             </View>
           </View>
         </View>
 
         <View style={styles.section}>
-          <TextCustom style={[styles.sectionTitle, { color: colors.textPrimary }]}>Quick Actions</TextCustom>
+          <TextCustom
+            style={[styles.sectionTitle, { color: colors.textPrimary }]}
+          >
+            Quick Actions
+          </TextCustom>
           <Button
             title="My Wishlist"
             onPress={handleGoToWishlist}
@@ -138,9 +189,22 @@ export const Profile = () => {
         </View>
 
         <View style={styles.section}>
-          <TextCustom style={[styles.sectionTitle, { color: colors.textPrimary }]}>Appearance</TextCustom>
-          <View style={[styles.toggleRow, { backgroundColor: colors.backgroundLight }]}>
-            <TextCustom style={[styles.toggleLabel, { color: colors.textPrimary }]}>Dark Mode</TextCustom>
+          <TextCustom
+            style={[styles.sectionTitle, { color: colors.textPrimary }]}
+          >
+            Appearance
+          </TextCustom>
+          <View
+            style={[
+              styles.toggleRow,
+              { backgroundColor: colors.backgroundLight },
+            ]}
+          >
+            <TextCustom
+              style={[styles.toggleLabel, { color: colors.textPrimary }]}
+            >
+              Dark Mode
+            </TextCustom>
             <Switch
               value={isDark}
               onValueChange={toggleThemeMode}
@@ -155,12 +219,16 @@ export const Profile = () => {
 
         {wishlist.length > 0 && favoriteGenre && (
           <View style={styles.section}>
-            <View style={styles.favoriteGenreSection}>
+            <View>
               <View style={styles.containerFav}>
-                <TextCustom style={[styles.sectionTitle, { color: colors.textPrimary }]}>
+                <TextCustom
+                  style={[styles.sectionTitle, { color: colors.textPrimary }]}
+                >
                   Favorite Genre:
                 </TextCustom>
-                <TextCustom style={[styles.subSectionSubtitle, { color: colors.primary }]}>
+                <TextCustom
+                  style={[styles.subSectionSubtitle, { color: colors.primary }]}
+                >
                   {favoriteGenre.name} Movies
                 </TextCustom>
               </View>

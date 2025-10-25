@@ -1,9 +1,9 @@
 import { View, ImageSourcePropType, Image } from "react-native";
 
-import { Button } from "../../../../components/atoms/Button/Button";
-import { styles } from "./style";
-import { TextCustom } from "../../../../components/atoms/Text/TextCustom";
-import { useThemedColors } from "../../../../hooks/useThemedColors";
+import { Button } from '../../atoms/Button/Button';
+import { styles } from './styles';
+import { TextCustom } from '../../atoms/Text/TextCustom';
+import { useThemedColors } from '../../../hooks/useThemedColors';
 
 interface PromoProps {
   image: ImageSourcePropType;

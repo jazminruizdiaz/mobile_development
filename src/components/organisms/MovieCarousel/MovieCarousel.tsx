@@ -6,10 +6,10 @@ import Carousel, {
 } from 'react-native-reanimated-carousel';
 import { useSharedValue } from 'react-native-reanimated';
 import LinearGradient from 'react-native-linear-gradient';
-import { Movie } from '../../../../types/Movie';
+import { Movie } from '../../../types/Movie';
 import { MovieOverlay } from './MovieOverlay';
-import { MovieCard } from '../items/MovieCard';
-import { useThemedColors } from '../../../../hooks/useThemedColors';
+import { MovieCard } from '../../molecules/MovieItems/MovieCard';
+import { useThemedColors } from '../../../hooks/useThemedColors';
 import { styles } from './styles';
 
 const { width, height } = Dimensions.get('window');

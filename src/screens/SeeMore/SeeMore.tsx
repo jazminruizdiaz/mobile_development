@@ -1,6 +1,6 @@
 import { TextCustom } from '../../components/atoms/Text/TextCustom';
 import { ActivityIndicator, View } from 'react-native';
-import { MovieGrid } from '../Movie/components/grid/MovieGrid';
+import { MovieGrid } from '../../components/organisms/MovieGrid/MovieGrid';
 import { styles } from './styles';
 import { useMoviesByCompany } from '../../hooks/useMoviesByCompany';
 import { useMoviesByGenre } from '../../hooks/useMoviesByGenre';

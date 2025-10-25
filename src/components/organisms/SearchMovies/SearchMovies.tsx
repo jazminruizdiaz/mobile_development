@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react';
 import { View, ActivityIndicator } from 'react-native';
-import { TextCustom } from '../../../components/atoms/Text/TextCustom';
-import { styles } from '../styles';
-import { MovieGrid } from '../../Movie/components/grid/MovieGrid';
+import { TextCustom } from '../../atoms/Text/TextCustom';
+import { styles } from './styles';
+import { MovieGrid } from '../MovieGrid/MovieGrid';
 import { useSearchMoviesByName } from '../../../hooks/useSearchMoviesByName';
 import { usePopularMovies } from '../../../hooks/usePopularMovies';
-import { SearchFilter } from '../../../components/molecules/SearchFilter/SearchFilter';
+import { SearchFilter } from '../../molecules/SearchFilter/SearchFilter';
 import { useMoviesByGenre } from '../../../hooks/useMoviesByGenre';
 import { useSearchFilter } from '../../../hooks/useSearchFilter';
 import { useGenresOptions } from '../../../hooks/useGenresOptions';
@@ -45,7 +45,9 @@ export const SearchMovies = () => {
 
   const filteredSearchResults = hasQuery
     ? (searchData?.results ?? []).filter(movie =>
-        hasGenre ? movie.genre_ids.includes(Number(activeGenre)) : true,
+        hasGenre && Array.isArray(movie.genre_ids)
+          ? movie.genre_ids.includes(Number(activeGenre))
+          : true,
       )
     : [];
 
@@ -80,9 +82,17 @@ export const SearchMovies = () => {
           onSelectedGenre={handleSelectedGenre}
           genreOptions={genreOptions}
         />
-        <View style={[styles.loadingContainer, { backgroundColor: colors.background }]}>
+        <View
+          style={[
+            styles.loadingContainer,
+            { backgroundColor: colors.background },
+          ]}
+        >
           <ActivityIndicator size="large" color={colors.primary} />
-          <TextCustom variant="body" style={[styles.loadingText, { color: colors.textPrimary }]}>
+          <TextCustom
+            variant="body"
+            style={[styles.loadingText, { color: colors.textPrimary }]}
+          >
             Loading movies...
           </TextCustom>
         </View>
