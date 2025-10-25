@@ -2,7 +2,11 @@
 
 ## Description
 
-This is a mobile app for searching and managing a movie wishlist, built with React Native and TypeScript. It allows users to explore movies by genre, view details (description, rating, duration, original language, genres, cast), manage a wishlist, check personal statistics, use quick actions, and see favorite genres. The app features dark/light theme support and modern navigation. It consumes the TMDB API (https://developer.themoviedb.org).
+This is a mobile app for searching and managing a movie wishlist, built with React Native and TypeScript. It allows users to explore movies by genre, view details (description, rating, duration, original language, genres, cast), manage a wishlist, check personal statistics, use quick actions, and see favorite genres. The app features dark/light theme support and modern navigation. It consumes the [TMDB API](https://developer.themoviedb.org).
+
+## Demo
+
+[Watch the demo video](https://drive.google.com/file/d/1_Y7ULOhOcdYihcnisn6O9wQy2nWyp-ow/view?usp=drive_link)
 
 ## Main Features
 
@@ -12,14 +16,14 @@ This is a mobile app for searching and managing a movie wishlist, built with Rea
 - Wishlist statistics (e.g., count by wishlist movies)
 - Quick actions and favorite genres list
 - Dark/light theme support
-- Intuitive navigation and modern UI (inspired by Figma design (https://www.figma.com/community/file/1126286295256197533/movies-mobile-app-home-light-dark))
+- Intuitive navigation and modern UI (inspired by [this Figma design](https://www.figma.com/community/file/1126286295256197533/movies-mobile-app-home-light-dark))
 
 ## Requirements
 
 - Node.js
 - React Native CLI
 - iOS/Android emulator or a physical device
-- TMDB account and API Key (https://developer.themoviedb.org)
+- [TMDB account and API Key](https://developer.themoviedb.org)
 
 ## Installation and Setup
 
