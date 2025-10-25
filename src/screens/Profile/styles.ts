@@ -61,7 +61,6 @@ export const styles = StyleSheet.create({
     paddingVertical: 12,
     borderRadius: 12,
     alignItems: 'center',
-    marginBottom: 12,
   },
   buttonText: {
     fontSize: 16,
@@ -117,9 +116,6 @@ export const styles = StyleSheet.create({
   statLabel: {
     fontSize: 13,
     marginTop: 4,
-  },
-  favoriteGenreSection: {
-    marginTop: 16,
   },
   subSectionTitle: {
     fontSize: 16,

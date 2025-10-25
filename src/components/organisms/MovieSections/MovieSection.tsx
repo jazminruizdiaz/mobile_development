@@ -1,15 +1,15 @@
 import { FlatList, View, ActivityIndicator } from 'react-native';
 import { useMemo } from 'react';
 import { MovieSectionHeader } from './MovieSectionHeader';
-import { MovieItem } from '../items/MovieItem';
-import { Movie } from '../../../../types/Movie';
-import { SectionContent } from '../../../../types/Section';
-import { BestMovieItem } from '../items/BestMovieItem';
+import { MovieItem } from '../../molecules/MovieItems/MovieItem';
+import { Movie } from '../../../types/Movie';
+import { SectionContent } from '../../../types/Section';
+import { BestMovieItem } from '../../molecules/MovieItems/BestMovieItem';
 import { styles } from './styles';
-import { useMoviesByCompany } from '../../../../hooks/useMoviesByCompany';
-import { useMoviesByGenre } from '../../../../hooks/useMoviesByGenre';
-import { useTopRatedMovies } from '../../../../hooks/useTopRatedMovies';
-import { useThemedColors } from '../../../../hooks/useThemedColors'; 
+import { useMoviesByCompany } from '../../../hooks/useMoviesByCompany';
+import { useMoviesByGenre } from '../../../hooks/useMoviesByGenre';
+import { useTopRatedMovies } from '../../../hooks/useTopRatedMovies';
+import { useThemedColors } from '../../../hooks/useThemedColors'; 
 
 export const MovieSection = ({
   title,

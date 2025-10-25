@@ -1,10 +1,10 @@
 import React from 'react';
 import { FlatList, Image, Text, View } from 'react-native';
 import { TMDB_IMAGE_BASE_URL } from '@env';
-import { CastMember } from '../../../../../../types/MovieCast';
+import { CastMember } from '../../../../../types/MovieCast';
 import { styles } from '../Cast/styles';
 
-const DEFAULT_CAST_IMG = require('../../../../../../assets/defaultcastimg.jpeg');
+const DEFAULT_CAST_IMG = require('../../../../../assets/defaultcastimg.jpeg');
 export const CastList = ({ cast }: { cast: CastMember[] }) => {
   return (
     <FlatList

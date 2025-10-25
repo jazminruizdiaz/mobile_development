@@ -1,5 +1,5 @@
 import React from 'react';
-import { CastMember } from '../../../../../../types/MovieCast';
+import { CastMember } from '../../../../../types/MovieCast';
 import { FlatList } from 'react-native';
 import { CastItem } from './CastItem';
 

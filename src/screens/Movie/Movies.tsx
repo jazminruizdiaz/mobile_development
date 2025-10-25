@@ -1,20 +1,20 @@
 import React, { useMemo, useState } from 'react';
 import { ScrollView, View, ActivityIndicator } from 'react-native';
 import { styles } from './styles';
-import { SectionsList } from './components/sections/SectionsList';
-import { MovieCarousel } from './components/carousel/MovieCarousel';
+import { SectionsList } from '../../components/organisms/MovieSections/SectionsList';
+import { MovieCarousel } from '../../components/organisms/MovieCarousel/MovieCarousel';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { GenresBar } from './components/genre/GenresBar';
+import { GenresBar } from '../../components/molecules/GenresBar/GenresBar';
 import { GENRES } from '../../constants/genres';
 import LinearGradient from 'react-native-linear-gradient';
-import { PromoBanner } from '../Movie/components/promo/PromoBanner.tsx';
+import { PromoBanner } from '../../components/organisms/PromoBanner/PromoBanner';
 import { usePopularMovies } from '../../hooks/usePopularMovies';
 import { SectionData } from '../../types/Section';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { StackParams } from '../../types/StackNavigator';
 import { useThemedColors } from '../../hooks/useThemedColors';
 import { TextCustom } from '../../components/atoms/Text/TextCustom';
-import { Genre } from '../../types/Movie.ts';
+import { Genre } from '../../types/Movie';
 
 const Movies = () => {
   const { data, loading } = usePopularMovies();

@@ -1,11 +1,11 @@
 import { TouchableOpacity, StyleProp, ImageStyle } from 'react-native';
-import { Movie } from '../../../../types/Movie';
+import { Movie } from '../../../types/Movie';
 import { styles } from './styles';
-import { TextCustom } from '../../../../components/atoms/Text/TextCustom';
-import { MovieCard } from '../items/MovieCard';
-import { useMovieModal } from '../../../../contexts/MovieModal/MovieModalContext';
-import { useThemedColors } from '../../../../hooks/useThemedColors';
-import { WishlistToggle } from '../../../../components/atoms/WishlistToggle/WishlistToggle';
+import { TextCustom } from '../../atoms/Text/TextCustom';
+import { MovieCard } from './MovieCard';
+import { useMovieModal } from '../../../contexts/MovieModal/MovieModalContext';
+import { useThemedColors } from '../../../hooks/useThemedColors';
+import { WishlistToggle } from '../../atoms/WishlistToggle/WishlistToggle';
 
 type Props = {
   movie: Movie;

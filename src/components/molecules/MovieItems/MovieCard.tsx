@@ -8,13 +8,13 @@ import {
 } from 'react-native';
 import { styles } from './styles';
 import { TMDB_IMAGE_BASE_URL } from '@env';
-import { useThemedColors } from '../../../../hooks/useThemedColors';
+import { useThemedColors } from '../../../hooks/useThemedColors';
 
 interface MovieCardProps {
   posterPath: string;
   style?: StyleProp<ViewStyle>;
 }
-const DEFAULT_CAST_IMG = require('../../../../assets/nomovieposterfound.jpeg');
+const DEFAULT_CAST_IMG = require('../../../assets/nomovieposterfound.jpeg');
 export const MovieCard = ({ posterPath, style }: MovieCardProps) => {
   const colors = useThemedColors();
   const [isLoading, setIsLoading] = useState(Boolean(posterPath));

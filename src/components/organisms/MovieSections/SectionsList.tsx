@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import { MovieSection } from './MovieSection';
 import { styles } from './styles';
-import { SectionCallbacks, SectionData } from '../../../../types/Section';
+import { SectionCallbacks, SectionData } from '../../../types/Section';
 
 type Props = {
   sections: SectionData[];

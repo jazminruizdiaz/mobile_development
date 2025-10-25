@@ -1,8 +1,8 @@
 import { View } from 'react-native';
-import { TextCustom } from '../../../../components/atoms/Text/TextCustom';
+import { TextCustom } from '../../atoms/Text/TextCustom';
 import { styles } from './styles';
-import { Button } from '../../../../components/atoms/Button/Button';
-import { useThemedColors } from '../../../../hooks/useThemedColors';
+import { Button } from '../../atoms/Button/Button';
+import { useThemedColors } from '../../../hooks/useThemedColors';
 
 type Props = {
   title: string;
@@ -18,7 +18,7 @@ export const MovieSectionHeader = ({
   const colors = useThemedColors();
   return (
     <View style={styles.row}>
-      <TextCustom style={{ color: colors.textPrimary }}variant="subtitle">
+      <TextCustom style={{ color: colors.textPrimary }} variant="subtitle">
         {title}
       </TextCustom>
       <Button
