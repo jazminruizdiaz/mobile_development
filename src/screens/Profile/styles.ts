@@ -1,10 +1,8 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../constants/colors';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
     paddingHorizontal: 40,
   },
   profileSection: {
@@ -17,7 +15,6 @@ export const styles = StyleSheet.create({
     overflow: 'hidden',
     marginBottom: 20,
     borderWidth: 2,
-    borderColor: colors.primary,
   },
   avatar: {
     width: '100%',
@@ -29,44 +26,43 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 6,
     borderRadius: 20,
-    backgroundColor: colors.buttonSecondary,
   },
   statBadgeText: {
     fontSize: 14,
     fontWeight: '600',
-    color: colors.textPrimary,
     textAlign: 'center',
   },
   name: {
     fontSize: 25,
     fontWeight: '600',
     marginBottom: 8,
-    color: colors.textPrimary,
   },
   email: {
     fontSize: 16,
     fontWeight: '400',
-    color: colors.textSecondary,
   },
   section: {
-    marginBottom: 24,
+    marginTop: 24,
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: '600',
     marginBottom: 16,
     paddingHorizontal: 4,
-    color: colors.textPrimary,
   },
   button: {
-    backgroundColor: colors.primary,
     paddingVertical: 12,
     borderRadius: 12,
     alignItems: 'center',
     marginBottom: 12,
   },
+  buttonLogout: {
+    backgroundColor: 'red',
+    paddingVertical: 12,
+    borderRadius: 12,
+    alignItems: 'center',
+  },
   buttonText: {
-    color: colors.textDark,
     fontSize: 16,
     fontWeight: '700',
   },
@@ -77,11 +73,85 @@ export const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 16,
     borderRadius: 12,
-    backgroundColor: colors.backgroundLight,
   },
   toggleLabel: {
     fontSize: 16,
     fontWeight: '700',
-    color: colors.textPrimary,
+  },
+  insightCard: {
+    borderRadius: 12,
+    padding: 16,
+    alignItems: 'flex-start',
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  insightText: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginBottom: 4,
+  },
+  insightSubText: {
+    fontSize: 14,
+  },
+  highlight: {
+    fontWeight: '700',
+  },
+  statsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  statCard: {
+    flex: 1,
+    alignItems: 'center',
+    borderRadius: 12,
+    paddingVertical: 12,
+    marginHorizontal: 4,
+  },
+  statNumber: {
+    fontSize: 16,
+    fontWeight: '700',
+  },
+  statLabel: {
+    fontSize: 13,
+    marginTop: 4,
+  },
+  subSectionTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginBottom: 8,
+  },
+  movieCardSmall: {
+    width: 90,
+    marginRight: 12,
+    alignItems: 'center',
+  },
+  moviePosterSmall: {
+    width: 90,
+    height: 130,
+    borderRadius: 8,
+  },
+  movieTitleSmall: {
+    fontSize: 12,
+    textAlign: 'center',
+    marginTop: 4,
+    width: 90,
+  },
+  favoriteGenreHeader: {
+    marginBottom: 10,
+  },
+  subSectionSubtitle: {
+    fontSize: 16,
+    marginBottom: 6,
+    fontWeight: '500',
+  },
+  highlightText: {
+    fontWeight: '700',
+  },
+  containerFav: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
   },
 });

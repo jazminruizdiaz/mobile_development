@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useState, useCallback, useMemo } from 'react';
 import { WishlistContext } from './WishlistContext';
 import { Movie } from '../../types/Movie';
 
@@ -7,38 +7,59 @@ export const WishlistProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [wishlist, setWishlist] = useState<Movie[]>([]);
 
-  const addToWishlist = (movie: Movie) => {
+  const addToWishlist = useCallback((movie: Movie) => {
     setWishlist(prev => {
       if (prev.some(item => item.id === movie.id)) {
         return prev;
       }
       return [...prev, movie];
     });
-  };
+  }, []);
 
-  const removeFromWishlist = (movieId: number) => {
+  const removeFromWishlist = useCallback((movieId: number) => {
     setWishlist(prev => prev.filter(movie => movie.id !== movieId));
-  };
+  }, []);
 
-  const isInWishlist = (movieId: number): boolean => {
-    return wishlist.some(movie => movie.id === movieId);
-  };
+  const clearWishList = useCallback(() => {
+    setWishlist([]);
+  }, []);
 
-  const toggleWishlist = (movie: Movie) => {
-    if (isInWishlist(movie.id)) {
-      removeFromWishlist(movie.id);
-    } else {
-      addToWishlist(movie);
-    }
-  };
+  const isInWishlist = useCallback(
+    (movieId: number): boolean => {
+      return wishlist.some(movie => movie.id === movieId);
+    },
+    [wishlist],
+  );
 
-  const value = {
-    wishlist,
-    addToWishlist,
-    removeFromWishlist,
-    isInWishlist,
-    toggleWishlist,
-  };
+  const toggleWishlist = useCallback(
+    (movie: Movie) => {
+      if (isInWishlist(movie.id)) {
+        removeFromWishlist(movie.id);
+      } else {
+        addToWishlist(movie);
+      }
+    },
+    [addToWishlist, isInWishlist, removeFromWishlist],
+  );
+
+  const value = useMemo(
+    () => ({
+      wishlist,
+      addToWishlist,
+      removeFromWishlist,
+      isInWishlist,
+      toggleWishlist,
+      clearWishList,
+    }),
+    [
+      wishlist,
+      addToWishlist,
+      removeFromWishlist,
+      isInWishlist,
+      toggleWishlist,
+      clearWishList,
+    ],
+  );
 
   return (
     <WishlistContext.Provider value={value}>

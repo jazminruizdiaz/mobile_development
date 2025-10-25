@@ -4,16 +4,19 @@ import {
   ViewStyle,
   TextStyle,
 } from 'react-native';
-import { styles } from './styles';
+import { useThemedColors } from '../../../hooks/useThemedColors';
 import { TextCustom } from '../Text/TextCustom';
+import { buttonStyles } from './styles';
+import React from 'react';
 
 interface ButtonProps {
   title: string;
   onPress: () => void;
-  variant?: 'primary' | 'secondary' | 'custom';
+  variant?: 'primary' | 'secondary' | 'third'  |'custom';
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
+  children?: React.ReactNode;
 }
 
 export const Button = ({
@@ -23,37 +26,50 @@ export const Button = ({
   disabled = false,
   style,
   textStyle,
+  children,
 }: ButtonProps) => {
-  const getButtonStyle = () => {
-    if (variant === 'custom') {
-      return [style];
-    }
-    return [
-      styles.button,
-      variant === 'primary' ? styles.primary : styles.secondary,
-      disabled && styles.disabled,
-      style,
-    ];
-  };
+  const colors = useThemedColors();
 
-  const getTextStyle = () => {
-    if (variant === 'custom') {
-      return [textStyle];
-    }
-    return [
-      variant === 'primary' ? styles.primaryText : styles.secondaryText,
+  const buttonStyle: StyleProp<ViewStyle> = variant === 'custom'
+    ? style
+    : [
+        buttonStyles.button,
+        variant === 'primary'
+        ? { backgroundColor: colors.buttonPrimary }
+        : variant === 'secondary'
+        ? { backgroundColor: colors.buttonSecondary }
+        : { backgroundColor: colors.gray },
+
+        disabled && buttonStyles.disabled,
+        style,
+      ].filter(Boolean);
+
+  const textStyleArray: StyleProp<TextStyle> = variant === 'custom'
+  ? textStyle
+  : [
+      variant === 'primary'
+        ? { ...buttonStyles.primaryText, color: colors.textDark }
+        : variant === 'secondary'
+        ? { ...buttonStyles.secondaryText, color: colors.textPrimary }
+        : { ...buttonStyles.thirdText, color: colors.white },
       textStyle,
-    ];
-  };
+    ].filter(Boolean);
 
+  
   return (
-    <TouchableOpacity
-      style={getButtonStyle()}
+   <TouchableOpacity
+      style={buttonStyle}
       onPress={onPress}
       disabled={disabled}
       activeOpacity={0.7}
     >
-      <TextCustom style={getTextStyle()}>{title}</TextCustom>
+      {children ? (
+        children
+      ) : (
+        <TextCustom style={textStyleArray}>{title}</TextCustom>
+      )}
     </TouchableOpacity>
+
   );
 };
+

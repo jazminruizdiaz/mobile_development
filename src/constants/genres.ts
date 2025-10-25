@@ -1,7 +1,4 @@
-export type Genre = {
-  id: number;
-  name: string;
-};
+import { Genre } from '../types/Movie';
 
 export const GENRES: Genre[] = [
   { id: 0, name: 'All' },

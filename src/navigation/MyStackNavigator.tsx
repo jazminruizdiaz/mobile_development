@@ -4,9 +4,11 @@ import { StackParams } from '../types/StackNavigator';
 import { SeeMore } from '../screens/SeeMore/SeeMore';
 import { stackOptions } from './stackOptions';
 
+
 const Stack = createNativeStackNavigator<StackParams>();
 
 const MyStackNavigator = () => {
+
   return (
     <Stack.Navigator initialRouteName="TabNav" screenOptions={stackOptions}>
       <Stack.Screen

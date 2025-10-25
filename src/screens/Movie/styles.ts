@@ -1,19 +1,15 @@
-import { StyleSheet, Dimensions } from 'react-native';
-import { colors } from '../../constants/colors';
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
   },
   loadingContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.background,
   },
   loadingText: {
-    color: colors.textPrimary,
     marginTop: 16,
     fontSize: 16,
   },
