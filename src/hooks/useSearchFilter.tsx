@@ -28,6 +28,9 @@ export const useSearchFilter = (): UseSearchFilterReturn => {
 
   const handleChangeText = (text: string) => {
     setInputText(text);
+    if (!text.trim()) {
+      setActiveQuery('');
+    }
   };
 
   const handleSelectedGenre = (genreId: string | null) => {
